@@ -9,22 +9,30 @@ const multer = require("multer");
 
 const app = express();
 
-app.use((req, res, next) => {
-    // Mengatur header Referrer-Policy
-    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+const cors = require('cors');
+// const corsOptions ={
+//     origin:'http://localhost:3000/', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
+app.use(cors());
 
-    // Mengatur header CORS
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Update sesuai dengan domain asal yang akan membuat permintaan
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+// app.use((req, res, next) => {
+//     // Mengatur header Referrer-Policy
+//     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-    // Menangani preflight request untuk OPTIONS method
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(204); // No Content
-    }
+//     // Mengatur header CORS
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/'); // Update sesuai dengan domain asal yang akan membuat permintaan
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-    next();
-});
+//     // Menangani preflight request untuk OPTIONS method
+//     if (req.method === 'OPTIONS') {
+//         return res.sendStatus(204); // No Content
+//     }
+
+//     next();
+// });
 const port = 3000;
 
 app.use(express.json());
