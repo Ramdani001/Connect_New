@@ -12,7 +12,7 @@ export default function Login(props){
             if(response.status == 200){
                 setShowAlert(true);
                 // if(response_per == 200){
-                    sessionStorage.setItem("id_user", userData.id_user);
+                    
                     const timer = setTimeout(() => {
                         window.location.href = '/login';
                     }, 3000);
@@ -94,10 +94,12 @@ export default function Login(props){
     
                                 if(isMatch == true){
                                     alert("Anda berhasil login");
-                                    console.log("Password Sama");
+                                    console.log(response.data[0].id_user);
                                     if(e.tipe == 1){
+                                        localStorage.setItem("id_user", response.data[0].id_user);
                                         window.location.href = '/admin';
                                     }else{
+                                        localStorage.setItem("id_user", response.data[0].id_user);
                                         window.location.href = '/';
                                     }
                                 }else{

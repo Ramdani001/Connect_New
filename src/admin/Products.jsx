@@ -148,7 +148,7 @@ export default function Products(props){
         
         try { 
 
-            const response = await axios.get(`http://localhost:3000/api/v1/products//${e}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/products/${e}`);
             
             if(response.status == 200){
                 setArrProd(response.data);
@@ -179,7 +179,7 @@ export default function Products(props){
         
         try { 
 
-            const response = await axios.get(`http://localhost:3000/api/v1/products//${e}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/products/${e}`);
             
             if(response.status == 200){
                 setArrProd(response.data);
@@ -206,7 +206,7 @@ export default function Products(props){
 
     const [formUpdate, setFormUpdate] = useState({
         updated_at: format(currentDate, 'yyyy-MM-dd'),
-      });
+    });
 
       let title = document.getElementById('title_id');
 

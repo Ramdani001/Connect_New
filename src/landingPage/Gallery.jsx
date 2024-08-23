@@ -62,11 +62,11 @@ export default function Gallery(props){
         }
         console.log(sendData);
     }, [type]);
-     
+      
     const mappingData = arrData.map((dat => {
-        return <Video key={dat.key} no={dat.id_product} nama={dat.title} type={dat.type} price={dat.price} ket={dat.descriptionx}  url={dat.url} thumbnail={dat.file}/>
+        return <Video key={dat.key} id_product={dat.id_product} nama={dat.title} type={dat.type} price={dat.price} ket={dat.descriptionx}  url={dat.url} thumbnail={dat.file}/>
     })) 
- 
+  
 
     return (
         <>

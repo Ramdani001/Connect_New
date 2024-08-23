@@ -3,6 +3,7 @@ const productRoutes = require('./src/prodcut/routes');
 const usersRoutes = require('./src/users/routes');
 const transaksiRoutes = require('./src/transaksi/routes');
 const messagesRoutes = require('./src/messages/routes');
+const cartRoutes = require('./src/cart/routes');
 
 const multer = require("multer");
 
@@ -10,29 +11,7 @@ const multer = require("multer");
 const app = express();
 
 const cors = require('cors');
-// const corsOptions ={
-//     origin:'http://localhost:3000/', 
-//     credentials:true,            //access-control-allow-credentials:true
-//     optionSuccessStatus:200
-// }
 app.use(cors());
-
-// app.use((req, res, next) => {
-//     // Mengatur header Referrer-Policy
-//     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-
-//     // Mengatur header CORS
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/'); // Update sesuai dengan domain asal yang akan membuat permintaan
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
-//     // Menangani preflight request untuk OPTIONS method
-//     if (req.method === 'OPTIONS') {
-//         return res.sendStatus(204); // No Content
-//     }
-
-//     next();
-// });
 const port = 3000;
 
 app.use(express.json());
@@ -57,11 +36,13 @@ app.post('/upload',upload.single('file'), (req, res) => {
     console.log(req.file);
     res.status(200).json(req.file);
 }); 
-
+ 
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/transaksi', transaksiRoutes);
 app.use('/api/v1/messages', messagesRoutes);
+
+app.use('/api/v1/cart', cartRoutes);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 

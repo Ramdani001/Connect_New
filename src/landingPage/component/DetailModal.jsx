@@ -1,10 +1,84 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function DetailModal(props){
-    const {key, no, nama, type, price, ket, url} = props;
+    const {key, id_product, nama, type, price, ket, url} = props;
 
     const [modalDetail, setModalDetail] = useState(false);
+    const [idUser, setIdUser] = useState();
+
+    const [formUpdate, setFormUpdate] = useState({});
+
+    const [checkChart, setCheckChart] = useState();
+
+    // Handle click event to get product ID
+    const handleCart = (e) => {
+        const targetElement = e.currentTarget || e.target;
+        const id_product = targetElement.getAttribute('data-id');
+
+        const paid = 2;
+
+        updateProd(id_product, idUser, paid);
+    };
+
+    const updateProd = async (id_product, id_user, paid) => {
+
+        const send = {id_product, id_user, paid};
+        console.log(send)
+
+        try { 
+
+            const response = await axios.post("http://localhost:3000/api/v1/cart/add", send);
+            
+            if(response.status == 200){
+                console.log(response);
+
+                const elements = document.querySelectorAll(`[data-id='${id_product}']`);
+
+                elements.forEach(element => {
+                    element.disabled = true;
+                });
+
+                alert("Berhasil ditambahkan");
+
+            }
+            // console.log(arrProd);
+        } catch (error) {
+            if(error.response){
+                if(error.response.status == 300){
+                    setshowAlertWar(true);
+                }
+            }
+            if (error.response) {
+                console.error('Response errora:', error.response.status);
+                console.error('Response data:', error.response.data);
+            
+            } else {
+                console.error('Error:', error.message);
+            }
+        }
+    };
+
+    const handleFormUpdate = (e) => {
+        const { name, value } = e.target;
+
+        setFormUpdate(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    useEffect(() => {
+        const id_user = localStorage.getItem('id_user');
+        if(id_user){
+            setIdUser(id_user);
+        }else{
+            setIdUser(0);
+        }
+        console.log(idUser);
+    }, []);
 
     useEffect(() => {
         console.log(modalDetail);
@@ -37,14 +111,19 @@ export default function DetailModal(props){
                                 <h2 className=""> {ket}</h2>
                             </div>
                             <div className="mt-3 flex gap-3">
-                                <button className="border border-blue-400 rounded shadow-md font-semibold p-1 w-full">
+                                {idUser != 0 ? (
+
+                                <button onClick={handleCart} data-id={id_product} className="border border-blue-400 rounded shadow-md font-semibold p-1 w-full">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Add To Cart
                                 </button>
-                                <button className="border border-blue-400 rounded shadow-md font-semibold p-1 w-full">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    Buy
-                                </button>
+                                ) : 
+                                    <div className="flex md:justify-center mr-7 w-full border bg-[#df5ac1] border-none rounded-md shadow-md text-center">
+                                        <Link to="/login">
+                                            <button className="py-1 px-10 text-center">Login</button>
+                                        </Link>
+                                    </div>
+                                }
                             </div>
 
                             <div className="sosmed flex justify-evenly mt-3">
