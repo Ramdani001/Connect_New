@@ -9,7 +9,7 @@ import axios from 'axios';
 export default function Gallery(props){
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://localhost:3000/api/v1/products');
+    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/products');
 
     const getProduct = async () => {
         try {

@@ -46,7 +46,7 @@ export default function History(props){
     const getCart = async () => {
         const id_user = localStorage.getItem('id_user');
         try {
-            const response = await axios.get(`http://localhost:3000/api/v1/cart/${id_user}`);
+            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/cart/${id_user}`);
             setArrData(response.data);
 
             // Membuat objek baru berdasarkan data yang diterima
@@ -102,7 +102,7 @@ export default function History(props){
         const id = e;
         console.log('Item ID to delete:', id);
         try {
-            const response = await axios.delete(`http://localhost:3000/api/v1/cart/del/${id}`);
+            const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/cart/del/${id}`);
             getCart()
         } catch (error) {
             
@@ -127,7 +127,7 @@ export default function History(props){
         console.log(formTrans);
 
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/transaksi/insert/", formTrans);
+            const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/transaksi/insert/", formTrans);
             if(response.status == 200){
                 const idProductString = formTrans.id_chart;
 
@@ -166,7 +166,7 @@ export default function History(props){
 
     const updateW = async(cartData) => {
 
-        const res = await axios.post("http://localhost:3000/api/v1/transaksi/updateCart/", cartData);
+        const res = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/transaksi/updateCart/", cartData);
         console.log(cartData);            
         if(res.status == 200){
             alert("Berhasil Checkout Cart, segera melunasi di menu Transaction History!");  

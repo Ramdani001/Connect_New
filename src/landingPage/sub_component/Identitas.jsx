@@ -19,7 +19,7 @@ export default function Identitas(props){
             file: "",
         }));
         try {
-            const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
+            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
             console.log(response.data[0]);
             setOldData(response.data[0]);
             setImageUrl(`images/products/${response.data[0].file}`);
@@ -79,7 +79,7 @@ export default function Identitas(props){
                 const formFile = new FormData();
                 formFile.append('file', images);
                 
-                axios.post('http://localhost:3000/upload', formFile)
+                axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
                 .then(res => {
                     
                     let data = JSON.stringify(res.data, null, 2);
@@ -92,14 +92,14 @@ export default function Identitas(props){
                         if (file) {
                             setFile(file);
                         }
-
+ 
                     }else{
                         console.log("Tidak Berhasil Upload");
                     }
                 }).catch(er => console.log(er));
             }else{
                 console.log(changeInput);
-                const response = await axios.post("http://localhost:3000/api/v1/users/updateUser", changeInput);
+                const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/users/updateUser", changeInput);
                 if(response.status == 200){
                     console.log(response.data);
                     alert("Sucessfully Update Data");

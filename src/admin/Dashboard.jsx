@@ -6,7 +6,7 @@ import Messages from "./component/Messages";
 
 export default function Dashboard(props){
 
-    const [url, setUrl] = useState('http://localhost:3000/api/v1/transaksi');
+    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi');
     const [transData, setTransData] = useState([]);
 
     const getTrans = async () => {
