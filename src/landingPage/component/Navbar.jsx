@@ -9,7 +9,7 @@ function Navbar() {
         const id = localStorage.getItem('id_user');
 
         try {
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
 
             if(response.data[0].file !== null){

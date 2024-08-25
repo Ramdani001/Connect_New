@@ -13,7 +13,7 @@ export default function Products(props){
     const [detailModal, setDetailModal] = useState(false);
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/products');
+    const [url, setUrl] = useState('http://localhost:3000/api/v1/products');
 
     const getUsers = async () => {
         try {
@@ -84,7 +84,7 @@ export default function Products(props){
         const formFile = new FormData();
         formFile.append('file', images);
          
-        axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+        axios.post('http://localhost:3000/upload', formFile)
         .then(res => {
 
             let data = JSON.stringify(res.data, null, 2);
@@ -117,7 +117,7 @@ export default function Products(props){
         console.log(formData);
         try {
 
-            const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/products/insert', productData);
+            const response = await axios.post('http://localhost:3000/api/v1/products/insert', productData);
             
             if(response.status == 200){
                 console.log('Product added:', response.status);
@@ -148,7 +148,7 @@ export default function Products(props){
         
         try { 
 
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/products/${e}`);
             
             if(response.status == 200){
                 setArrProd(response.data);
@@ -179,7 +179,7 @@ export default function Products(props){
         
         try { 
 
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/products/${e}`);
             
             if(response.status == 200){
                 setArrProd(response.data);
@@ -234,8 +234,8 @@ export default function Products(props){
 
     const delFunct = async (e) =>{
         try {
-            const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
-            setUrl("http://www.tempat-transit.cloud:3000/api/v1/products/");
+            const response = await axios.delete(`http://localhost:3000/api/v1/products/${e}`);
+            setUrl("http://localhost:3000/api/v1/products/");
             console.log('Data:', response);
 
             alert("Delete Berhasil");

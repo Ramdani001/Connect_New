@@ -11,7 +11,7 @@ export default function Messages(props){
 
     const getMessages = async () => {
         try {
-            const response = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/messages");
+            const response = await axios.get("http://localhost:3000/api/v1/messages");
      
             setArrData(response.data);
 
