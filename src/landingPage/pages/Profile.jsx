@@ -7,7 +7,7 @@ import Transaction_History from '../sub_component/Transaction_History';
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 export default function Profile() {
-
+ 
     const [showContent, setShowContent] = useState("Identitas");
 
     const menusFunct = (e) => {
@@ -37,7 +37,6 @@ export default function Profile() {
                                 <h2 className="font-semibold">
                                     Rizkan Ramdani
                                 </h2> 
-                                <label className="text-slate-400 cursor-pointer"> Ubah profile <i class="fa-solid fa-pencil"></i></label>    
                             </div>
  
 

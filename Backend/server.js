@@ -35,14 +35,16 @@ app.post('/upload',upload.single('file'), (req, res) => {
     console.log("Tengah");
     console.log(req.file);
     res.status(200).json(req.file);
-}); 
+});
+
  
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/users', usersRoutes);
-app.use('/api/v1/transaksi', transaksiRoutes);
 app.use('/api/v1/messages', messagesRoutes);
 
 app.use('/api/v1/cart', cartRoutes);
+
+app.use('/api/v1/transaksi', transaksiRoutes);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 

@@ -1,27 +1,48 @@
 const pool = require('../../db');
 const queries = require("./query");
 
-const getTransaksi = (req, res) => {
-    pool.query(queries.getPTransaksi, (error, results) => {
-        if(error) throw error.message;
-        res.status(200).json(results);
-    });
-};
-
 const getTransaksiById = (req, res) => {
     const id = parseInt(req.params.id);
     // console.log(id);
-    pool.query(queries.getProductsById, [id], (error, results) => {
+    pool.query(queries.getTransaksiById, [id], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
+const getDetail = (req, res) => {
+    const { numbers } = req.body;
+
+    pool.query(queries.getDetail, [numbers], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+
+const updateCart = (req, res) => {
+    const { numbers } = req.body;
+
+    pool.query(queries.updateCart, [numbers], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+  
 const insertTransaksi = (req, res) => {
 
-    const { title, type, price, description, url, file, created_at, updated_at } = req.body;
+    const { id_trans, id_product, id_user, price, status, payment, nama_pengirim, file, created_at } = req.body;
+    
+    pool.query(queries.insertTransaksi, [id_trans, id_product, id_user, price, status, payment, nama_pengirim, file, created_at], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+}
 
-    pool.query(queries.insertProduct, [title, type, price, description, url, file, created_at, updated_at], (error, results) => {
+const updateInsert = (req, res) => {
+
+    const { id, nama_pengirim, payment, file } = req.body;
+    
+    pool.query(queries.updateInsert, [payment, nama_pengirim, file, id], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
@@ -36,8 +57,10 @@ const deleteTransaksi = (req, res) => {
     });
 }
 module.exports = {
-    getTransaksi,
     getTransaksiById,
     insertTransaksi,
     deleteTransaksi,
+    getDetail,
+    updateCart,
+    updateInsert,
 };

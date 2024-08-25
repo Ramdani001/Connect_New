@@ -16,7 +16,7 @@ export default function History(props){
     const getMessages = async () => {
         const id = localStorage.getItem("id_user");
         setId_user(id);
-        console.log(id_user);
+         
         try {
             const res = await axios.get(`http://localhost:3000/api/v1/messages/custSess/${id_user}`);
             // setArrMess(res.data);
@@ -58,6 +58,8 @@ export default function History(props){
         }));
 
     };
+    
+    const [s_id, setS_id] = useState(0);
 
     const handleMessage = async (e) => {
 
@@ -65,18 +67,34 @@ export default function History(props){
         
         const updatedFormData = {
             ...formData,
-            id_m: id_m,
-            id_user: id_user
+            id_user: id_user,
+            id_m:id_m
         };
-        try {
-            const response = await axios.post(`http://localhost:3000/api/v1/messages/insert/`, updatedFormData);
-            
-            if(response){
-                const res = await axios.get(`http://localhost:3000/api/v1/messages/mess/${id_m}`);
-                setArrMess(res.data);
-                document.getElementById("send_mess").value = "";
 
+        try {
+
+            if(id_m){
+                const response = await axios.post(`http://localhost:3000/api/v1/messages/insert/`, updatedFormData);
+                
+                if(response){
+                    const res = await axios.get(`http://localhost:3000/api/v1/messages/mess/${id_m}`);
+                    setArrMess(res.data);
+                    document.getElementById("send_mess").value = "";
+                }
+            }else{
+                const res = await axios.get(`http://localhost:3000/api/v1/messages/newInsert/${id_user}`);
+                
+                if(res){
+                    const upi = {
+                        ...formData,
+                        id_m: res.data.insertId,
+                        id_user: id_user
+                    };
+                    input(upi);
+
+                }
             }
+
 
         } catch (error) {
             
@@ -92,13 +110,25 @@ export default function History(props){
                 console.error('Error:', error.message);
             }
         }
+    }
 
-        console.log(updatedFormData);
+    const input = async(data) => {
+        sendData(data);
+    }
+
+    const sendData = async(data) => {
+        const response = await axios.post(`http://localhost:3000/api/v1/messages/insert/`, data);
+                
+        if(response){
+            const res = await axios.get(`http://localhost:3000/api/v1/messages/mess/${data.id_m}`);
+            setArrMess(res.data);
+            document.getElementById("send_mess").value = "";
+        }
     }
     
+
     useEffect(() => {
         getMessages();
-        console.log("Clicked");
     }, [statCheck]);
 
     useEffect(() => {

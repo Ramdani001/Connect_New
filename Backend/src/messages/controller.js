@@ -6,7 +6,7 @@ const getMessages = (req, res) => {
         if(error) throw error.message;
         res.status(200).json(results);
     });
-};
+}; 
 
 const getMessagesById = (req, res) => {
     const id = parseInt(req.params.id);
@@ -22,6 +22,16 @@ const insertMessages = (req, res) => {
     const { id_m, send_mess, id_user } = req.body;
 
     pool.query(queries.insertMessages, [id_m, send_mess, id_user], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+}
+ 
+const newInsertMessages = (req, res) => {
+
+    const id_user = parseInt(req.params.id);
+
+    pool.query(queries.newInsertMessages, [id_user], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
@@ -58,7 +68,7 @@ const getAllMessages = (req, res) => {
  
 const getCustMess = (req, res) => {
     const id = parseInt(req.params.id);
-
+ 
     pool.query(queries.getCustMess, [id], (error, results) => {
 
         if(error) throw error;
@@ -74,4 +84,5 @@ module.exports = {
     changeStatusMess,
     getAllMessages,
     getCustMess,
+    newInsertMessages,
 };

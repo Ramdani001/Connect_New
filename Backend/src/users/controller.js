@@ -66,9 +66,11 @@ const deleteUsers = (req, res) => {
 
 const checkLogin = (req, res) => {
 
-    const { email, password } = req.body;
-
+    const { email } = req.body;
+ 
     pool.query(queries.checkEmailExists, [email], (error, results) => {
+
+        console.log(email);
         
         if(results.length > 0){
             res.status(200).send(results);

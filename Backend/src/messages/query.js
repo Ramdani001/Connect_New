@@ -10,7 +10,7 @@ const getAllMessages = `SELECT
                         INNER JOIN users d ON c.id_user = d.id_user
                         WHERE a.id_m=?
                      `;
- 
+  
 const getMessages = `SELECT a.id_m, b.nama, a.stat
                     FROM message a
                     LEFT JOIN users b ON a.id_user=b.id_user
@@ -19,7 +19,7 @@ const getMessages = `SELECT a.id_m, b.nama, a.stat
 const getMessagesById = "SELECT * FROM product WHERE id_product=?";
 
 const insertMessages = "INSERT INTO sub_message (id_m, send_mess, id_user) VALUES (?, ?, ?)";
-
+ 
 const removeMessages = "DELETE FROM product WHERE id_product=?";
 const changeStatusMess = "UPDATE message SET stat=2 WHERE id_m=?";
 
@@ -27,6 +27,10 @@ const getCustMess = `SELECT b.id_m, b.send_mess, b.id_user
                     FROM message a 
                     LEFT JOIN sub_message b ON a.id_m=b.id_m
                     WHERE a.id_user=?`;
+
+// Create New Message
+const newInsertMessages = "INSERT INTO message (id_user, stat) VALUES (?, 2)";
+
 
 module.exports = {
     getMessages,
@@ -36,4 +40,5 @@ module.exports = {
     changeStatusMess,
     getAllMessages,
     getCustMess,
+    newInsertMessages,
 };

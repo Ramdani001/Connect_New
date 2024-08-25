@@ -9,11 +9,14 @@ router.post("/insert", controller.insertMessages);
 router.delete("/:id", controller.deleteMessages);
 
 router.get("/stat/:id", controller.changeStatusMess);
-
+  
 router.get("/mess/:id", controller.getAllMessages);
- 
+  
 router.get("/custSess/:id", controller.getCustMess);
 
 router.get("/cust/:id", controller.getCustMess);
+
+// Create new Messages
+router.get("/newInsert/:id", controller.newInsertMessages);
 
 module.exports = router;

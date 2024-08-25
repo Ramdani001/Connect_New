@@ -3,19 +3,83 @@ import { Link }  from 'react-router-dom';
 import Submessages from "../../admin/component/Submessages";
 import AdminMessages from "../../admin/component/AdminMessages";
 import axios from 'axios';
- 
+import { format } from 'date-fns';
 export default function History(props){
 
     const [cartAdd, setCartAdd] = useState(0);
     const [arrData, setArrData] = useState([]);
     const [totCart, setTotCart] = useState(0);
+    const currentDate = new Date();
+    const [formTrans, setFormTrans] = useState({
+        created_at: format(currentDate, 'yyyy-MM-dd h:mm:ss'),
+    }); 
+    // const [formTrans, setFormTrans] = useState({
+    //     created_at: "2024-08-24 11:12:21",
+    //     id_product: "19,20",
+    //     id_trans: "TRX-3992",
+    //     id_user: 60,
+    //     payment: "",
+    //     price: "468000",
+    //     status: 3
+    // }); 
+    
+
+    // Random Id Trans
+    let generatedIDs = new Set(); // Set to keep track of generated IDs
+
+    const generateUniqueTransactionID = () => {
+    const prefix = 'TRX-';
+    let uniqueID;
+    do {
+        const randomNumber = Math.floor(Math.random() * 10000); // Generate a number between 0 and 9999
+        const paddedNumber = String(randomNumber).padStart(4, '0'); // Pad the number with leading zeros
+        uniqueID = `${prefix}${paddedNumber}`;
+    } while (generatedIDs.has(uniqueID)); // Ensure uniqueness
+
+    generatedIDs.add(uniqueID); // Add the new unique ID to the set
+    return uniqueID;
+    };
+
+      
+    // Random Id Trans
 
     const getCart = async () => {
         const id_user = localStorage.getItem('id_user');
         try {
             const response = await axios.get(`http://localhost:3000/api/v1/cart/${id_user}`);
             setArrData(response.data);
-            
+
+            // Membuat objek baru berdasarkan data yang diterima
+            const newFormTrans = response.data.reduce((acc, item) => {
+                
+                if (acc.length > 0) {
+                  acc += ',';
+                }
+                acc += item.id_product;
+                return acc;
+              }, '');
+
+            //   GetUser
+            const getUser = localStorage.getItem("id_user");
+
+            //   Price
+              const total = arrData.reduce((acc, item) => acc + parseInt(item.price), 0);
+
+              setFormTrans(prevState => ({
+                ...prevState,
+                id_trans: generateUniqueTransactionID(),
+                price: total.toString(),
+                id_user: parseInt(getUser),
+                status: 3,
+                file: "",
+                payment: "",
+              }));
+
+              setFormTrans(prevState => ({
+                ...prevState,
+                id_product: newFormTrans,
+              }));
+             
         } catch (error) {
             
             if (error.response) {
@@ -56,6 +120,61 @@ export default function History(props){
         }
     }
 
+    const [idP, setIdP] = useState([]);
+
+    // CheckOut
+    const handleCheckout = async () => {
+        console.log(formTrans);
+
+        try {
+            const response = await axios.post("http://localhost:3000/api/v1/transaksi/insert/", formTrans);
+            if(response.status == 200){
+                const idProductString = formTrans.id_chart;
+
+                const idsArray = (typeof idProductString === 'string' && idProductString.trim() !== '') 
+                    ? idProductString.split(',').map(id => id.trim())
+                    : []; 
+
+                    setIdP(prevState => {
+                        const updatedState = {
+                            ...prevState,
+                            "numbers": idsArray,
+                        };
+                        return updatedState;
+                    });
+
+                    updateW(idP);
+
+            }
+            getCart()
+        } catch (error) {
+            
+            if (error.response) {
+                
+                console.error('Response error:', error.response.status);
+                console.error('Response data:', error.response.data);
+            } else if (error.request) {
+                
+                console.error('Request error:', error.request);
+            } else {
+                
+                console.error('Error:', error.message);
+            }
+        }
+    }
+    // CheckOut
+
+    const updateW = async(cartData) => {
+
+        const res = await axios.post("http://localhost:3000/api/v1/transaksi/updateCart/", cartData);
+        console.log(cartData);            
+        if(res.status == 200){
+            alert("Berhasil Checkout Cart, segera melunasi di menu Transaction History!");  
+            localStorage.setItem("sidebar", "Trans_History");
+            window.location.reload();
+        }
+    }
+  
     useEffect(() => {
         const total = arrData.reduce((acc, item) => acc + parseInt(item.price), 0);
         const formatter = new Intl.NumberFormat('id-ID', {
@@ -68,7 +187,7 @@ export default function History(props){
 
     useEffect(() => {
         getCart();
-    }, [arrData]);
+    }, []);
     
     return (
         <div >
@@ -87,7 +206,7 @@ export default function History(props){
                                     <div class="w-[80] line-clamp-2 p-2">
                                         {item.description}
                                     </div>
-                                </div>
+                                </div> 
 
                                 {/* Price */}
                                 <div className="text-end text-end flex justify-end w-full px-5">
@@ -105,7 +224,7 @@ export default function History(props){
                     
                     <div className="bottom-0 left-0 w-full p-2">
                         <div className="bg-white w-full h-[100px] flex items-center justify-center justify-between px-10">
-                            <button className="bg-blue-400 px-5 py-1 text-white rounded-md shadow-md">
+                            <button className="bg-blue-400 px-5 py-1 text-white rounded-md shadow-md" type="button" onClick={() =>handleCheckout()}>
                                 Checkout
                             </button>
                             <span className="text-xl font-semibold text-2xl font-bold font-popins">Total : {totCart}</span>
