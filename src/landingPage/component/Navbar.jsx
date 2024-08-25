@@ -1,7 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
- 
+import axios from 'axios';
 function Navbar() {
+
+    const [oldData, setOldData] = useState({});
+    // Get Data
+    const getUsers = async() => {
+        const id = localStorage.getItem('id_user');
+
+        try {
+            const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
+            setOldData(response.data[0]);
+
+            if(response.data[0].file !== null){
+                document.getElementById('profile_foto').src = `images/products/${response.data[0].file}`;
+            }else{
+                document.getElementById('profile_foto').src = `images/aboutImage.png`;
+            }
+            
+        } catch (error) {
+            
+            if (error.response) {
+                
+
+                console.error('Response error:', response);
+                console.error('Response data:', error.response.data);
+            } else if (error.request) {
+                
+                console.error('Request error:', error.request);
+            } else {
+                
+                console.error('Error:', error.message);
+            }
+        }
+    }
+    // Get Data
 
     const [showNav, setShowNav] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -20,6 +53,7 @@ function Navbar() {
             setIdUser(0);
         }
         console.log(idUser);
+        getUsers();
     }, []);
   
     return(
@@ -56,8 +90,12 @@ function Navbar() {
                 <div id="profile" className={showNav ? "order-4 md:order-3 p-2 md:pl-0" : "hidden md:block md:order-3 p-2 md:pl-0"}>
                 {idUser !=0 ? (
                     <div className="flex md:justify-end md:pr-8 items-center gap-3 cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>
-                        <h4 className="text-xl">Rizkan Ramdani</h4>
-                        <div className="w-7 h-7 bg-gray-600 rounded-full"></div>
+                        <h4 className="text-xl">
+                             {oldData.nama ? oldData.nama : oldData.username}
+                        </h4>
+                        <div className="w-7 h-7 bg-gray-600 rounded-full">
+                            <img src="" alt="" id="profile_foto" className="rounded-full shadow-md h-full w-full object-fill"/>
+                        </div>
                     </div>
                     ) : 
                     <Link to="/login">

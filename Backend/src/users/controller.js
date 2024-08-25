@@ -44,32 +44,32 @@ const addUsers = (req, res) => {
 
 const addPerson = (req, res) => {
     const {id_user} = req.body;
-
+    
     pool.query(queries.addPerson, [id_user], (error, results) => {
         if(error) throw error;
-
+        
         res.status(200).send(results);
         console.log("Id User berhasil ditambahkan di table person");
-
+        
     })
 }
 
 const deleteUsers = (req, res) => {
     const id = parseInt(req.params.id);
-
+    
     pool.query(queries.removeUsers, [id], (error, results) => {
-
+        
         if(error) throw error;
         res.status(200).send("Users removed successfully");
     });
 }
 
 const checkLogin = (req, res) => {
-
+    
     const { email } = req.body;
- 
+    
     pool.query(queries.checkEmailExists, [email], (error, results) => {
-
+        
         console.log(email);
         
         if(results.length > 0){
@@ -81,6 +81,20 @@ const checkLogin = (req, res) => {
         
     });
 }
+const updateUser = (req, res) => {
+    const { username, nama, no_telp, alamat, file, id_user } = req.body;
+
+    pool.query(queries.updateUser, [username, nama, no_telp, alamat, file, id_user], (error, results) => {
+        if (error) {
+            console.error("Error executing query:", error.message);
+            res.status(500).send("Error updating user");
+            return;
+        };
+        res.status(200).send(results);
+        console.log("Executing query:", queries.updateUser);
+        console.log("With parameters:", [username, nama, no_telp, alamat, file, id_user]);
+    });
+}
 
 module.exports = {
     getUsers,
@@ -89,4 +103,5 @@ module.exports = {
     deleteUsers,
     checkLogin,
     addPerson,
+    updateUser,
 };

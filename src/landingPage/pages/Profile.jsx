@@ -3,11 +3,45 @@ import Identitas from '../sub_component/Identitas';
 import History from '../sub_component/History'; 
 import Cart from '../sub_component/Cart'; 
 import Transaction_History from '../sub_component/Transaction_History'; 
-
+import axios from 'axios';
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 export default function Profile() {
  
+    const [oldData, setOldData] = useState({});
+    const [imageUrl, setImageUrl] = useState("");
+
+    const getUsers = async() => {
+        const id = localStorage.getItem('id_user');
+        
+        try {
+            const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
+            setOldData(response.data[0]);
+            setImageUrl(`images/products/${response.data[0].file}`);
+
+            if(response.data[0].file !== ""){
+                document.getElementById('profile_foto').src = `images/products/${response.data[0].file}`;
+            }else{
+                document.getElementById('profile_foto').src = `images/aboutImage.png`;
+            }
+            
+        } catch (error) {
+            
+            if (error.response) {
+                
+
+                console.error('Response error:', response);
+                console.error('Response data:', error.response.data);
+            } else if (error.request) {
+                
+                console.error('Request error:', error.request);
+            } else {
+                
+                console.error('Error:', error.message);
+            }
+        }
+    }
+
     const [showContent, setShowContent] = useState("Identitas");
 
     const menusFunct = (e) => {
@@ -17,11 +51,10 @@ export default function Profile() {
 
     useEffect(() => {
         let menus = localStorage.getItem("sidebar");
-
         setShowContent(menus);
-
+        getUsers();
     },[]);
- 
+  
     return( 
         <>
         <Navbar />
@@ -30,12 +63,12 @@ export default function Profile() {
                 <div className="h-full">
                     <div className="header">
                         <div className="flex items-center">
-                            <div className="rounded-full w-16 h-16 border bg-yellow-400">
-
+                            <div className="rounded-full w-16 h-16 border">
+                                <img src="" alt="" id="profile_foto" className="rounded-full shadow-md h-full w-full object-fill"/>
                             </div>
                             <div className="ml-3 ">
                                 <h2 className="font-semibold">
-                                    Rizkan Ramdani
+                                    {oldData.nama ? oldData.nama : oldData.username}
                                 </h2> 
                             </div>
  

@@ -11,7 +11,11 @@ router.post("/regist/person", controller.addPerson);
 router.post("/check", controller.checkLogin);
 
 router.get("/:id", controller.getUsersById); 
-
+ 
 router.delete("/:id", controller.deleteUsers);
+
+// Update Data User
+router.post("/updateUser/", controller.updateUser); 
+
 
 module.exports = router; 

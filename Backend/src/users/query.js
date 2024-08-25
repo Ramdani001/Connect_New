@@ -7,6 +7,8 @@ const addPerson = "INSERT INTO person (id_user, id_product, name, no_telp, alama
 
 const removeUsers = "DELETE FROM users WHERE id_user=?";
 
+const updateUser = "UPDATE users SET username=?, nama=?, no_telp=?, alamat=?, file=? WHERE id_user=?";
+ 
 module.exports = {
     checkEmailExists,
     getUsers,
@@ -14,4 +16,5 @@ module.exports = {
     addUsers,
     removeUsers,
     addPerson,
+    updateUser,
 };
