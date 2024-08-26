@@ -30,7 +30,7 @@ export default function DetailModal(props){
 
         try { 
 
-            const response = await axios.post("http://localhost:3000/api/v1/cart/add", send);
+            const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/cart/add", send);
             
             if(response.status == 200){
                 console.log(response);

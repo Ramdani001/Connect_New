@@ -12,16 +12,7 @@ export default function About() {
                     <div className="mx-auto card border border-gray-200 rounded-md shadow w-full md:w-[80%] bg-white">
                         <div className="card p-8 text-gray-600 h-full text-justify w-full text-xl">
                             <p className="mb-5">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe, et! Expedita ab ipsa debitis iure fugiat facilis fuga nulla quisquam
-                            </p>
-                            <p className="mb-5">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe, et! Expedita ab ipsa debitis iure fugiat facilis fuga nulla quisquam illo exercitationem omnis aspernatur explicabo possimus laborum quia culpa placeat odit itaque assumenda earum.
-                            </p>
-                            <p className="mb-5">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe, et! Expedita ab ipsa debitis iure fugiat facilis fuga nulla quisquam illo exercitationem omnis aspernatur explicabo possimus laborum quia culpa placeat odit itaque assumenda earum.
-                            </p>
-                            <p className="mb-5">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe, et! Expedita ab ipsa debitis iure fugiat facilis fuga nulla quisquam
+                            "Ingin video Anda menjadi pusat perhatian? Percayakan pada kami untuk mengubah rekaman mentah menjadi karya visual yang memukau. Dengan tim editor profesional dan berpengalaman, kami akan menciptakan video yang tidak hanya menarik, tetapi juga efektif dalam menyampaikan pesan Anda. Kami menawarkan solusi editing yang fleksibel dan dapat disesuaikan dengan kebutuhan Anda, mulai dari video promosi hingga konten media sosial. Dengan sentuhan kreatif kami, video Anda akan terlihat lebih profesional, unik, dan mengundang engagement. Jangan ragu untuk menghubungi kami dan rasakan perbedaannya."
                             </p>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ function Navbar() {
         const id = localStorage.getItem('id_user');
 
         try {
-            const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
+            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
 
             if(response.data[0].file !== null){
@@ -55,7 +55,7 @@ function Navbar() {
         console.log(idUser);
         getUsers();
     }, []);
-  
+   
     return(
         <>
             <nav className="grid grid-cols-1 md:grid-cols-3 text-center pt-1 text-white fixed top-0 w-full md:h-14 shadow-md bg-primary z-50">
@@ -83,9 +83,9 @@ function Navbar() {
                     <Link to="/Gallery">
                          Product
                     </Link>
-                    <Link to="/Gallery"> 
+                    {/* <Link to="/About"> 
                          About Me
-                    </Link>
+                    </Link> */}
                 </ul>
                 <div id="profile" className={showNav ? "order-4 md:order-3 p-2 md:pl-0" : "hidden md:block md:order-3 p-2 md:pl-0"}>
                 {idUser !=0 ? (

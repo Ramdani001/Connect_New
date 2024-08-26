@@ -18,7 +18,7 @@ export default function History(props){
         setId_user(id);
          
         try {
-            const res = await axios.get(`http://localhost:3000/api/v1/messages/custSess/${id_user}`);
+            const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/custSess/${id_user}`);
             // setArrMess(res.data);
             // await setIdSend(res.data);
      
@@ -73,15 +73,15 @@ export default function History(props){
         try {
 
             if(id_m){
-                const response = await axios.post(`http://localhost:3000/api/v1/messages/insert/`, updatedFormData);
+                const response = await axios.post(`http://www.tempat-transit.cloud:3000/api/v1/messages/insert/`, updatedFormData);
                 
                 if(response){
-                    const res = await axios.get(`http://localhost:3000/api/v1/messages/mess/${id_m}`);
+                    const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/mess/${id_m}`);
                     setArrMess(res.data);
                     document.getElementById("send_mess").value = "";
                 }
             }else{
-                const res = await axios.get(`http://localhost:3000/api/v1/messages/newInsert/${id_user}`);
+                const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/newInsert/${id_user}`);
                 
                 if(res){
                     const upi = {
@@ -116,10 +116,10 @@ export default function History(props){
     }
 
     const sendData = async(data) => {
-        const response = await axios.post(`http://localhost:3000/api/v1/messages/insert/`, data);
+        const response = await axios.post(`http://www.tempat-transit.cloud:3000/api/v1/messages/insert/`, data);
                 
         if(response){
-            const res = await axios.get(`http://localhost:3000/api/v1/messages/mess/${data.id_m}`);
+            const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/mess/${data.id_m}`);
             setArrMess(res.data);
             document.getElementById("send_mess").value = "";
         }

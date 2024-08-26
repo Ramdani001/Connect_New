@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function Users(props){
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://localhost:3000/api/v1/users/');
+    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/users/');
     const [loadingShow, setLoadingShow] = useState(false);
     const getUsers = async () => {
         try {
@@ -39,8 +39,8 @@ export default function Users(props){
 
     const delFunct = async (e) =>{
             try {
-                const response = await axios.delete(`http://localhost:3000/api/v1/users/${e}`);
-                setUrl("http://localhost:3000/api/v1/users/");
+                const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/users/${e}`);
+                setUrl("http://www.tempat-transit.cloud:3000/api/v1/users/");
                 console.log('Data:', response);
     
             } catch (error) {

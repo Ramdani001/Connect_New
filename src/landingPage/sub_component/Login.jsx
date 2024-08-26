@@ -7,14 +7,14 @@ export default function Login(props){
     const addUser = async (userData) => {
         try {
 
-            const response = await axios.post('http://localhost:3000/api/v1/users/regist', userData);
+            const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/users/regist', userData);
             
             if(response.status == 200){
                 setShowAlert(true);
                 // if(response_per == 200){
                     
                     const timer = setTimeout(() => {
-                        window.location.href = '/login';
+                        window.location.href = 'Connect-App/login';
                     }, 3000);
                 // }
 
@@ -80,7 +80,7 @@ export default function Login(props){
           const checkLogin = async (userData) => {
             try {
     
-                const response = await axios.post('http://localhost:3000/api/v1/users/check', userData);
+                const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/users/check', userData);
                 
                 
                 if(response.status == 200){
@@ -97,10 +97,10 @@ export default function Login(props){
                                     console.log(response.data[0].id_user);
                                     if(e.tipe == 1){
                                         localStorage.setItem("id_user", response.data[0].id_user);
-                                        window.location.href = '/admin';
+                                        window.location.href = 'Connect-App/admin';
                                     }else{
                                         localStorage.setItem("id_user", response.data[0].id_user);
-                                        window.location.href = '/';
+                                        window.location.href = 'Connect-App/';
                                     }
                                 }else{
                                     alert("Password atau email salah!");

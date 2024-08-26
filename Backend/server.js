@@ -4,6 +4,7 @@ const usersRoutes = require('./src/users/routes');
 const transaksiRoutes = require('./src/transaksi/routes');
 const messagesRoutes = require('./src/messages/routes');
 const cartRoutes = require('./src/cart/routes');
+const filterRoutes = require('./src/filter/routes');
 
 const multer = require("multer");
 
@@ -36,9 +37,11 @@ app.post('/upload',upload.single('file'), (req, res) => {
     console.log(req.file);
     res.status(200).json(req.file);
 });
-
+ 
  
 app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/products/filter', filterRoutes);
+
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/messages', messagesRoutes);
 

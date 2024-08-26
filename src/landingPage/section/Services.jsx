@@ -25,10 +25,7 @@ export default function Services() {
                         </h5>
                     </div>
                     <p className="mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam qui ab, soluta voluptatum fugiat voluptas quod itaque est voluptate quasi.
-                    </p>
-                    <p className="mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam qui ab, soluta voluptatum fugiat voluptas quod itaque est voluptate quasi.
+                    Ads video Facebook, Instagram, dan YouTube adalah konten video berdurasi singkat yang dirancang khusus untuk platform media sosial tersebut. Jasa editing video iklan membantu dalam menciptakan iklan video yang menarik dan efektif, sehingga mampu menjangkau target audiens yang lebih luas dan meningkatkan engagement.
                     </p>
                 </div>
                 <div className="w-full h-ful p-5 grid place-items-center border-2 rounded shadow">
@@ -56,10 +53,18 @@ export default function Services() {
                         </h5>
                     </div>
                     <p className="mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam qui ab, soluta voluptatum fugiat voluptas quod itaque est voluptate quasi.
+                        <span className="font-olive">VIDEO ANIMASI</span> <br />
+                        Video animasi adalah proses pembuatan gambar bergerak yang disusun secara berurutan untuk menciptakan ilusi gerakan. Dalam jasa editing, video animasi sering digunakan untuk menambahkan efek visual yang menarik, membuat penjelasan lebih mudah dipahami, atau menciptakan karakter dan dunia yang imajinatif.
                     </p>
-                    <p className="mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam qui ab, soluta voluptatum fugiat voluptas quod itaque est voluptate quasi.
+                        <br />
+                    <p>
+                        <span className="font-olive">VIDEO TIKTOK</span> <br />
+                        Video TikTok adalah jenis video pendek yang populer di platform TikTok, biasanya berdurasi singkat dan memiliki gaya yang unik. Jasa editing video TikTok membantu pengguna dalam mengedit video mereka agar lebih menarik, kreatif, dan sesuai dengan tren yang sedang viral.
+                    </p>
+                    <br />
+                    <p>
+                        <span className="font-olive">VIDEO REELS INSTAGRAM</span> <br />
+                        Video Reels Instagram adalah fitur video pendek di Instagram yang mirip dengan TikTok. Jasa editing video Reels Instagram membantu pengguna dalam mengedit video mereka agar lebih menarik, kreatif, dan sesuai dengan tren yang sedang viral di platform Instagram.
                     </p>
                 </div>
                 <div className="w-full h-ful p-5 grid place-items-center order-2 md:order-1">

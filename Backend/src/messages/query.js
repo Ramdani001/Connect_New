@@ -31,7 +31,7 @@ const getCustMess = `SELECT b.id_m, b.send_mess, b.id_user
 // Create New Message
 const newInsertMessages = "INSERT INTO message (id_user, stat) VALUES (?, 2)";
 
-
+ 
 module.exports = {
     getMessages,
     getMessagesById,

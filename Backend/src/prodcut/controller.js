@@ -28,16 +28,42 @@ const insertProduct = (req, res) => {
 }
 const deleteProduct = (req, res) => {
     const id = parseInt(req.params.id);
-
+ 
     pool.query(queries.removeProduct, [id], (error, results) => {
 
         if(error) throw error;
         res.status(200).send("Product removed successfully");
     });
 }
+
+// Filter Product
+const getFacebook = (req, res) => {
+    pool.query(queries.getFacebook, (error, results) => {
+        if(error) throw error.message;
+        res.status(200).json(results);
+    });
+};
+
+const getInstagram = (req, res) => {
+    pool.query(queries.getInstagram, (error, results) => {
+        if(error) throw error.message;
+        res.status(200).json(results);
+    });
+};
+
+const getYoutube = (req, res) => {
+    pool.query(queries.getYoutube, (error, results) => {
+        if(error) throw error.message;
+        res.status(200).json(results);
+    });
+};
+
 module.exports = {
     getProducts,
     getProductsById,
     insertProduct,
     deleteProduct,
+    getFacebook,
+    getInstagram,
+    getYoutube,
 };

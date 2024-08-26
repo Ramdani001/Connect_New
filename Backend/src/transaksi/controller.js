@@ -1,10 +1,26 @@
 const pool = require('../../db');
 const queries = require("./query");
 
+const getTrans = (req, res) => {
+    pool.query(queries.getAll, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+
 const getTransaksiById = (req, res) => {
     const id = parseInt(req.params.id);
     // console.log(id);
     pool.query(queries.getTransaksiById, [id], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+
+const getDet = (req, res) => {
+    const id = parseInt(req.params.id);
+    // console.log(id);
+    pool.query(queries.getDet, [id], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
@@ -56,6 +72,16 @@ const deleteTransaksi = (req, res) => {
         res.status(200).send("Product removed successfully");
     });
 }
+
+const update = (req, res) => {
+    const id = parseInt(req.params.id);
+
+    pool.query(queries.update, [id], (error, results) => {
+
+        if(error) throw error;
+        res.status(200).send("Transaksi Updated successfully");
+    });
+}
 module.exports = {
     getTransaksiById,
     insertTransaksi,
@@ -63,4 +89,7 @@ module.exports = {
     getDetail,
     updateCart,
     updateInsert,
+    getTrans,
+    getDet,
+    update,
 };
