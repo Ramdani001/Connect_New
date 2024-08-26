@@ -1,6 +1,7 @@
 {
   "name": "connect-app",
   "private": true,
+  "main": "index.js",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -32,5 +33,5 @@
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.0"
   },
-  "homepage": "https://Ramdani001.github.io/Connect-App"
+  "homepage": "./"
 }
