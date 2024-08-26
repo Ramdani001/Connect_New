@@ -47,10 +47,6 @@ export default function Navbar(props){
                             <img src="images/user.png" alt="" width={20}/>
                             Users
                         </button>
-                        <button name="Messages" className={showContent == "Messages" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
-                            <img src="images/pesan.png" alt="" width={20}/>
-                            Messages
-                        </button>
                         <button name="Products" className={showContent == "Products" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
                             <img src="images/product.png" alt="" width={20}/>
                             Products

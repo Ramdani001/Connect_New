@@ -8,13 +8,13 @@ import { lazy } from 'react';
 
 const LandingPage = lazy(() => import('./landingPage/LandingPage'));
 const Gallery = lazy(() => import('./landingPage/Gallery'));
-
+ 
 function App() {
   return (  
     <>
     {/* <Loading /> */}
         <Suspense fallback={<Loading />}>
-          <Router>
+          <Router basename='/Connect-App'>
             
               <Routes>
                 <Route path='/' element={<LandingPage />}></Route>

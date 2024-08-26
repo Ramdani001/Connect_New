@@ -5,15 +5,29 @@ import Video from './component/Video';
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import axios from 'axios';
-
+ 
 export default function Gallery(props){
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://localhost:3000/api/v1/products');
+    
+    const tipe = props.type;
+    let newUrl = '';
+        
+    const [url, setUrl] = useState(newUrl);
 
     const getProduct = async () => {
+        console.log(tipe);
+        if (tipe === "allProduk") {
+            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products';
+        } else if (tipe === "videoFacebook") {
+            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Fac';
+        } else if (tipe === "instaStory") {
+            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Inst';
+        } else {
+            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/You';
+        }
         try {
-            const response = await axios.get(url);
+            const response = await axios.get(newUrl);
     
             setArrData(response.data);
             console.log('Data:', typeof(response.data));

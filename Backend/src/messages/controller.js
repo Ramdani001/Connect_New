@@ -26,7 +26,7 @@ const insertMessages = (req, res) => {
         res.status(200).json(results);
     });
 }
- 
+  
 const newInsertMessages = (req, res) => {
 
     const id_user = parseInt(req.params.id);

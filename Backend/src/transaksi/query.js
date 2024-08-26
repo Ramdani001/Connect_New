@@ -4,6 +4,19 @@ const getTransaksiById = `SELECT a.id, a.id_trans, a.id_product, b.nama, a.price
                         LEFT JOIN product c ON a.id_product=c.id_product
                         WHERE a.id_user=?
                        `; 
+
+const getDet = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+                        FROM transaksi a
+                        LEFT JOIN users b ON a.id_user=b.id_user
+                        LEFT JOIN product c ON a.id_product=c.id_product
+                        WHERE a.id=?
+                       `; 
+
+const getAll = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+                        FROM transaksi a
+                        LEFT JOIN users b ON a.id_user=b.id_user
+                        LEFT JOIN product c ON a.id_product=c.id_product
+                       `; 
 const insertTransaksi= "INSERT INTO transaksi(id_trans, id_product, id_user, price, status, payment, nama_pengirim, file, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 const removeTransaksi= "DELETE FROM transaksi WHERE id_product=?";
 
@@ -13,8 +26,10 @@ const updateCart = `UPDATE cart
                     SET paid = 1
                     WHERE id_product IN (?);
                     `;
-
+ 
 const updateInsert = `UPDATE transaksi SET status=2, payment=?, nama_pengirim=?, file=? WHERE id=?`;
+
+const update = `UPDATE transaksi SET status=3 WHERE id=?`;
 
 module.exports = {
     getTransaksiById,
@@ -23,4 +38,7 @@ module.exports = {
     getDetail,
     updateCart,
     updateInsert,
+    getAll,
+    getDet,
+    update,
 };

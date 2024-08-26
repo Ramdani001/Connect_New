@@ -7,7 +7,7 @@ import DetailModal from "./DetailModal";
     const {key, id_product, nama, type, price, ket, url, thumbnail} = props;
 
     const [showDetail, setShowDetail] = useState(false);
- 
+  
     return(
         <>
             <div className={`shadow w-72 h-72 pt-10 hover:border-2 object-cover hover:border-blue-300 transition-all duration-300 ease-linear`} onClick={() => setShowDetail(!showDetail)}>

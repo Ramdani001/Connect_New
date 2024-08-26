@@ -13,7 +13,7 @@ router.get("/stat/:id", controller.changeStatusMess);
 router.get("/mess/:id", controller.getAllMessages);
   
 router.get("/custSess/:id", controller.getCustMess);
-
+ 
 router.get("/cust/:id", controller.getCustMess);
 
 // Create new Messages
