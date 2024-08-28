@@ -80,7 +80,7 @@ export default function Gallery(props){
     const mappingData = arrData.map((dat => {
         return <Video key={dat.key} id_product={dat.id_product} nama={dat.title} type={dat.type} price={dat.price} ket={dat.descriptionx}  url={dat.url} thumbnail={dat.file}/>
     })) 
-  
+   
 
     return (
         <>
