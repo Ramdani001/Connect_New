@@ -17,11 +17,19 @@ export default function Identitas(props){
             ...prevState,
             id_user: parseInt(id),
             file: "",
+            username: "",
         }));
+        console.log(id);
         try {
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
             setImageUrl(`images/products/${response.data[0].file}`);
+            setChangeInput(prevState => ({
+                ...prevState,
+                username: oldData.username,
+                nama: oldData.nama,
+                no_telp: oldData.no_telp,
+            }));
             if(response.data[0].file){
                 document.getElementById('prof2').src = `images/products/${response.data[0].file}`;
             }else{
@@ -77,6 +85,7 @@ export default function Identitas(props){
     const [file, setFile] = useState({});
  
     const onSend = async() => {
+        console.log(changeInput);
         try {
             if(images){
                 const formFile = new FormData();
@@ -134,12 +143,12 @@ export default function Identitas(props){
         }
       }, [file]);
 
-      useEffect(() => {
+    //   useEffect(() => {
         
-        if (Object.keys(changeInput).length > 0) {
-            onSend();
-        }
-      }, [stat]);
+    //     if (Object.keys(changeInput).length > 0) {
+    //         onSend();
+    //     }
+    //   }, [stat]);
 
     useEffect(() => {
         if(kirim){
