@@ -11,8 +11,8 @@ const multer = require("multer");
 
 const app = express();
 
-const cors = require('cors');
-app.use(cors());
+// const cors = require('cors');
+// app.use(cors());
 const port = 3000;
 
 app.use(express.json());
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        return cb(null, "./public/images/products");
+        return cb(null, "../../Connect-App/public/images/products");
     },
     filename: function(req, file, cb){
         return cb(null, `${Date.now()}_${file.originalname}`);
