@@ -8,7 +8,7 @@ const filterRoutes = require('./src/filter/routes');
 
 const multer = require("multer");
 const path = require('path');
-
+const fs = require('fs');
 const app = express();
 
 const cors = require('cors');
@@ -21,12 +21,18 @@ app.get("/", (req, res) => {
     res.send("Hello Word!");
 });
 
+const uploadPath = path.resolve(__dirname, '../../Connect-App/public/images/products');
+
+// Ensure the directory exists
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, { recursive: true });
+}
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        return cb(null, '../../Connect-App/public/images/products');
+    destination: function(req, file, cb) {
+        cb(null, uploadPath); // Use the absolute path
     },
-    filename: function(req, file, cb){
-        return cb(null, `${Date.now()}_${file.originalname}`);
+    filename: function(req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
     }
 });
 
