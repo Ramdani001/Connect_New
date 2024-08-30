@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
     res.send("Hello Word!");
 });
 
-const uploadPath = path.resolve(__dirname, '../../Connect-App/public/images/products');
+const uploadPath = path.resolve(__dirname, '../../media/connect/images/products');
 
 // Ensure the directory exists
 if (!fs.existsSync(uploadPath)) {
