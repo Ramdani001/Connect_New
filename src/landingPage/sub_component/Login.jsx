@@ -97,10 +97,10 @@ export default function Login(props){
                                     console.log(response.data[0].id_user);
                                     if(e.tipe == 1){
                                         localStorage.setItem("id_user", response.data[0].id_user);
-                                        window.location.href = 'Connect-App/admin';
+                                        window.location.href = '/Connect-App/admin';
                                     }else{
                                         localStorage.setItem("id_user", response.data[0].id_user);
-                                        window.location.href = 'Connect-App/';
+                                        window.location.href = '/';
                                     }
                                 }else{
                                     alert("Password atau email salah!");

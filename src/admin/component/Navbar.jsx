@@ -26,6 +26,10 @@ export default function Navbar(props){
     
         localStorage.setItem('menus', e.target.name);
       };
+      const handleLogout = () => {
+        localStorage.removeItem("id_user");
+        window.location.href = '/Connect-App/login';
+    }
     return(
         <>
             <main className="flex bg-gray-200 h-[100vh]">
@@ -38,23 +42,30 @@ export default function Navbar(props){
 
                 <div className="">
 
-                    <div className="mt-5 grid place-center gap-4">
-                        <button name="Dashboard" className={showContent == "Dashboard" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 hover:bg-gray-200 w-full p-2" : "font-popins flex items-center text-sm gap-2 hover:bg-gray-200  w-full p-2"} onClick={handleClick}>
-                            <img src="images/dashboard.png" alt="" width={20}/>
-                            Dashboard
-                        </button>
-                        <button name="Users" className={showContent == "Users" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
-                            <img src="images/user.png" alt="" width={20}/>
-                            Users
-                        </button>
-                        <button name="Products" className={showContent == "Products" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
-                            <img src="images/product.png" alt="" width={20}/>
-                            Products
-                        </button>
-                        <button name="Report" className={showContent == "Report" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
-                            <img src="images/report.png" alt="" width={20}/>
-                            Report
-                        </button>
+                    <div className="mt-5 grid content-between h-[80vh] gap-4">
+                        <div className="grid gap-7">
+                            <button name="Dashboard" className={showContent == "Dashboard" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 hover:bg-gray-200 w-full p-2" : "font-popins flex items-center text-sm gap-2 hover:bg-gray-200  w-full p-2"} onClick={handleClick}>
+                                <img src="images/dashboard.png" alt="" width={20}/>
+                                Dashboard
+                            </button>
+                            <button name="Users" className={showContent == "Users" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
+                                <img src="images/user.png" alt="" width={20}/>
+                                Users
+                            </button>
+                            <button name="Products" className={showContent == "Products" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
+                                <img src="images/product.png" alt="" width={20}/>
+                                Products
+                            </button>
+                            <button name="Report" className={showContent == "Report" ? "font-popins flex items-center bg-gray-200 text-sm gap-2 w-full p-2 hover:bg-gray-200" : "font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-200"} onClick={handleClick}>
+                                <img src="images/report.png" alt="" width={20}/>
+                                Report
+                            </button>
+                        </div>
+                        <div className="flex place-center">
+                            <button onClick={handleLogout} className="pl-5 font-popins flex items-center text-sm gap-2 w-full p-2  hover:bg-gray-800">
+                                <img src="images/exit.png" alt="" width={100}/>
+                            </button>
+                        </div>
                     </div>
 
                 </div>

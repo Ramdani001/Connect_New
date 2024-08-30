@@ -42,7 +42,7 @@ function Navbar() {
 
     const handleLogout = () => {
         localStorage.removeItem("id_user");
-        window.location.href = '/login';
+        window.location.href = '/Connect-App/login';
     }
 
     useEffect(() => {
