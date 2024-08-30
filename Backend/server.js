@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        return cb(null, path.join(__dirname, '../../Connect-App/public/images/products'));
+        return cb(null, '../../Connect-App/public/images/products');
     },
     filename: function(req, file, cb){
         return cb(null, `${Date.now()}_${file.originalname}`);
