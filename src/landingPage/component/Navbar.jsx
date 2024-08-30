@@ -13,7 +13,7 @@ function Navbar() {
             setOldData(response.data[0]);
 
             if(response.data[0].file !== null){
-                document.getElementById('profile_foto').src = `images/products/${response.data[0].file}`;
+                document.getElementById('profile_foto').src = `/images/products/${response.data[0].file}`;
             }else{
                 document.getElementById('profile_foto').src = `images/aboutImage.png`;
             }

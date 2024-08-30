@@ -14,7 +14,7 @@ function App() {
     <>
     {/* <Loading /> */}
         <Suspense fallback={<Loading />}>
-          <Router basename='/Connect-App'>
+          <Router basename='/Connect-App/'>
             
               <Routes>
                 <Route path='/' element={<LandingPage />}></Route>

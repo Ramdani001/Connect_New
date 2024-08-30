@@ -9,7 +9,6 @@ import Footer from "../component/Footer";
 export default function Profile() {
  
     const [oldData, setOldData] = useState({});
-    const [imageUrl, setImageUrl] = useState("");
 
     const getUsers = async() => {
         const id = localStorage.getItem('id_user');
@@ -17,12 +16,13 @@ export default function Profile() {
         try {
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
-            setImageUrl(`images/products/${response.data[0].file}`);
-
-            if(response.data[0].file !== ""){
-                document.getElementById('profile_foto').src = `images/products/${response.data[0].file}`;
+            console.log(response.data[0].file);
+            if(response.data[0].file){
+                document.getElementById('prof').src = `images/products/${response.data[0].file}`;
+                console.log("Berhasil");
             }else{
-                document.getElementById('profile_foto').src = `images/aboutImage.png`;
+                document.getElementById('prof').src = `images/aboutImage.png`;
+                console.log("Gagal");
             }
             
         } catch (error) {
@@ -64,7 +64,7 @@ export default function Profile() {
                     <div className="header">
                         <div className="flex items-center">
                             <div className="rounded-full w-16 h-16 border">
-                                <img src="" alt="" id="profile_foto" className="rounded-full shadow-md h-full w-full object-fill"/>
+                                <img src="" alt="" id="prof" className="rounded-full shadow-md h-full w-full object-fill"/>
                             </div>
                             <div className="ml-3 ">
                                 <h2 className="font-semibold">

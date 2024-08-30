@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 import { format } from 'date-fns';
 
 export default function Login(props){
+    const [showForm, setShowForm] = useState(true);
     const addUser = async (userData) => {
         try {
 
@@ -12,9 +13,14 @@ export default function Login(props){
             if(response.status == 200){
                 setShowAlert(true);
                 // if(response_per == 200){
+
+                document.getElementById("regist_email").value = "";
+                document.getElementById("regist_username").value = "";
+                document.getElementById("regist_pass").value = "";
                     
                     const timer = setTimeout(() => {
-                        window.location.href = 'Connect-App/login';
+                        // window.location.href = '/Connect-App/login';
+                        setShowForm(() => !showForm);
                     }, 3000);
                 // }
 
@@ -36,7 +42,7 @@ export default function Login(props){
         }
     };
 
-    const [showForm, setShowForm] = useState(true);
+  
 
         const [showPassword, setShowPassword] = useState(true);
         const [showPassword1, setShowPassword1] = useState(true);
@@ -246,15 +252,15 @@ export default function Login(props){
                                 <form onSubmit={handleSubmit}>
                                     <div className="grid place-center w-full  gap-5">
                                         <div className="w-full flex justify-center">
-                                            <input type="email" className="py-3 shadow-md px-2 rounded-md w-[60%]" name="email" placeholder="Email" 
+                                            <input type="email" id="regist_email" className="py-3 shadow-md px-2 rounded-md w-[60%]" name="email" placeholder="Email" 
                                                 onChange={handleChange}
                                             />
                                         </div>
                                         <div className="w-full flex justify-center items-center">
-                                            <input type="text" name="username" className="py-3 w-[60%] shadow-md rounded-l-md px-2 w-[50%] border-white" placeholder="Username" onChange={handleChange} required/>
+                                            <input type="text" name="username" id="regist_username" className="py-3 w-[60%] shadow-md rounded-l-md px-2 w-[50%] border-white" placeholder="Username" onChange={handleChange} required/>
                                         </div>
                                         <div className="w-full flex justify-center items-center">
-                                            <input type={showPassword1 ? "password" : "text"} name="password" className="py-3 shadow-md px-2 rounded-l-md w-[50%]" placeholder="Password" onChange={handleChange} required/>
+                                            <input type={showPassword1 ? "password" : "text"} id="regist_pass" name="password" className="py-3 shadow-md px-2 rounded-l-md w-[50%]" placeholder="Password" onChange={handleChange} required/>
                                             <div className="h-full bg-white rounded-r-md p-2">
                                                 <img src={"images/eye.png"} alt="" className={showPassword1 ? "w-[30px] h-[30px] " : "hidden"} onClick={e => setShowPassword1(!showPassword1)}/>
 

@@ -20,9 +20,13 @@ export default function Identitas(props){
         }));
         try {
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
-            console.log(response.data[0]);
             setOldData(response.data[0]);
             setImageUrl(`images/products/${response.data[0].file}`);
+            if(response.data[0].file){
+                document.getElementById('prof2').src = `images/products/${response.data[0].file}`;
+            }else{
+                document.getElementById('prof2').src = `images/aboutImage.png`;
+            }
         } catch (error) {
             
             if (error.response) {
@@ -63,7 +67,6 @@ export default function Identitas(props){
                 username: oldData.username,
             }));
         }else{
-            console.log("Els");
             onSend()
         }
 
@@ -72,7 +75,7 @@ export default function Identitas(props){
     }
 
     const [file, setFile] = useState({});
-
+ 
     const onSend = async() => {
         try {
             if(images){
@@ -87,8 +90,7 @@ export default function Identitas(props){
                     let file = res.data.filename;
                     
                     if(file){
-                        // document.getElementById('file_input').value = file;
-                        // const f = document.getElementById('file_input').value;
+                        console.log(file);
                         if (file) {
                             setFile(file);
                         }
@@ -98,10 +100,8 @@ export default function Identitas(props){
                     }
                 }).catch(er => console.log(er));
             }else{
-                console.log(changeInput);
                 const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/users/updateUser", changeInput);
                 if(response.status == 200){
-                    console.log(response.data);
                     alert("Sucessfully Update Data");
                     window.location.reload();
                 }
@@ -158,7 +158,7 @@ export default function Identitas(props){
             {/* Header */}
             <div className="flex gap-4 ">
                 <div className="w-[60%] h-[70vh] bg-blue-400 rounded-2xl shadow-md">
-                    {images ? <img src={URL.createObjectURL(images)} alt="" className="h-full w-full object-fill" /> : <img src={imageUrl} alt="" className="h-full w-full object-fill" />}
+                    {images ? <img src={URL.createObjectURL(images)} alt="" className="h-full w-full object-fill" /> : <img src="" alt="" className="h-full w-full object-fill" id="prof2" />}
                 </div>
 
                 {/* Content */}

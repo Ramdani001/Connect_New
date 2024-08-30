@@ -10,10 +10,40 @@ export default function Navbar(props){
 
     const [showContent, setShowAdmin] = useState("");
 
+    const getUsers = async() => {
+        const id = localStorage.getItem('id_user');
+        
+        try {
+            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
+            setOldData(response.data[0]);
+            setImageUrl(`images/products/${response.data[0].file}`);
+ 
+            if(response.data[0].file !== ""){
+                document.getElementById('prof').src = `images/products/${response.data[0].file}`;
+            }else{
+                document.getElementById('prof').src = `images/aboutImage.png`;
+            }
+            
+        } catch (error) {
+            
+            if (error.response) {
+                
+
+                console.error('Response error:', response);
+                console.error('Response data:', error.response.data);
+            } else if (error.request) {
+                
+                console.error('Request error:', error.request);
+            } else {
+                
+                console.error('Error:', error.message);
+            }
+        }
+    }
     useEffect(() => {
     
         const menus = localStorage.getItem('menus');
-    
+        getUsers();
         if (menus) {
             setShowAdmin(menus);
         }else{
@@ -36,7 +66,7 @@ export default function Navbar(props){
 
             <div className="m-1 bg-blue-300 mt-2 rounded-md shadow-md w-[12%] h-[95vh]">
                 <div className="p-3">
-                    <img src="images/logo.png" alt="" />
+                    <img src="" alt="" id="prof" className="rounded-full shadow-md h-full w-full object-fill"/>
                 </div>
                 <hr className="w-full border-gray-200" />
 
