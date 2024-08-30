@@ -11,8 +11,8 @@ const multer = require("multer");
 
 const app = express();
 
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 const port = 3000;
 
 app.use(express.json());
