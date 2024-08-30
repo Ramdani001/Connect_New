@@ -8,12 +8,5 @@ const pool = mysql.createPool({
     password: 'techinDynamic',
     port: 3306
 });
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'db_connect',
-//     password: '',
-//     port: 3306
-// });
 
 module.exports = pool;
