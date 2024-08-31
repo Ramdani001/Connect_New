@@ -31,9 +31,9 @@ export default function Identitas(props){
                 no_telp: oldData.no_telp,
             }));
             if(response.data[0].file){
-                document.getElementById('prof2').src = `images/products/${response.data[0].file}`;
+                document.getElementById('prof2').src = `http://www.tempat-transit.cloud/media/connect/images/products/${response.data[0].file}`;
             }else{
-                document.getElementById('prof2').src = `images/aboutImage.png`;
+                document.getElementById('prof2').src = `http://www.tempat-transit.cloud/media/connect/images/aboutImage.png`;
             }
         } catch (error) {
             

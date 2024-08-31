@@ -13,9 +13,9 @@ function Navbar() {
             setOldData(response.data[0]);
 
             if(response.data[0].file !== null){
-                document.getElementById('profile_foto').src = `/images/products/${response.data[0].file}`;
+                document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud/media/connect/images/products/${response.data[0].file}`;
             }else{
-                document.getElementById('profile_foto').src = `images/aboutImage.png`;
+                document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud/media/connect/images/products/aboutImage.png`;
             }
             
         } catch (error) {

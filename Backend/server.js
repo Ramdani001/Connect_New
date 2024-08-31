@@ -5,6 +5,7 @@ const transaksiRoutes = require('./src/transaksi/routes');
 const messagesRoutes = require('./src/messages/routes');
 const cartRoutes = require('./src/cart/routes');
 const filterRoutes = require('./src/filter/routes');
+const countRoutes = require('./src/count/routes');
 
 const multer = require("multer");
 const path = require('path');
@@ -35,7 +36,7 @@ const storage = multer.diskStorage({
         cb(null, `${Date.now()}_${file.originalname}`);
     }
 });
-
+ 
 const upload = multer({storage});
 
 app.post('/upload',upload.single('file'), (req, res) => {
@@ -54,6 +55,8 @@ app.use('/api/v1/messages', messagesRoutes);
 app.use('/api/v1/cart', cartRoutes);
 
 app.use('/api/v1/transaksi', transaksiRoutes);
+
+app.use('/api/v1/count', countRoutes);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 

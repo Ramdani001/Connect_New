@@ -4,24 +4,23 @@ import Users from "../Users";
 import Messages from "../Messages";
 import Products from "../Products";
 import Report from "../Report";
-
+import axios from 'axios';
 
 export default function Navbar(props){
 
     const [showContent, setShowAdmin] = useState("");
-
+    const [oldData, setOldData] = useState({});
     const getUsers = async() => {
         const id = localStorage.getItem('id_user');
         
         try {
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
-            setImageUrl(`images/products/${response.data[0].file}`);
- 
+            console.log(response.data[0]);
             if(response.data[0].file !== ""){
-                document.getElementById('prof').src = `images/products/${response.data[0].file}`;
+                document.getElementById('prof2').src = `http://www.tempat-transit.cloud/media/connect/images/products/${response.data[0].file}`;
             }else{
-                document.getElementById('prof').src = `images/aboutImage.png`;
+                document.getElementById('prof2').src = `http://www.tempat-transit.cloud/media/connect/images/aboutImage.png`;
             }
             
         } catch (error) {
@@ -65,8 +64,8 @@ export default function Navbar(props){
             <main className="flex bg-gray-200 h-[100vh]">
 
             <div className="m-1 bg-blue-300 mt-2 rounded-md shadow-md w-[12%] h-[95vh]">
-                <div className="p-3">
-                    <img src="" alt="" id="prof" className="rounded-full shadow-md h-full w-full object-fill"/>
+                <div className="p-3 flex justify-center">
+                    <img src="" alt="" id="prof2" className="rounded-full border-white border-2 shadow-xl w-[100px] object-fit h-[100px]"/>
                 </div>
                 <hr className="w-full border-gray-200" />
 

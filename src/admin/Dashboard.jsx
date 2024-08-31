@@ -220,11 +220,12 @@ export default function Dashboard(props){
 
                 <div className="w-full pt-4 border p-4">
                     <DataTable
-                        className="h-[40%] w-full border rounded-md shadow-md"
+                        className="h-[60%] w-full border rounded-md shadow-md overflow-auto"
                         columns={columns}
                         data={transData}
                         pagination
                         theme="solarized"
+                        responsive
                     ></DataTable>
 
                     <div className="pt-3">
