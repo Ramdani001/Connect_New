@@ -8,12 +8,21 @@ export default function Dashboard(props){
 
     const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');
     const [transData, setTransData] = useState([]);
+    const [conf, setConf] = useState([]);
+    // const [user, setUser] = useState([]);
+    // const [prod, setProd] = useState([]);
  
     const getTrans = async () => {
         try {
             const response = await axios.get(url);
+            const ress = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count");
             
             setTransData(response.data);
+
+            setConf(ress.data[0]);
+            // setUser(response.data[0].user);
+            // setProd(response.data[0].product);
+            console.log(conf);
 
         } catch (error) {
             
@@ -189,7 +198,7 @@ export default function Dashboard(props){
                                     <h6 className="font-popins text-md font-bold pt-3">Confirmation</h6>
                                 </div>
                                 <h5 className="font-olive text-5xl pt-5">
-                                    23
+                                    {conf.confirmation}
                                 </h5>
                             </div>
                             {/*  */}
@@ -199,7 +208,7 @@ export default function Dashboard(props){
                                     <h6 className="font-popins font-bold pt-3">User's</h6>
                                 </div>
                                 <h5 className="font-olive text-5xl pt-5">
-                                    23
+                                    {conf.users}
                                 </h5>
                             </div>
                             {/*  */}
@@ -209,21 +218,22 @@ export default function Dashboard(props){
                                     <h6 className="font-popins font-bold pt-3">Product's</h6>
                                 </div>
                                 <h5 className="font-olive text-5xl pt-5">
-                                    23
+                                    {conf.product}
                                 </h5>
                             </div>
                             {/*  */}
                         </div>
                     </div>
-
+ 
                 </div>
 
                 <div className="w-full pt-4 border p-4">
                     <DataTable
-                        className="h-[60%] w-full border rounded-md shadow-md overflow-auto"
+                        className="h-[42%] w-full border rounded-md shadow-md"
                         columns={columns}
                         data={transData}
                         pagination
+                        paginationPerPage={5} 
                         theme="solarized"
                         responsive
                     ></DataTable>

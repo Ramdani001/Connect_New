@@ -8,6 +8,14 @@ const getCount = (req, res) => {
     });
 };
 
+const getYear = (req, res) => {
+    pool.query(queries.getYear, (error, results) => {
+        if(error) throw error.message;
+        res.status(200).json(results);
+    });
+};
+
 module.exports = {
     getCount,
+    getYear,
 };

@@ -188,6 +188,7 @@ const Report = () => {
         columns={columns}
         data={transData}
         pagination
+        paginationPerPage={5} 
         responsive
         theme="solarized"
       />
