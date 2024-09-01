@@ -6,4 +6,4 @@ const router = Router();
 router.get("/", controller.getCount);
 router.get("/years", controller.getYear);
 
-module.exports = router;
+module.exports = router; 

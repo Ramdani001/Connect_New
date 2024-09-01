@@ -3,7 +3,7 @@ import { Chart, registerables } from 'chart.js';
 import DataTable, { createTheme } from 'react-data-table-component';
 import axios from 'axios';
 Chart.register(...registerables);
-
+ 
 const Report = () => {
   // State untuk menyimpan data transaksi dan bulan yang dipilih
   const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');

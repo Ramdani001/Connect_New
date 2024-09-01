@@ -11,18 +11,12 @@ const getYear = `WITH months AS (
                         DATE_FORMAT(CONCAT('2024-', LPAD(month_number, 2, '0'), '-01'), '%Y-%m') AS month,
                         month_number AS month_num
                     FROM (
-                        SELECT 'January' AS month_number
-                        UNION ALL SELECT 'February'
-                        UNION ALL SELECT 'March'
-                        UNION ALL SELECT 'April'
-                        UNION ALL SELECT 'May'
-                        UNION ALL SELECT 'June'
-                        UNION ALL SELECT 'July'
-                        UNION ALL SELECT 'August'
-                        UNION ALL SELECT 'Septemer'
-                        UNION ALL SELECT 'October'
-                        UNION ALL SELECT 'November'
-                        UNION ALL SELECT 'Desember'
+                        SELECT '01' AS month_number UNION ALL SELECT '02'
+                        UNION ALL SELECT '03' UNION ALL SELECT '04'
+                        UNION ALL SELECT '05' UNION ALL SELECT '06'
+                        UNION ALL SELECT '07' UNION ALL SELECT '08'
+                        UNION ALL SELECT '09' UNION ALL SELECT '10'
+                        UNION ALL SELECT '11' UNION ALL SELECT '12'
                     ) AS numbers
                 )
                 -- Main query to join with actual data
@@ -34,7 +28,8 @@ const getYear = `WITH months AS (
                     ON DATE_FORMAT(t.created_at, '%Y-%m') = months.month
                     AND t.created_at BETWEEN '2024-01-01' AND '2024-12-31'
                 GROUP BY months.month_num
-                ORDER BY months.month_num;`;
+                ORDER BY months.month_num;
+`;
 
 module.exports = {
     getCount,
