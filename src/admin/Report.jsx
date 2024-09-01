@@ -8,7 +8,22 @@ const Report = () => {
   // State untuk menyimpan data transaksi dan bulan yang dipilih
   const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');
   const [transData, setTransData] = useState([]);
-  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState(0); 
+  
+  // Get Month Data
+  const [getJan, seGetJan] = useState([]);
+  const [getFeb, seGetFeb] = useState([]);
+  const [getMarc, seGetMarc] = useState([]);
+  const [getApr, seGetApr] = useState([]);
+  const [getMay, seGetMay] = useState([]);
+  const [getJun, seGetJun] = useState([]);
+  const [getJul, seGetJul] = useState([]);
+  const [getAug, seGetAug] = useState([]);
+  const [getSep, seGetSep] = useState([]);
+  const [getOct, seGetOct] = useState([]);
+  const [getNov, seGetNov] = useState([]);
+  const [getDes, seGetDes] = useState([]);
+
 
   const [datYears, setDateYears] = useState([]);
 
@@ -18,6 +33,20 @@ const Report = () => {
 
           const res = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/years");
           setDateYears(res.data);
+
+          // Get Month
+          const getJan = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJan");
+          const getFeb = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getFeb");
+          const getMarc = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getMarc");
+          const getApr = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJApr");
+          const getMay = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getMay");
+          const getJun = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJun");
+          const getJul = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJul");
+          const getAug = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getAug");
+          const getSep = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getSep");
+          const getOct = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getOct");
+          const getNov = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getNov");
+          const getDes = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getDes");
 
           setTransData(response.data);
       } catch (error) {

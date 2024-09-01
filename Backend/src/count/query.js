@@ -10,9 +10,9 @@ const getYear = `WITH months AS (
                     SELECT 
                         DATE_FORMAT(CONCAT('2024-', LPAD(month_number, 2, '0'), '-01'), '%Y-%m') AS month,
                         month_number AS month_num,
-                        years
+                        date
                     FROM (
-                        SELECT 'January' AS years, '01' AS month_number UNION ALL
+                        SELECT 'January' AS date, '01' AS month_number UNION ALL
                         SELECT 'February', '02' UNION ALL
                         SELECT 'March', '03' UNION ALL
                         SELECT 'April', '04' UNION ALL
@@ -28,14 +28,14 @@ const getYear = `WITH months AS (
                 )
                 -- Main query to join with actual data
                 SELECT
-                    months.years AS years,
+                    months.date AS date,
                     months.month_num AS month_num,
                     COALESCE(COUNT(t.created_at), 0) AS count
                 FROM months
                 LEFT JOIN transaksi t 
                     ON DATE_FORMAT(t.created_at, '%Y-%m') = months.month
                     AND t.created_at BETWEEN '2024-01-01' AND '2024-12-31'
-                GROUP BY months.years, months.month_num
+                GROUP BY months.date, months.month_num
                 ORDER BY months.month_num;
 `;
 
