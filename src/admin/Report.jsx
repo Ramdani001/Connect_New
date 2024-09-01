@@ -38,7 +38,7 @@ const Report = () => {
           const getJan = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJan");
           const getFeb = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getFeb");
           const getMarc = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getMarc");
-          const getApr = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJApr");
+          const getApr = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getApr");
           const getMay = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getMay");
           const getJun = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJun");
           const getJul = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJul");
@@ -47,6 +47,19 @@ const Report = () => {
           const getOct = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getOct");
           const getNov = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getNov");
           const getDes = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getDes");
+
+          seGetJan(getJan.data);
+          seGetFeb(getFeb.data);
+          seGetMarc(getMarc.data);
+          seGetApr(getApr.data);
+          seGetMay(getMay.data);
+          seGetJun(getJun.data);
+          seGetJul(getJul.data);
+          seGetAug(getAug.data);
+          seGetSep(getSep.data);
+          seGetOct(getOct.data);
+          seGetNov(getNov.data);
+          seGetDes(getDes.data);
 
           setTransData(response.data);
       } catch (error) {
@@ -139,25 +152,55 @@ const Report = () => {
   const canvasRef = useRef(null);
 
   const data = [
-    { years: "Januari", month_num: '01', count: 0 },
-    { years: "Februari", month_num: '02', count: 0 },
-    { years: "Maret", month_num: '03', count: 0 },
-    { years: "April", month_num: '04', count: 0 },
-    { years: "Mei", month_num: '05', count: 0 },
-    { years: "Juni", month_num: '06', count: 0 },
-    { years: "Juli", month_num: '07', count: 0 },
-    { years: "Agustus", month_num: '08', count: 9 },
-    { years: "September", month_num: '09', count: 0 },
-    { years: "Oktober", month_num: '10', count: 0 },
-    { years: "November", month_num: '11', count: 0 },
-    { years: "Desember", month_num: '12', count: 220 },
+    { date: "Januari", count: 0 },
+    { date: "Februari", count: 0 },
+    { date: "Maret", count: 0 },
+    { date: "April", count: 0 },
+    { date: "Mei", count: 0 },
+    { date: "Juni", count: 0 },
+    { date: "Juli", count: 0 },
+    { date: "Agustus", count: 9 },
+    { date: "September", count: 0 },
+    { date: "Oktober", count: 0 },
+    { date: "November", count: 0 },
+    { date: "Desember", count: 220 },
   ];
+
+  const selMonth = (e) => {
+    switch (e) {
+        case 1:
+            return getJan;
+        case 2:
+            return getFeb;
+        case 3:
+            return getMarc;
+        case 4:
+            return getApr;
+        case 5:
+            return getMay;
+        case 6:
+            return getJun;
+        case 7:
+            return getJul;
+        case 8:
+            return getAug;
+        case 9:
+            return getSep;
+        case 10:
+            return getOct;
+        case 11:
+            return getNov;
+        default:
+          return getDes;
+    }
+}
+
 
   useEffect(() => {
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d');
-      const filteredData = selectedMonth === 0 ? datYears : datYears.filter(row => row.month === selectedMonth);
-      console.log(transData);
+      const filteredData = selectedMonth === 0 ? datYears : selMonth(selectedMonth).filter(row => row.date);
+      console.log(filteredData);
       const myChart = new Chart(ctx, {
         type: 'line',
         data: {
