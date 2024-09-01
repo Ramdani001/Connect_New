@@ -10,9 +10,15 @@ const Report = () => {
   const [transData, setTransData] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(0);
 
+  const [datYears, setDateYears] = useState([]);
+
   const getTrans = async () => {
       try {
           const response = await axios.get(url);
+
+          const res = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/years");
+          setDateYears(res.data);
+
           setTransData(response.data);
       } catch (error) {
           if (error.response) {
@@ -104,21 +110,22 @@ const Report = () => {
   const canvasRef = useRef(null);
 
   const data = [
-    { month: 1, year: "Januari", count: 10 },
-    { month: 2, year: "Februari", count: 20 },
-    { month: 3, year: "Maret", count: 20 },
-    { month: 4, year: "April", count: 200 },
-    { month: 5, year: "Mei", count: 145 },
-    { month: 6, year: "Juni", count: 222 },
-    { month: 7, year: "Juli", count: 2 },
-    { month: 8, year: "Agustus", count: 190 },
-    { month: 9, year: "September", count: 420 },
-    { month: 10, year: "Oktober", count: 123 },
-    { month: 11, year: "November", count: 90 },
-    { month: 12, year: "Desember", count: 70 },
+    { month_num: '01', year: "Januari", count: 10 },
+    { month_num: '02', year: "Februari", count: 20 },
+    { month_num: '03', year: "Maret", count: 20 },
+    { month_num: '04', year: "April", count: 200 },
+    { month_num: '05', year: "Mei", count: 145 },
+    { month_num: '06', year: "Juni", count: 222 },
+    { month_num: '07', year: "Juli", count: 2 },
+    { month_num: '08', year: "Agustus", count: 190 },
+    { month_num: '09', year: "September", count: 420 },
+    { month_num: '10', year: "Oktober", count: 123 },
+    { month_num: '11', year: "November", count: 90 },
+    { month_num: '12', year: "Desember", count: 70 },
   ];
 
   useEffect(() => {
+    console.log(datYears);
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d');
       const filteredData = selectedMonth === 0 ? data : data.filter(row => row.month === selectedMonth);
