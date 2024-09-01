@@ -8,6 +8,13 @@ const getTrans = (req, res) => {
     });
 };
 
+const getCSV = (req, res) => {
+    pool.query(queries.getCSV, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+
 const getTransaksiById = (req, res) => {
     const id = parseInt(req.params.id);
     // console.log(id);
@@ -92,4 +99,5 @@ module.exports = {
     getTrans,
     getDet,
     update,
+    getCSV,
 };

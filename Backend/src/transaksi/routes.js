@@ -5,6 +5,8 @@ const router = Router();
 
 router.get("/trans", controller.getTrans);
 
+router.get("/getCSV", controller.getCSV);
+
 router.get("/one/:id", controller.getDet);
 
 router.get("/two/:id", controller.update);

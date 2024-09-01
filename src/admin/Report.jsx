@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Chart, registerables } from 'chart.js';
 import DataTable, { createTheme } from 'react-data-table-component';
 import axios from 'axios';
+import { useReactToPrint } from 'react-to-print';
+import { CSVLink } from 'react-csv';
 Chart.register(...registerables);
  
 const Report = () => {
@@ -9,6 +11,9 @@ const Report = () => {
   const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');
   const [transData, setTransData] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(0); 
+
+  // PDF
+  const componentPDF = useRef();
   
   // Get Month Data
   const [getJan, seGetJan] = useState([]);
@@ -200,7 +205,7 @@ const Report = () => {
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d');
       const filteredData = selectedMonth === 0 ? datYears : selMonth(selectedMonth).filter(row => row.date);
-      console.log(filteredData);
+      console.log(transData);
       const myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -226,6 +231,18 @@ const Report = () => {
       };
     }
   }, [datYears, selectedMonth]);
+
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: "Report Transaction"
+  });
+
+  // Header CSV
+  headers = [
+    { label: "First Name", key: "firstname" },
+    { label: "Last Name", key: "lastname" },
+    { label: "Email", key: "email" }
+  ];
 
   return (
     <div className="w-full p-10 grid flex">
@@ -258,19 +275,64 @@ const Report = () => {
           </select>
         </div>
         <div className='flex gap-4 w-full h-full justify-end p-2'>
-          <button className='rounded-md shadow-md px-5 bg-green-400 text-white'>Excel</button>
-          <button className='rounded-md shadow-md px-5 bg-blue-400 text-white'>Pdf</button>
+          <CSVLink data={transData} onClick={() => {}} className='rounded-md shadow-md px-5 bg-green-400 text-white'>Excel</CSVLink>
+          <button className='rounded-md shadow-md px-5 bg-blue-400 text-white' onClick={generatePDF}>Pdf</button>
         </div>
       </div>
-      <DataTable
-        className="h-full w-full border rounded-md shadow-md overflow-auto"
-        columns={columns}
-        data={transData}
-        pagination
-        paginationPerPage={5} 
-        responsive
-        theme="solarized"
-      />
+        <DataTable
+          className="h-full w-full border rounded-md shadow-md overflow-auto"
+          columns={columns}
+          data={transData}
+          pagination
+          paginationPerPage={5} 
+          responsive
+          theme="solarized"
+        />
+      <div ref={componentPDF} style={{width: "100%"}} className='absolute opacity-o -z-10 left-0 p-5'>
+        <h1 className='text-center font-olive text-4xl'>Report Transaction</h1>
+
+        <table className="w-full mt-4">
+            <thead>
+                <tr>
+                    <th className="border-2">No</th>
+                    <th className="border-2">Id Transaksi</th>
+                    <th className="border-2">Customer</th>
+                    <th className="border-2">Product Name</th>
+                    <th className="border-2">Price</th>
+                    <th className="border-2">Type Product</th>
+                    <th className="border-2">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {transData.map((item, index) => (
+                <tr key={index}>
+                    <td className="border-2 p-3 text-center">
+                    {index +1}
+                    </td>
+                    <td className="border-2 p-3">
+                    {item.id_trans}
+                    </td>
+                    <td className="border-2 p-3">
+                        {item.nama_pengirim}
+                    </td>
+                    <td className="border-2 p-3">
+                    {item.title}
+                    </td>
+                    <td className="border-2 p-3">
+                    {item.price}
+                    </td>
+                    <td className="border-2 p-3">
+                    {item.type}
+                    </td>
+                    <td className="border-2 p-3">
+                    {item.type}
+                    </td>
+                </tr>
+                ))}
+            </tbody>
+        </table>
+
+      </div>
     </div>
   );
 };

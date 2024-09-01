@@ -31,6 +31,20 @@ const updateInsert = `UPDATE transaksi SET status=2, payment=?, nama_pengirim=?,
 
 const update = `UPDATE transaksi SET status=3 WHERE id=?`;
 
+const getCSV = `SELECT 
+                    ROW_NUMBER() OVER (ORDER BY a.id_trans) AS no,
+                    a.id_trans AS id_transaksi, 
+                    c.title AS product_Name, 
+                    c.type AS product_Type, 
+                    a.nama_pengirim AS Customer,
+                    a.price AS price, 
+                    a.status AS status
+                FROM 
+                    transaksi a
+                    LEFT JOIN users b ON a.id_user = b.id_user
+                    LEFT JOIN product c ON a.id_product = c.id_product;
+`;
+
 module.exports = {
     getTransaksiById,
     insertTransaksi,
@@ -41,4 +55,5 @@ module.exports = {
     getAll,
     getDet,
     update,
+    getCSV,
 };
