@@ -28,7 +28,7 @@ const getFeb = (req, res) => {
     });
 };
 const getMarc = (req, res) => {
-    pool.query(queries.getMarch, (error, results) => {
+    pool.query(queries.getMarc, (error, results) => {
         if(error) throw error.message;
         res.status(200).json(results);
     });

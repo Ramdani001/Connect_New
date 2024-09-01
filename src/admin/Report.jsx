@@ -157,14 +157,14 @@ const Report = () => {
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d');
       const filteredData = selectedMonth === 0 ? datYears : datYears.filter(row => row.month === selectedMonth);
-      console.log(selectedMonth);
+      console.log(transData);
       const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: filteredData.map(row => row.years),
+          labels: filteredData.map(row => row.date),
           datasets: [
             {
-              label: `Penjualan ${selectedMonth === 0 ? 'Tahun 2024' : filteredData[0]?.years}`,
+              label: `Penjualan ${selectedMonth === 0 ? 'Tahun 2024' : filteredData[0]?.date}`,
               data: filteredData.map(row => row.count),
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
