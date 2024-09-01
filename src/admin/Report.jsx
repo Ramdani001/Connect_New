@@ -28,6 +28,8 @@ const Report = () => {
   const [getOct, seGetOct] = useState([]);
   const [getNov, seGetNov] = useState([]);
   const [getDes, seGetDes] = useState([]);
+  // CSV
+  const [getCSV, seGetCSV] = useState([]);
 
 
   const [datYears, setDateYears] = useState([]);
@@ -38,7 +40,8 @@ const Report = () => {
 
           const res = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/years");
           setDateYears(res.data);
-
+          const resCSV = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getCSV");
+          seGetCSV(resCSV.data);
           // Get Month
           const getJan = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJan");
           const getFeb = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getFeb");
@@ -238,11 +241,16 @@ const Report = () => {
   });
 
   // Header CSV
-  headers = [
-    { label: "First Name", key: "firstname" },
-    { label: "Last Name", key: "lastname" },
-    { label: "Email", key: "email" }
+  const  headers = [
+    { label: "No", key: "no" },
+    { label: "Id Transaksi", key: "id_transaksi" },
+    { label: "Product Name", key: "product_Name" },
+    { label: "Product Type", key: "product_Type" },
+    { label: "Customer", key: "Customer" },
+    { label: "Price", key: "price" },
+    { label: "Status", key: "status" }
   ];
+
 
   return (
     <div className="w-full p-10 grid flex">
@@ -275,7 +283,7 @@ const Report = () => {
           </select>
         </div>
         <div className='flex gap-4 w-full h-full justify-end p-2'>
-          <CSVLink data={transData} onClick={() => {}} className='rounded-md shadow-md px-5 bg-green-400 text-white'>Excel</CSVLink>
+          <CSVLink data={getCSV} headers={headers} separator={";"} filename={"Trabsaction Report.csv"} onClick={() => {}} className='rounded-md shadow-md px-5 bg-green-400 text-white'>Excel</CSVLink>
           <button className='rounded-md shadow-md px-5 bg-blue-400 text-white' onClick={generatePDF}>Pdf</button>
         </div>
       </div>
