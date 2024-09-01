@@ -110,32 +110,32 @@ const Report = () => {
   const canvasRef = useRef(null);
 
   const data = [
-    { month_num: '01', year: "Januari", count: 10 },
-    { month_num: '02', year: "Februari", count: 20 },
-    { month_num: '03', year: "Maret", count: 20 },
-    { month_num: '04', year: "April", count: 200 },
-    { month_num: '05', year: "Mei", count: 145 },
-    { month_num: '06', year: "Juni", count: 222 },
-    { month_num: '07', year: "Juli", count: 2 },
-    { month_num: '08', year: "Agustus", count: 190 },
-    { month_num: '09', year: "September", count: 420 },
-    { month_num: '10', year: "Oktober", count: 123 },
-    { month_num: '11', year: "November", count: 90 },
-    { month_num: '12', year: "Desember", count: 70 },
+    { years: "Januari", month_num: '01', count: 0 },
+    { years: "Februari", month_num: '02', count: 0 },
+    { years: "Maret", month_num: '03', count: 0 },
+    { years: "April", month_num: '04', count: 0 },
+    { years: "Mei", month_num: '05', count: 0 },
+    { years: "Juni", month_num: '06', count: 0 },
+    { years: "Juli", month_num: '07', count: 0 },
+    { years: "Agustus", month_num: '08', count: 9 },
+    { years: "September", month_num: '09', count: 0 },
+    { years: "Oktober", month_num: '10', count: 0 },
+    { years: "November", month_num: '11', count: 0 },
+    { years: "Desember", month_num: '12', count: 220 },
   ];
 
   useEffect(() => {
-    console.log(datYears);
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d');
-      const filteredData = selectedMonth === 0 ? data : data.filter(row => row.month === selectedMonth);
+      const filteredData = selectedMonth === 0 ? datYears : datYears.filter(row => row.month === selectedMonth);
+      console.log(selectedMonth);
       const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: filteredData.map(row => row.year),
+          labels: filteredData.map(row => row.years),
           datasets: [
             {
-              label: `Penjualan ${selectedMonth === 0 ? 'Tahun 2024' : filteredData[0]?.year}`,
+              label: `Penjualan ${selectedMonth === 0 ? 'Tahun 2024' : filteredData[0]?.years}`,
               data: filteredData.map(row => row.count),
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
@@ -153,7 +153,7 @@ const Report = () => {
         myChart.destroy();
       };
     }
-  }, [selectedMonth]);
+  }, [datYears, selectedMonth]);
 
   return (
     <div className="w-full p-10 grid flex">
