@@ -5,6 +5,16 @@ import { format } from 'date-fns';
 import { stringify } from "postcss";
 
 export default function Products(props){
+    const currentDate = new Date();
+    const [updateForm, setUpdateForm] = useState({
+        title: '',
+        id_product: '',
+        file: '',
+        type: '',
+        price: '',
+        description: '',
+        updated_at: format(currentDate, 'yyyy-MM-dd'),
+    });
 
     const [showModal, setShowModal] = useState(false);
 
@@ -43,7 +53,7 @@ export default function Products(props){
 
 
     const [images, setImages] = useState("");
-    const currentDate = new Date();
+    
     
     
     const [formData, setFormData] = useState({
@@ -144,24 +154,19 @@ export default function Products(props){
 
     const [id_user, setId_user] = useState("");
     const [arrProd, setArrProd] = useState([]);
-
-    const [updateForm, setUpdateForm] = useState({
-        updated_at: format(currentDate, 'yyyy-MM-dd'),
-    });
-
     const [id_product, setId_product] = useState(0);
     const [cProduct, setCproduct] = useState(0);
+
     const handleDetail = async (e) => {
         try { 
 
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
-            
             if(response.status == 200){
                 setArrProd(response.data);
                 setDetailModal(true);
                 
-                
             }
+            
         } catch (error) {
             if(error.response){
                 if(error.response.status == 300){
@@ -195,12 +200,33 @@ export default function Products(props){
         if(name == "thumbnail"){
             const file = e.target.files[0];
             setImages(file);
-        }
+                const formFile = new FormData();
+                    formFile.append('file', file);
+                    
+                    axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+                    .then(res => {
 
-        setUpdateForm(prevState => ({
-            ...prevState,
-            [name]: value,
-        }));
+                        let file = res.data.filename;
+                        
+                        if(file){
+                            console.log("Berhasil update upload");
+                            setUpdateForm(prevState => ({
+                                ...prevState,
+                                file: file,
+                                id_product: id_product,
+                            }));
+                            setfileUpload(res.data.filename);
+                        }else{
+                            console.log("Tidak Berhasil Upload");
+                        }
+                    })
+                    .catch(er => console.log(er));
+                }
+
+                setUpdateForm(prevState => ({
+                    ...prevState,
+                    [name]: value,
+                }));
     };
 
     const updateUpload = () => {
@@ -214,6 +240,11 @@ export default function Products(props){
             
             if(file){
                 console.log("Berhasil update upload");
+                setUpdateForm(prevState => ({
+                    ...prevState,
+                    file: fileUpload,
+                    id_product: id_product,
+                }));
                 setfileUpload(res.data.filename);
             }else{
                 console.log("Tidak Berhasil Upload");
@@ -222,27 +253,12 @@ export default function Products(props){
         .catch(er => console.log(er));
     }
 
-    useEffect(() => {
-            
-        setUpdateForm(prevState => ({
-            ...prevState,
-            file: fileUpload,
-            id_product: id_product,
-        }));
-        console.log(updateForm);
-        // addProduct(formData);
-  }, [fileUpload]);
-
-  useEffect(() => {
-    if(updateForm.file != null){
-        console.log(updateForm);
-        updateProduct();
-    }
-    console.log("Active formdata file");
-  }, [updateForm.file]);
+    
 
     const updateProd = (e) => {
-        updateUpload();
+        // updateUpload();
+        // console.log(updateForm);
+        updateProduct();
     };
 
     const handleUpdate = async (e) => {
@@ -256,6 +272,15 @@ export default function Products(props){
                 setArrProd(response.data);
                 setUpdatModal(true);
                 setId_product(e);
+                setUpdateForm(prevState => ({
+                    ...prevState,
+                    title: response.data[0].title,
+                    id_product: response.data[0].id_product,
+                    file: response.data[0].file,
+                    type: response.data[0].type,
+                    price: response.data[0].price,
+                    description: response.data[0].description,
+                }));
             }
         } catch (error) {
             if(error.response){
@@ -273,6 +298,12 @@ export default function Products(props){
         }
         
     }
+    // useEffect(() => {
+    //     if(updateForm.file != null){
+    //         // console.log(updateForm);
+    //         updateProduct(updateForm);
+    //     }
+    //   }, [updateForm.file]);
 
     const updateProduct = async (e) => {
         try { 
@@ -280,7 +311,9 @@ export default function Products(props){
             const response = await axios.post(`http://www.tempat-transit.cloud:3000/api/v1/products/update/`, updateForm);
             
             if(response.status == 200){
+                console.log(updateForm.file);
                 alert("Berhasil Upload");
+
                 window.location.reload();
             }
         } catch (error) {
@@ -556,7 +589,6 @@ export default function Products(props){
 
                                 <div className="flex gap-4">
                                     <div className="grid place-center pt-[7%]">
-                                        <input type="text" name="id_product" id="id_product_upt" value={cProduct}/>
                                         {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tempat-transit.cloud/media/connect/images/products/"+item.file} width={400} alt="" />}
                                         
                                         <input type="file" name="thumbnail" className="border-2 bg-transparent p-4" onChange={changeUpdate}/>
