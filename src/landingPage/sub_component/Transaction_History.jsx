@@ -264,8 +264,8 @@ export default function Transaction_History(props){
                                 </div>
                             ))}
                             <div className="grid w-[30%]">
-                                <span><b>==> Price : </b></span>
-                                <span className="font-olive">==> Rp 468.000,00</span>
+                                <span><b>== Price : </b></span>
+                                <span className="font-olive">== Rp 468.000,00</span>
                             </div>
 
                         </div>

@@ -17,6 +17,16 @@ const getProductsById = (req, res) => {
     });
 };
 
+const updateProducts = (req, res) => {
+
+    const { title, type, price, description, url, file, updated_at, id_product } = req.body;
+
+    pool.query(queries.updateProducts, [title, type, price, description, url, file, updated_at, id_product], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+}
+
 const insertProduct = (req, res) => {
 
     const { title, type, price, description, url, file, created_at, updated_at } = req.body;
@@ -26,6 +36,7 @@ const insertProduct = (req, res) => {
         res.status(200).json(results);
     });
 }
+
 const deleteProduct = (req, res) => {
     const id = parseInt(req.params.id);
  
@@ -66,4 +77,5 @@ module.exports = {
     getFacebook,
     getInstagram,
     getYoutube,
+    updateProducts,
 };

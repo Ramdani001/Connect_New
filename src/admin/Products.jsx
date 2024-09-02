@@ -67,17 +67,10 @@ export default function Products(props){
 
     };
 
-    const handleFileUpload = (file) => {
-        // Set file state
-        console.log("Handel"+file);
-        setFormData(prevState => ({
-          ...prevState,
-          file: file
-        }));
-      };
+    const [up, setUp] = useState(null);
 
-      const [fileName, setFileName] = useState("");
-
+      const [fileName, setFileName] = useState(null);
+      const [changeload, setChangeLoad] = useState(false);
     const submit_product = (e) => {
         e.preventDefault();
         
@@ -94,14 +87,9 @@ export default function Products(props){
             if(file){
                 document.getElementById('file_input').value = file;
                 const f = document.getElementById('file_input').value;
-                // handleFileUpload(res.data.filename);
 
                 setFileName(res.data.filename);
-
-                // console.log(formData);
-                // console.log(f);
-
-                addProduct(formData);
+                setChangeLoad(!changeload);
             }else{
                 console.log("Tidak Berhasil Upload");
             }
@@ -109,18 +97,32 @@ export default function Products(props){
         .catch(er => console.log(er));
         
 
-    };
+    }; 
+    const [stat, setStat] = useState("");
 
+    useEffect(() => {
+            
+            setFormData(prevState => ({
+                ...prevState,
+                file: fileName
+            }));
+            // addProduct(formData);
+      }, [fileName]);
+
+      useEffect(() => {
+        if(formData.file != null){
+            console.log(formData);
+        addProduct(formData);
+        }
+      }, [formData.file]);
 
       const addProduct = async (productData) => {
-        handleFileUpload(fileName);
-        console.log(formData);
         try {
 
             const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/products/insert', productData);
             
             if(response.status == 200){
-                console.log('Product added:', response.status);
+                setChangeLoad(false);
                 alert("Berhasil");
                 window.location.reload();
             }
@@ -154,7 +156,6 @@ export default function Products(props){
                 setArrProd(response.data);
                 setDetailModal(true)
             }
-            console.log(arrProd);
         } catch (error) {
             if(error.response){
                 if(error.response.status == 300){
@@ -176,7 +177,7 @@ export default function Products(props){
 
     const handleUpdate = async (e) => {
         const id_product = e;
-        
+         
         try { 
 
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
@@ -184,9 +185,7 @@ export default function Products(props){
             if(response.status == 200){
                 setArrProd(response.data);
                 setUpdatModal(true);
-                console.log(response);
             }
-            console.log(arrProd);
         } catch (error) {
             if(error.response){
                 if(error.response.status == 300){
@@ -215,7 +214,6 @@ export default function Products(props){
         const updateProd = (e) => {
           setInputValue(e.target.value);
           e.target.value += inputValue;
-          console.log(e.target.value);
         };
 
     // const updateProd = (e) => {
@@ -236,7 +234,6 @@ export default function Products(props){
         try {
             const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
             setUrl("http://www.tempat-transit.cloud:3000/api/v1/products/");
-            console.log('Data:', response);
 
             alert("Delete Berhasil");
             window.location.reload();
@@ -254,7 +251,6 @@ export default function Products(props){
                 console.error('Error:', error.message);
             }
         }
-    console.log(e);
 }
 
     useEffect(() => {
@@ -485,14 +481,15 @@ export default function Products(props){
                                 <h2 className="font-olive p-3">Update Product</h2>
                                 <button onClick={e => setUpdatModal(!updateModal)} className="font-olive p-3">X</button>
                             </div>
-                            <hr />
+                            <hr /> 
                             {arrProd.map((item, index) => (
 
                                 <div className="flex gap-4">
-                                    <div>
-                                        <iframe allow="accelerometer" src={item.url} frameBorder="0" width={400} height={300} allowfullscreen></iframe>
+                                    <div className="grid place-center pt-[7%]">
                                         
-                                        <img src={"images/products/"} alt="" />
+                                        {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tempat-transit.cloud/media/connect/images/products/"+item.file} width={400} alt="" />}
+                                        
+                                        <input type="file" name="thumbnail" className="border-2 bg-transparent p-4" onChange={changeInput}/>
 
                                     </div>
 
@@ -506,9 +503,8 @@ export default function Products(props){
                                             </div>
                                             <div>
                                                 <input type="text" className="font-olive text-[13px]" 
-                                                 value={item.title}  
-                                                 onClick={clear}
-                                                 onKeyUp={updateProd}
+                                                 placeholder={item.title}
+                                                 onChange={() => updateProd}
                                                 />
                                             </div>
                                         </div>
@@ -519,7 +515,17 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px]" value={item.type} />
+                                                <input type="text" className="font-olive text-[13px]" placeholder={item.type} />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <b className="font-popins">
+                                                    Url
+                                                </b>
+                                            </div>
+                                            <div>
+                                                <input type="text" className="font-olive text-[13px]" placeholder={item.url} />
                                             </div>
                                         </div>
                                         <div>
@@ -529,7 +535,7 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px]" value={item.price} />
+                                                <input type="text" className="font-olive text-[13px]" placeholder={item.price} />
                                             </div>
                                         </div>
                                         <div>
@@ -539,10 +545,12 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[10px] w-full text-justify" value={item.description} />
+                                                <input type="text" className="font-olive text-[13px] p-4 w-full text-justify" placeholder={item.description} />
                                             </div>
                                         </div>
-
+                                        <div>
+                                            <button className="bg-blue-400 py-1 w-full text-white rounded-md shadow-md">Update</button>
+                                        </div>
                                     </div>
                                 </div>
                             
