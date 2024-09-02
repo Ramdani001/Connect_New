@@ -7,7 +7,7 @@ router.get("/", controller.getProducts);
 router.get("/:id", controller.getProductsById);
 router.post("/insert", controller.insertProduct);
 router.delete("/:id", controller.deleteProduct);
-router.get("/update", controller.updateProducts);
+router.post("/update", controller.updateProducts);
 
 // Filter Product
 router.get("/Fac", controller.getFacebook);

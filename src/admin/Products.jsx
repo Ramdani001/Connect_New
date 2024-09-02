@@ -145,16 +145,22 @@ export default function Products(props){
     const [id_user, setId_user] = useState("");
     const [arrProd, setArrProd] = useState([]);
 
+    const [updateForm, setUpdateForm] = useState({
+        updated_at: format(currentDate, 'yyyy-MM-dd'),
+    });
+
+    const [id_product, setId_product] = useState(0);
+    const [cProduct, setCproduct] = useState(0);
     const handleDetail = async (e) => {
-        const id_product = e;
-        
         try { 
 
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
             
             if(response.status == 200){
                 setArrProd(response.data);
-                setDetailModal(true)
+                setDetailModal(true);
+                
+                
             }
         } catch (error) {
             if(error.response){
@@ -175,6 +181,70 @@ export default function Products(props){
 
     const [updateModal, setUpdatModal] = useState(false);
 
+      let title = document.getElementById('title_id');
+
+      const [inputValue, setInputValue] = useState(title);
+      
+// update
+    const [fileUpload, setfileUpload] = useState("");
+
+
+    const changeUpdate = (e) => {
+        const { name, value } = e.target;
+        
+        if(name == "thumbnail"){
+            const file = e.target.files[0];
+            setImages(file);
+        }
+
+        setUpdateForm(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const updateUpload = () => {
+        const formFile = new FormData();
+        formFile.append('file', images);
+         
+        axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+        .then(res => {
+
+            let file = res.data.filename;
+            
+            if(file){
+                console.log("Berhasil update upload");
+                setfileUpload(res.data.filename);
+            }else{
+                console.log("Tidak Berhasil Upload");
+            }
+        })
+        .catch(er => console.log(er));
+    }
+
+    useEffect(() => {
+            
+        setUpdateForm(prevState => ({
+            ...prevState,
+            file: fileUpload,
+            id_product: id_product,
+        }));
+        console.log(updateForm);
+        // addProduct(formData);
+  }, [fileUpload]);
+
+  useEffect(() => {
+    if(updateForm.file != null){
+        console.log(updateForm);
+        updateProduct();
+    }
+    console.log("Active formdata file");
+  }, [updateForm.file]);
+
+    const updateProd = (e) => {
+        updateUpload();
+    };
+
     const handleUpdate = async (e) => {
         const id_product = e;
          
@@ -185,6 +255,7 @@ export default function Products(props){
             if(response.status == 200){
                 setArrProd(response.data);
                 setUpdatModal(true);
+                setId_product(e);
             }
         } catch (error) {
             if(error.response){
@@ -203,33 +274,32 @@ export default function Products(props){
         
     }
 
-    const [formUpdate, setFormUpdate] = useState({
-        updated_at: format(currentDate, 'yyyy-MM-dd'),
-    });
+    const updateProduct = async (e) => {
+        try { 
 
-      let title = document.getElementById('title_id');
-
-      const [inputValue, setInputValue] = useState(title);
-      
-        const updateProd = (e) => {
-          setInputValue(e.target.value);
-          e.target.value += inputValue;
-        };
-
-    // const updateProd = (e) => {
-    //     const { name, value } = e.target;
-
-    //     setFormUpdate(prevState => ({
-    //       ...prevState,
-    //       [name]: value,
-    //     }));
-    // }
-    const clear = (e) => {
-        e.target.value = "";
-        setInputValue(e.target.key);
+            const response = await axios.post(`http://www.tempat-transit.cloud:3000/api/v1/products/update/`, updateForm);
+            
+            if(response.status == 200){
+                alert("Berhasil Upload");
+                window.location.reload();
+            }
+        } catch (error) {
+            if(error.response){
+                if(error.response.status == 300){
+                    setshowAlertWar(true);
+                }
+            }
+            if (error.response) {
+                console.error('Response errora:', error.response.status);
+                console.error('Response data:', error.response.data);
+            
+            } else {
+                console.error('Error:', error.message);
+            }
+        }
     }
- 
 
+//   Update
     const delFunct = async (e) =>{
         try {
             const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
@@ -486,10 +556,10 @@ export default function Products(props){
 
                                 <div className="flex gap-4">
                                     <div className="grid place-center pt-[7%]">
-                                        
+                                        <input type="text" name="id_product" id="id_product_upt" value={cProduct}/>
                                         {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tempat-transit.cloud/media/connect/images/products/"+item.file} width={400} alt="" />}
                                         
-                                        <input type="file" name="thumbnail" className="border-2 bg-transparent p-4" onChange={changeInput}/>
+                                        <input type="file" name="thumbnail" className="border-2 bg-transparent p-4" onChange={changeUpdate}/>
 
                                     </div>
 
@@ -502,9 +572,9 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px]" 
+                                                <input type="text" name="title" className="p-2 font-olive text-[13px]" 
                                                  placeholder={item.title}
-                                                 onChange={() => updateProd}
+                                                 onChange={changeUpdate}
                                                 />
                                             </div>
                                         </div>
@@ -515,7 +585,7 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px]" placeholder={item.type} />
+                                                <input type="text" name="type" className="p-2 font-olive text-[13px]" placeholder={item.type} onChange={changeUpdate}/>
                                             </div>
                                         </div>
                                         <div>
@@ -525,7 +595,7 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px]" placeholder={item.url} />
+                                                <input type="text" name="url" className="p-2 font-olive text-[13px]" placeholder={item.url} onChange={changeUpdate}/>
                                             </div>
                                         </div>
                                         <div>
@@ -535,7 +605,7 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px]" placeholder={item.price} />
+                                                <input type="text" name="price" className="p-2 font-olive text-[13px]" placeholder={item.price} onChange={changeUpdate}/>
                                             </div>
                                         </div>
                                         <div>
@@ -545,11 +615,11 @@ export default function Products(props){
                                                 </b>
                                             </div>
                                             <div>
-                                                <input type="text" className="font-olive text-[13px] p-4 w-full text-justify" placeholder={item.description} />
+                                                <input type="text" name="description" className="font-olive text-[13px] p-4 w-full text-justify" placeholder={item.description} onChange={changeUpdate}/>
                                             </div>
                                         </div>
                                         <div>
-                                            <button className="bg-blue-400 py-1 w-full text-white rounded-md shadow-md">Update</button>
+                                            <button type="button" onClick={updateProd} className="bg-blue-400 py-1 w-full text-white rounded-md shadow-md">Update</button>
                                         </div>
                                     </div>
                                 </div>
