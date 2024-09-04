@@ -3,7 +3,7 @@ const controller = require("./controller");
 
 const router = Router();
 
-// router.get("/:id", controller.getCart); 
+// router.get("/:id", controller.getCart);
 
 router.get("/:id", controller.getCart);
 router.post("/add", controller.insertCart);

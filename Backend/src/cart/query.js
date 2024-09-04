@@ -19,7 +19,7 @@ const getCart = `SELECT a.id_product,
                 FROM cart a
                 LEFT JOIN users b ON a.id_user = b.id_user
                 LEFT JOIN product c ON a.id_product = c.id_product
-                WHERE b.id_user=? AND a.paid=1
+                WHERE b.id_user=? AND a.paid=2
                 GROUP BY a.id_product
                 ORDER BY a.id_product;
 `;

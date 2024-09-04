@@ -73,7 +73,7 @@ export default function History(props){
                 id_trans: generateUniqueTransactionID(),
                 price: total.toString(),
                 id_user: parseInt(getUser),
-                status: 3,
+                status: 1,
                 file: "",
                 payment: "",
               }));
@@ -137,7 +137,7 @@ export default function History(props){
                 const idsArray = (typeof idProductString === 'string' && idProductString.trim() !== '') 
                     ? idProductString.split(',').map(id => id.trim())
                     : []; 
-
+ 
                     setIdP(prevState => {
                         const updatedState = {
                             ...prevState,
