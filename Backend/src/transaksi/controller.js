@@ -91,101 +91,101 @@ const update = (req, res) => {
 }
 
 // Get Data By Month
-// const getMonth1 = (req, res) => {
+const getMonth1 = (req, res) => {
 
-//     pool.query(queries.getMonth1, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth1, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth2 = (req, res) => {
+const getMonth2 = (req, res) => {
 
-//     pool.query(queries.getMonth2, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth2, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth3 = (req, res) => {
+const getMonth3 = (req, res) => {
 
-//     pool.query(queries.getMonth3, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth3, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth4 = (req, res) => {
+const getMonth4 = (req, res) => {
 
-//     pool.query(queries.getMonth4, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth4, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth5 = (req, res) => {
+const getMonth5 = (req, res) => {
 
-//     pool.query(queries.getMonth5, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth5, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth6 = (req, res) => {
+const getMonth6 = (req, res) => {
 
-//     pool.query(queries.getMonth6, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth6, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth7 = (req, res) => {
+const getMonth7 = (req, res) => {
 
-//     pool.query(queries.getMonth7, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth7, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth8 = (req, res) => {
+const getMonth8 = (req, res) => {
 
-//     pool.query(queries.getMonth8, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth8, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth9 = (req, res) => {
+const getMonth9 = (req, res) => {
 
-//     pool.query(queries.getMonth9, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth9, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth10 = (req, res) => {
+const getMonth10 = (req, res) => {
 
-//     pool.query(queries.getMonth10, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth10, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth11 = (req, res) => {
+const getMonth11 = (req, res) => {
 
-//     pool.query(queries.getMonth11, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth11, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
-// const getMonth12 = (req, res) => {
+const getMonth12 = (req, res) => {
 
-//     pool.query(queries.getMonth12, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
+    pool.query(queries.getMonth12, (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
 
 
 module.exports = {
@@ -199,16 +199,16 @@ module.exports = {
     getDet,
     update,
     getCSV,
-    // getMonth1,
-    // getMonth2,
-    // getMonth3,
-    // getMonth4,
-    // getMonth5,
-    // getMonth6,
-    // getMonth7,
-    // getMonth8,
-    // getMonth9,
-    // getMonth10,
-    // getMonth11,
-    // getMonth12,
+    getMonth1,
+    getMonth2,
+    getMonth3,
+    getMonth4,
+    getMonth5,
+    getMonth6,
+    getMonth7,
+    getMonth8,
+    getMonth9,
+    getMonth10,
+    getMonth11,
+    getMonth12,
 };
