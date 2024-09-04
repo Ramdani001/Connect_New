@@ -87,7 +87,7 @@ console.log(props);
     return(
         <section className={modalDetail ? "hidden bg-red-500" : "fixed h-screen w-full bg-gray-500/70 top-0 left-0 right-0 bottom-0 overflow-hidden"} style={{zIndex: 100}}>
             <main className="p-10 grid place-items-center h-full relative">
-                <div className=" w-[50%]  h-[70%] p-5 bg-white rounded-sm bg-[url('http://www.tempat-transit.cloud:81/media/connect/images/bg_paper.png')] bg-content bg-fill bg-no-repeat shadow">
+                <div className=" w-[50%] relative h-[70%] bg-white rounded-sm bg-[url('http://www.tempat-transit.cloud:81/media/connect/images/bg_paper.png')] bg-content bg-fill bg-no-repeat shadow ">
                     <div className="closeSection text-2xl font-semibold flex justify-end mr-3">
                         <button onClick={() => setModalDetail(!modalDetail)} className="cursor-pointer">X</button>
                     </div>
@@ -98,24 +98,24 @@ console.log(props);
                             <div className="h-[50%] flex justify-center -mt-10 w-full">
                                 <img src="http://www.tempat-transit.cloud:81/media/connect/images/woman.png" alt="" className="h-full"/>
                             </div>
-                        </div>
+                        </div> 
     
-                        <div className="textContent col w-full col-span-1 p-2 font-bold text-black grid items-between h-full">
-                            <div>
+                        <div className="textContent col w-full text-white col-span-1 p-2 font-bold text-black grid items-between h-full">
+                            <div className="pt-20">
                                 <div>
-                                    <label className="text-slate-700">Title</label>
-                                    <h2 className="font-bold text-xl">{nama}</h2>
+                                    <label className="text-slate-700 text-white text-stroke font-bold">Title</label>
+                                    <h2 className="font-bold text-xl text-stroke font-bold">{nama}</h2>
                                 </div>
                                 <div>
-                                    <label className="text-slate-700">Type</label>
-                                    <h2 className="text-md">{type}</h2>
+                                    <label className="text-slate-700 text-white text-stroke font-bold">Type</label>
+                                    <h2 className="text-md text-stroke font-bold">{type}</h2>
                                 </div>
                                 <div className="">
-                                    <label className="text-slate-700">Summary</label>
-                                    <h2 className=""> {ket}</h2>
+                                    <label className="text-slate-700 text-white text-stroke font-bold">Summary</label>
+                                    <h2 className="text-stroke font-bold"> {ket}</h2>
                                 </div>
                             </div>
-                            <div className="mt-3 flex gap-3">
+                            <div className=" flex gap-3">
                                 {idUser != 0 ? (
 
                                 <button onClick={handleCart} data-id={id_product} className="rounded bg-blue-300 h-10 shadow-md font-semibold p-1 w-full ">
