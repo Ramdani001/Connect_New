@@ -107,6 +107,16 @@ export default function Transaction_History(props){
         getCart();
 
     }, []);
+    const [totalCart, setTotalCart] = useState(0);
+
+    useEffect(() => {
+        const total = arrData.reduce((acc, item) => acc + parseInt(item.price), 0);
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        });
+        setTotalCart(formatter.format(total));
+    }, [arrData]);
 
     const [formKonf, setFormKonf] = useState({});
     const [typePayment, setTypePayment] = useState("");
@@ -265,7 +275,7 @@ export default function Transaction_History(props){
                             ))}
                             <div className="grid w-[30%]">
                                 <span><b>== Price : </b></span>
-                                <span className="font-olive">== Rp 468.000,00</span>
+                                <span className="font-olive">== {totalCart}</span>
                             </div>
 
                         </div>
