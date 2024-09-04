@@ -290,7 +290,7 @@ const Report = () => {
         </div>
       </div>
         <DataTable
-          className="h-full w-full border rounded-md shadow-md overflow-auto"
+          className="h-[300px] w-full border rounded-md shadow-md overflow-auto"
           columns={columns}
           data={transData}
           pagination
