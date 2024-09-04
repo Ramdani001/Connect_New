@@ -6,7 +6,7 @@ const getCart = (req, res) => {
     pool.query(queries.getCart, [id], (error, results) => {
         if(error) throw error.message;
         res.status(200).json(results);
-    });
+    }); 
 };
 
 const getMessagesById = (req, res) => {

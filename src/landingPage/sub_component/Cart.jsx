@@ -55,7 +55,7 @@ export default function History(props){
                 price = item.price;
                 if (acc.length > 0) {
                 
-                  acc += ',';
+                  acc += ','; 
                 }
                 acc += item.id_product;
 

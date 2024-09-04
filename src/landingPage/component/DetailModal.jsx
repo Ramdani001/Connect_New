@@ -12,14 +12,14 @@ console.log(props);
     const [formUpdate, setFormUpdate] = useState({});
 
     const [checkChart, setCheckChart] = useState();
-
+ 
     // Handle click event to get product ID
     const handleCart = (e) => {
         const targetElement = e.currentTarget || e.target;
         const id_product = targetElement.getAttribute('data-id');
 
-        const paid = 2;
-
+        const paid = 1;
+ 
         updateProd(id_product, idUser, paid);
     };
 
