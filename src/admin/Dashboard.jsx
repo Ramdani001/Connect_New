@@ -112,6 +112,16 @@ export default function Dashboard(props){
         }
 
     }
+    const [showZoom, setShowZoom] = useState(false);
+    const handleZoom = async(data) => {
+        setShowZoom(!showZoom);
+        setShowDet(!showDet)
+    }
+
+    const handleClose = async(data) => {
+        setShowZoom(!showZoom);
+        setShowDet(!showDet)
+    }
 
     const handleAction = async(data) => {
         setIdT(data);
@@ -123,6 +133,7 @@ export default function Dashboard(props){
 
             const fileName = response.data[0].file;
             const imgElement = document.getElementById("img_bukti");
+            const img_bukti_zoom = document.getElementById("img_bukti_zoom");
 
             const id_t = response.data[0].id_trans;
 
@@ -149,6 +160,7 @@ export default function Dashboard(props){
 
             if (imgElement && fileName) {
                 imgElement.src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${fileName}`;
+                img_bukti_zoom.src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${fileName}`;
             }
 
             setArr(response.data);
@@ -244,6 +256,17 @@ export default function Dashboard(props){
  
                 </div>
 
+                <div className={showZoom ? "w-full h-full bg-black/30 absolute top-0 left-0 flex justify-center z-100" : "hidden"}>
+                    <div className="w-full h-full flex justify-center">
+                        <div className="p-4 w-[50%] h-[90%]">
+                            <div className="bg-white font-olive text-4xl text-end p-2 cursor-pointer" onClick={() => handleClose()}>
+                                X
+                            </div>
+                            <img src="" id="img_bukti_zoom" alt="" className="w-full h-full object-content" />
+                        </div>
+                    </div>
+                </div>
+
 
                 {/* Detail Transaksi */}
                 <div className={showDet ? "w-full h-full bg-black/30 absolute top-0 left-0 flex justify-center" : "hidden"}>
@@ -257,7 +280,7 @@ export default function Dashboard(props){
 
                             {/* Content */}
                             <div className="flex gap-10">
-                                <div className="w-full h-full relative">
+                                <div className="w-full h-full cursor-pointer relative" onClick={() => handleZoom()}>
                                     <img src="" id="img_bukti" alt="" className="w-full h-[460px] object-fill" />
                                 </div>
                                 <div className="w-full py-5">
