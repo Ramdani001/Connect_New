@@ -92,108 +92,96 @@ const update = (req, res) => {
 
 // Get Data By Month
 const getMonth1 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth1, [numbers], (error, results) => {
+    pool.query(queries.getMonth1, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth2 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth2, [numbers], (error, results) => {
+    pool.query(queries.getMonth2, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth3 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth3, [numbers], (error, results) => {
+    pool.query(queries.getMonth3, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth4 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth4, [numbers], (error, results) => {
+    pool.query(queries.getMonth4, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth5 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth5, [numbers], (error, results) => {
+    pool.query(queries.getMonth5, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth6 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth6, [numbers], (error, results) => {
+    pool.query(queries.getMonth6, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth7 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth7, [numbers], (error, results) => {
+    pool.query(queries.getMonth7, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth8 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth8, [numbers], (error, results) => {
+    pool.query(queries.getMonth8, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth9 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth9, [numbers], (error, results) => {
+    pool.query(queries.getMonth9, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth10 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth10, [numbers], (error, results) => {
+    pool.query(queries.getMonth10, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth11 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth11, [numbers], (error, results) => {
+    pool.query(queries.getMonth11, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
 };
 
 const getMonth12 = (req, res) => {
-    const { numbers } = req.body;
 
-    pool.query(queries.getMonth12, [numbers], (error, results) => {
+    pool.query(queries.getMonth12, (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
