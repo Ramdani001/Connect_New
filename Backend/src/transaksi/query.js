@@ -45,73 +45,73 @@ const getCSV = `SELECT
                     LEFT JOIN product c ON a.id_product = c.id_product;
 `;
 
-const getMonth1 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthJan = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-01-01') AND LAST_DAY('2024-1-01')
                  `;
-const getMonth2 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthFeb = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-02-01') AND LAST_DAY('2024-02-01')
                  `;
-const getMonth3 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthMar = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-03-01') AND LAST_DAY('2024-03-01')
                  `;
-const getMonth4 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthApr = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-04-01') AND LAST_DAY('2024-04-01')
                  `;
-const getMonth5 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthMay = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-05-01') AND LAST_DAY('2024-05-01')
                  `;
-const getMonth6 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthJun = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-06-01') AND LAST_DAY('2024-06-01')
                  `;
-const getMonth7 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthJul = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-07-01') AND LAST_DAY('2024-07-01')
                  `;
-const getMonth8 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthAug = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-08-01') AND LAST_DAY('2024-08-01')
                  `;
-const getMonth9 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthSep = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-09-01') AND LAST_DAY('2024-09-01')
                  `;
-const getMonth10 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthOct = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-10-01') AND LAST_DAY('2024-10-01')
                  `;
-const getMonth11 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthNov = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
                   WHERE a.created_at BETWEEN DATE('2024-11-01') AND LAST_DAY('2024-11-01')
                  `;
-const getMonth12 = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
+const getMonthDes = `SELECT a.id, a.id_trans, c.title, c.type, a.nama_pengirim, a.file, a.price, a.status, a.created_at
                   FROM transaksi a
                   LEFT JOIN users b ON a.id_user=b.id_user
                   LEFT JOIN product c ON a.id_product=c.id_product
@@ -129,16 +129,16 @@ module.exports = {
     getDet,
     update,
     getCSV,
-    getMonth1,
-    getMonth2,
-    getMonth3,
-    getMonth4,
-    getMonth5,
-    getMonth6,
-    getMonth7,
-    getMonth8,
-    getMonth9,
-    getMonth10,
-    getMonth11,
-    getMonth12,
+    getMonthJan,
+    getMonthFeb,
+    getMonthMar,
+    getMonthApr,
+    getMonthMay,
+    getMonthJun,
+    getMonthJul,
+    getMonthAug,
+    getMonthSep,
+    getMonthOct,
+    getMonthNov,
+    getMonthDes,
 };

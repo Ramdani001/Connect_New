@@ -24,17 +24,17 @@ router.post("/updateCart", controller.updateCart);
 router.post("/updateInsert", controller.updateInsert);
 
 // Month
-router.get("/getMonth1", controller.getMonth1);
-router.get("/getMonth2", controller.getMonth2);
-router.get("/getMonth3", controller.getMonth3);
-router.get("/getMonth4", controller.getMonth4);
-router.get("/getMonth5", controller.getMonth5);
-router.get("/getMonth6", controller.getMonth6);
-router.get("/getMonth7", controller.getMonth7);
-router.get("/getMonth8", controller.getMonth8);
-router.get("/getMonth9", controller.getMonth9);
-router.get("/getMonth10", controller.getMonth10);
-router.get("/getMonth11", controller.getMonth11);
-router.get("/getMonth12", controller.getMonth12);
+router.get("/getMonthJan", controller.getMonthJan);
+router.get("/getMonthFeb", controller.getMonthFeb);
+router.get("/getMonthMar", controller.getMonthMar);
+router.get("/getMonthApr", controller.getMonthApr);
+router.get("/getMonthMay", controller.getMonthMay);
+router.get("/getMonthJun", controller.getMonth6Jun);
+router.get("/getMonthJul", controller.getMonthJul);
+router.get("/getMonthAug", controller.getMonthAug);
+router.get("/getMonthSep", controller.getMonthSep);
+router.get("/getMonthOct", controller.getMonthOct);
+router.get("/getMonthSep", controller.getMonthSep);
+router.get("/getMonthDes", controller.getMonthDes);
 
 module.exports = router;
