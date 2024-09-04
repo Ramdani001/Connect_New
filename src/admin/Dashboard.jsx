@@ -148,7 +148,7 @@ export default function Dashboard(props){
             }
 
             if (imgElement && fileName) {
-                imgElement.src = `images/products/${fileName}`;
+                imgElement.src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${fileName}`;
             }
 
             setArr(response.data);

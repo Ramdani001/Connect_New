@@ -337,7 +337,7 @@ export default function Transaction_History(props){
                         <div className="p-10">
                             <select name="payment" id="payment" className="w-full border p-2" onChange={payChange}>
                                 <option selected className="rounded-none p-2">Payment</option>
-                                <option value="QRIS" className="rounded-none p-2">QRIS</option>
+                                {/* <option value="QRIS" className="rounded-none p-2">QRIS</option> */}
                                 <option value="BRI" className="rounded-none p-2">BRI</option>
                                 <option value="MANDIRI" className="rounded-none p-2">Mandiri</option>
                                 <option value="BCA" className="rounded-none p-2">BCA</option>
