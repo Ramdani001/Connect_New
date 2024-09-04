@@ -472,7 +472,7 @@ export default function Products(props){
                                     {/* Link Url */}
                                     <div className="rounded-md p-4 mt-4 rounded-md shadow-md border-2 w-full h-full">
                                         <label className="text-sm">Link URL</label> <br />
-                                        <textarea onChange={changeInput} className="w-full p-3 text-sm" name="url" id="url" placeholder="Harga untuk editing"></textarea>
+                                        <textarea onChange={changeInput} className="w-full p-3 text-sm" name="url" id="url" placeholder="Url Video"></textarea>
                                     </div>
                                     {/* Link Url */}
 
