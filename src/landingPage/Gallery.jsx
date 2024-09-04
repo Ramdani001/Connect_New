@@ -16,13 +16,13 @@ export default function Gallery(props){
     const [url, setUrl] = useState(newUrl);
 
     const getProduct = async () => {
-        console.log(tipe);
+        console.log(tipe); 
         if (tipe === "allProduk") {
             newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products';
         } else if (tipe === "videoFacebook") {
             newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Fac';
         } else if (tipe === "tiktok") {
-            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Tik';
+            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/tiktok';
         } else if (tipe === "instaStory") {
             newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Inst';
         } else {

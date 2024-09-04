@@ -22,9 +22,11 @@ const getYoutube = (req, res) => {
         res.status(200).json(results);
     });
 };
+
 const getTiktok = (req, res) => {
     pool.query(queries.getTiktok, (error, results) => {
         if(error) throw error.message;
+        console.log(results);
         res.status(200).json(results);
     });
 };
