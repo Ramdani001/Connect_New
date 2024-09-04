@@ -39,7 +39,7 @@ const Report = () => {
           const response = await axios.get(url);
 
           const resM = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getMonth8");
-          console.log(resM.data);
+          // console.log(resM.data);
           const res = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/years");
           setDateYears(res.data);
           const resCSV = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getCSV");

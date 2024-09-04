@@ -20,9 +20,9 @@ router.delete("/:id", controller.deleteTransaksi);
 router.post("/det", controller.getDetail);
 
 router.post("/updateCart", controller.updateCart);
- 
+
 router.post("/updateInsert", controller.updateInsert);
- 
+
 // Month
 router.get("/getMonth1", controller.getMonth1);
 router.get("/getMonth2", controller.getMonth2);
