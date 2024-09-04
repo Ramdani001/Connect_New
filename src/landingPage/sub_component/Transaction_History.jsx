@@ -23,7 +23,7 @@ export default function Transaction_History(props){
         try { 
             const id_user = localStorage.getItem("id_user");
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/transaksi/${id_user}`);
-
+  console.log(response.data);
             if(response.status == 200){
                 const idProductString = response.data[0].id_product;
 
@@ -275,7 +275,7 @@ export default function Transaction_History(props){
                             ))}
                             <div className="grid w-[30%]">
                                 <span><b>== Price : </b></span>
-                                <span className="font-olive">== {totalCart}</span>
+                                <span className="font-olive">== {item.price}</span>
                             </div>
 
                         </div>
