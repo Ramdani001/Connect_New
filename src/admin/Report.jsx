@@ -298,7 +298,7 @@ const Report = () => {
           responsive
           theme="solarized"
         />
-      <div ref={componentPDF} style={{width: "100%"}} className='absolute relative opacity-o -z-10 left-0 p-5'>
+      <div ref={componentPDF} style={{width: "100%"}} className='absolute opacity-o -z-10 left-0 p-5'>
         <h1 className='text-center font-olive text-4xl'>Report Transaction</h1>
 
         <div className=' absolute margin-auto left-[30%] top-[100%] h-full'>
