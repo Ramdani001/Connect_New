@@ -241,7 +241,7 @@ export default function Dashboard(props){
 
                 <div className="w-full pt-4 border p-4">
                     <DataTable
-                        className="h-[42%] w-full border rounded-md shadow-md"
+                        className="h-[46%] w-full border rounded-md shadow-md"
                         columns={columns}
                         data={transData}
                         pagination
