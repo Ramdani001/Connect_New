@@ -128,7 +128,7 @@ export default function History(props){
     // CheckOut
     const handleCheckout = async () => {
         console.log(formTrans);
-
+ 
         try {
             const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/transaksi/insert/", formTrans);
             if(response.status == 200){
