@@ -8,6 +8,7 @@ const updateProducts = 'UPDATE product SET title=?, type=?, price=?, description
 const getFacebook = 'SELECT * FROM product WHERE type="Facebook"';
 const getInstagram = 'SELECT * FROM product WHERE type="Instagram"';
 const getYoutube = 'SELECT * FROM product WHERE type="Youtube"';
+const getTiktok = 'SELECT * FROM product WHERE type="Tiktok"';
 
 module.exports = {
     getProducts,
@@ -18,4 +19,5 @@ module.exports = {
     getInstagram,
     getYoutube,
     updateProducts,
+    getTiktok
 };

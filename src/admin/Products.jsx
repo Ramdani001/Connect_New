@@ -279,6 +279,7 @@ export default function Products(props){
                     file: response.data[0].file,
                     type: response.data[0].type,
                     price: response.data[0].price,
+                    url: response.data[0].url,
                     description: response.data[0].description,
                 }));
             }
@@ -332,6 +333,14 @@ export default function Products(props){
         }
     }
 
+    const rupiah = (amount) => {
+        const rupiah = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        });
+        return rupiah.format(amount);
+    };
+
 //   Update
     const delFunct = async (e) =>{
         try {
@@ -381,8 +390,8 @@ export default function Products(props){
                         <tr>
                             <th className="border-2">No</th>
                             <th className="border-2">Name Product</th>
-                            <th className="border-2">Price</th>
                             <th className="border-2">Type</th>
+                            <th className="border-2">Price</th>
                             <th className="border-2">#</th>
                         </tr>
                     </thead>
@@ -399,8 +408,8 @@ export default function Products(props){
                             <td className="border-2 p-3">
                                 {item.type}
                             </td>
-                            <td className="border-2 p-3">
-                            {item.price}
+                            <td className="border-2 p-3 text-right">
+                            {rupiah(item.price)}
                             </td>
                             <td className="border-2">
                             <div className="p-3 flex justify-center">
@@ -475,6 +484,7 @@ export default function Products(props){
                                             <option className="p-2" value="Instagram">Instagram</option>
                                             <option className="p-2" value="Facebook"> Facebook</option>
                                             <option className="p-2" value="Youtube"> Youtube</option>
+                                            <option className="p-2" value="Tiktok"> Tiktok</option>
                                         </select>
                                     </div>
                                     {/* Type Video */}
@@ -548,7 +558,7 @@ export default function Products(props){
                                             </div>
                                             <div>
                                                 <span className="font-olive text-[13px]">
-                                                    Rp. {item.price}
+                                                    {rupiah(item.price)}
                                                 </span>
                                             </div>
                                         </div>
@@ -589,7 +599,7 @@ export default function Products(props){
 
                                 <div className="flex gap-4">
                                     <div className="grid place-center pt-[7%]">
-                                        {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tempat-transit.cloud/media/connect/images/products/"+item.file} width={400} alt="" />}
+                                        {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tempat-transit.cloud:81/media/connect/images/products/"+item.file} width={400} alt="" />}
                                         
                                         <input type="file" name="thumbnail" className="border-2 bg-transparent p-4" onChange={changeUpdate}/>
 

@@ -29,12 +29,12 @@ export default function Identitas(props){
                 username: oldData.username,
                 nama: oldData.nama,
                 no_telp: oldData.no_telp,
-            }));
+            })); 
             if(response.data[0].file){
-                document.getElementById('prof2').src = `http://www.tempat-transit.cloud/media/connect/images/products/${response.data[0].file}`;
+                document.getElementById('prof2').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${response.data[0].file}`;
             }else{
-                document.getElementById('prof2').src = `http://www.tempat-transit.cloud/media/connect/images/aboutImage.png`;
-            }
+                document.getElementById('prof2').src = `http://www.tempat-transit.cloud:81/media/connect/images/aboutImage.png`;
+            } 
         } catch (error) {
             
             if (error.response) {
@@ -169,29 +169,29 @@ export default function Identitas(props){
                 <div className="w-[60%] h-[70vh] bg-blue-400 rounded-2xl shadow-md">
                     {images ? <img src={URL.createObjectURL(images)} alt="" className="h-full w-full object-fill" /> : <img src="" alt="" className="h-full w-full object-fill" id="prof2" />}
                 </div>
-
+ 
                 {/* Content */}
                 <div className="p-3 border-2 w-full rounded-2xl">
                     <form id="frm_identitas" className="flex gap-5 flex-wrap mt-5">
                         <div className="col-2 w-full">
                             <h6 className="text-sm">Nama Lengkap</h6>
-                            <input type="text" placeholder="Nama Lengkap" name="nama" className="border-b-2 w-full font-bold" required onChange={changeData}/>
+                            <input type="text" placeholder="Nama Lengkap" name="nama" className="border-b-2 w-full font-bold" required onChange={changeData} placeholder={oldData.nama}/>
                         </div>
 
                         <div>
                             <h6 className="text-sm">Username</h6>
-                            <input type="text" placeholder="Username" name="username" className="border-b-2 font-bold" onChange={changeData}/>
+                            <input type="text" placeholder="Username" name="username" className="border-b-2 font-bold" onChange={changeData} placeholder={oldData.username}/>
                         </div>
                         
                         <div className="w-[50%]">
                             <h6 className="text-sm">No Handphone</h6>
-                            <input type="text" placeholder="08xxxxxxxxxx" name="no_telp" required className="border-b-2 font-bold" onChange={changeData}/>
+                            <input type="text" placeholder="08xxxxxxxxxx" name="no_telp" required className="border-b-2 font-bold" onChange={changeData} placeholder={oldData.no_telp}/>
                         </div>
                         
                         {/* Alamat */}
                         <div className="col-2 w-full">
                             <h6 className="text-sm">Alamat</h6>
-                            <input type="text" placeholder="Alamat Lengkap" name="alamat" required className="border-b-2 w-full font-bold" onChange={changeData}/>
+                            <input type="text" placeholder="Alamat Lengkap" name="alamat" required className="border-b-2 w-full font-bold" onChange={changeData} placeholder={oldData.alamat}/>
                         </div>
 
                         {/* File */}

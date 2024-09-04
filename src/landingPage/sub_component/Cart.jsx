@@ -11,6 +11,7 @@ export default function History(props){
     const [totCart, setTotCart] = useState(0);
     const currentDate = new Date();
     const [formTrans, setFormTrans] = useState({
+        nama_pengirim: '',
         created_at: format(currentDate, 'yyyy-MM-dd h:mm:ss'),
     }); 
     // const [formTrans, setFormTrans] = useState({
@@ -48,14 +49,16 @@ export default function History(props){
         try {
             const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/cart/${id_user}`);
             setArrData(response.data);
-
             // Membuat objek baru berdasarkan data yang diterima
+            let price = 0;
             const newFormTrans = response.data.reduce((acc, item) => {
-                
+                price = item.price;
                 if (acc.length > 0) {
+                
                   acc += ',';
                 }
                 acc += item.id_product;
+
                 return acc;
               }, '');
 
@@ -63,8 +66,8 @@ export default function History(props){
             const getUser = localStorage.getItem("id_user");
 
             //   Price
-              const total = arrData.reduce((acc, item) => acc + parseInt(item.price), 0);
-
+              const total = response.data.reduce((acc, item) => acc + parseInt(item.price), 0);
+            //   console.log(total);
               setFormTrans(prevState => ({
                 ...prevState,
                 id_trans: generateUniqueTransactionID(),
@@ -121,7 +124,7 @@ export default function History(props){
     }
 
     const [idP, setIdP] = useState([]);
-
+ 
     // CheckOut
     const handleCheckout = async () => {
         console.log(formTrans);
@@ -163,6 +166,13 @@ export default function History(props){
         }
     }
     // CheckOut
+    const rupiah = (amount) => {
+        const rupiah = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        });
+        return rupiah.format(amount);
+    };
 
     const updateW = async(cartData) => {
 
@@ -214,7 +224,7 @@ export default function History(props){
                                         <div className="flex justify-end">
                                             <button className="border bg-red-500 rounded-md px-2 py-0 text-end" data-id={item.id_cart} onClick={() => delCart(item.id_cart)}>X</button>
                                         </div>
-                                        <span className="font-bold text-2xl pt-1">Rp. {item.price}</span>
+                                        <span className="font-bold text-2xl pt-1">{rupiah(item.price)}</span>
                                     </div>
                                 </div>
                                 {/* Price */}

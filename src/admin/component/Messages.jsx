@@ -73,6 +73,11 @@ export default function Messages(props){
       const changeMess = (e) => {
         const { name, value } = e.target;
 
+        if (event.key === 'Enter') {
+            handleMess();
+            event.preventDefault();
+        }
+
         setFormData(prevState => ({
           ...prevState,
           [name]: value,
@@ -148,9 +153,9 @@ export default function Messages(props){
                     </div>
 
                     <div className="bg-white w-full h-[50px] mt-3 border">
-                        <form method="POST" className="flex w-full h-full gap-1 items-center justify-center">
+                        <form action="#" method="POST" className="flex w-full h-full gap-1 items-center justify-center">
                             <input type="text" placeholder="Text your message" className="p-2 w-full" name="send_mess" id="send_mess" onKeyUp={changeMess}/>
-                            <button className="bg-gray-300 p-2 h-full" type="button" data-id={idSend} onClick={handleMessage}> SEND </button>
+                            <button type="button" className="bg-gray-300 p-2 h-full" data-id={idSend} onClick={handleMessage}> SEND </button>
                         </form>
                     </div>
                 </div>

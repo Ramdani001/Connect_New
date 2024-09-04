@@ -32,7 +32,7 @@ export default function Transaction_History(props){
                     : []; 
                     setArrData(response.data);
                     // setId(response)
-                
+                 
                 setIdP(prevState => {
                     const updatedState = {
                         ...prevState,
@@ -230,18 +230,18 @@ export default function Transaction_History(props){
         <div >
             <div className="w-full h-full bg-white flex gap-3">
 
-                <div className="w-full h-[86vh] bg-gray-400/20 p-3 flex flex-col relative">
+                <div className="w-full h-[89vh] bg-gray-400/20 p-3 flex flex-col relative">
                    <h1 className="font-olive p-2"> <u>Transaction History</u> </h1>
                 <div className="overflow-auto">
                    {arrData.slice().reverse().map((item, index) => (
-                    <div key={item.id_trans} className="bg-white w-full mt-2 p-2">
+                    <div key={item.id_trans} className="bg-white w-full mt-2 p-2 pb-10">
                         <div className="flex justify-between">
                             <div>
                                 <h6 className="font-popins">
                                     ID Transaction : <b className="font-olive">{item.id_trans}</b> &nbsp;
-                                    <span className="font-bold text-yellow-500">
+                                    {/* <span className="font-bold text-yellow-500">
                                         {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-                                    </span>
+                                    </span> */}
                                 </h6>
                                 <input type="hidden" name="id" id="id_o" value={item.id} />
                             </div>
@@ -269,11 +269,11 @@ export default function Transaction_History(props){
                             </div>
 
                         </div>
-
+ 
                         {/* Status Tag */}
                         <div className="relative">
 
-                            {item.status === 1 &&  (<div className="bg-green-400 w-[100px] absolute h-[100px] -mt-20 ml-[40%] bg-transparent border-2 border-green-300 rounded-full text-green-300 grid place-center text-center items-center font-bold font-olive text-2xl rotate-45">
+                            {item.status === 3 &&  (<div className="bg-green-400 w-[100px] absolute h-[100px] -mt-20 ml-[40%] bg-transparent border-2 border-green-300 rounded-full text-green-300 grid place-center text-center items-center font-bold font-olive text-2xl rotate-45">
                                     Paid
                                 </div>
                             )}
@@ -284,7 +284,7 @@ export default function Transaction_History(props){
                                 </div>
                             )}
 
-                            {item.status === 3 && (
+                            {item.status === 1 && (
                                 <div className="absolute top-0 left-1/2 transform -mt-10 -translate-x-1/2 -translate-y-1/2 bg-transparent w-[100px] h-[100px] border-2 border-red-300 rounded-full text-red-300 grid place-items-center font-bold font-olive text-xs rotate-45">
                                     Unpaid
                                 </div>
@@ -294,10 +294,10 @@ export default function Transaction_History(props){
                         </div>
 
                         {/* Button Section */}
-                        {item.status == 1 || item.status == 2 ? 
+                        {item.status == 3 || item.status == 2 ? 
                             ""
                         :
-                        <div className="grid w-full justify-end">
+                        <div className="grid w-full justify-end ">
                             <button className="px-10 py-1 bg-blue-200 me-3 rounded-md shadow-md font-popins font-bold" data-id={item.id_trans} onClick={() => setKonfirmasi(!konfirmasi)}>
                                 Konfirmasi
                             </button>

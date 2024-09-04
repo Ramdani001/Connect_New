@@ -10,7 +10,7 @@ const LandingPage = lazy(() => import('./landingPage/LandingPage'));
 const Gallery = lazy(() => import('./landingPage/Gallery'));
  
 function App() {
-  return (  
+  return (   
     <>
     {/* <Loading /> */}
         <Suspense fallback={<Loading />}>
@@ -22,6 +22,7 @@ function App() {
                 <Route path='/videoFacebook' element={<Gallery type={"videoFacebook"} />}></Route>
                 <Route path='/instaStory' element={<Gallery type={"instaStory"} />}></Route>
                 <Route path='/videoYoutube' element={<Gallery type={"videoYoutube"} />}></Route>
+                <Route path='/tiktok' element={<Gallery type={"tiktok"} />}></Route>
                 <Route path='/Profile' element={<Profile type={"Profile"} />}></Route>
                 <Route path='/login' element={<Login type={"Login"} />}></Route>
                 <Route path='/admin' element={<Admin type={"Admin"} />}></Route>

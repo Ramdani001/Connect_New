@@ -38,11 +38,13 @@ export default function Users(props){
     }, []); 
 
     const delFunct = async (e) =>{
+        const ok = window.confirm("Apakah yakin ingin menghapusnya?");
+        if(ok){
             try {
                 const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/users/${e}`);
                 setUrl("http://www.tempat-transit.cloud:3000/api/v1/users/");
                 console.log('Data:', response);
-    
+                window.location.reload();
             } catch (error) {
                 
                 if (error.response) {
@@ -57,6 +59,8 @@ export default function Users(props){
                     console.error('Error:', error.message);
                 }
             }
+        }
+          
         console.log(e);
     }
 

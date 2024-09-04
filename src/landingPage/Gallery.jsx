@@ -7,7 +7,7 @@ import Footer from "./component/Footer";
 import axios from 'axios';
  
 export default function Gallery(props){
-
+ 
     const [arrData, setArrData] = useState([]);
     
     const tipe = props.type;
@@ -21,6 +21,8 @@ export default function Gallery(props){
             newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products';
         } else if (tipe === "videoFacebook") {
             newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Fac';
+        } else if (tipe === "tiktok") {
+            newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Tik';
         } else if (tipe === "instaStory") {
             newUrl = 'http://www.tempat-transit.cloud:3000/api/v1/products/filter/Inst';
         } else {
@@ -84,7 +86,7 @@ export default function Gallery(props){
 
     return (
         <>
-        <Navbar />
+        <Navbar /> 
         <div className="my-5 pt-20 h-full w-full bg-[url('images/bgAbout.png')] bg-no-repeat bg-top-4 ">
             
             <div className="px-2">
@@ -97,6 +99,7 @@ export default function Gallery(props){
                     >Video Facebook</Link>
                     <Link to="/instaStory" className="border p-1 bg-blue-500 text-center rounded shadow w-full"> InstaStory</Link>
                     <Link to="/videoYoutube" className="border p-1 bg-blue-500 text-center rounded shadow w-full">Video Youtube</Link>
+                    <Link to="/tiktok" className="border p-1 bg-blue-500 text-center rounded shadow w-full px-3">Video Tiktok</Link>
                 </nav>
                 </div>
                 <div className="flex flex-row flex-wrap justify-stretch mt-5 gap-4 px-10">

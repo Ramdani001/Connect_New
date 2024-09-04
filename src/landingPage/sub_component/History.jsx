@@ -147,7 +147,7 @@ export default function History(props){
 
                 <div className="w-full h-[86vh] bg-gray-400/20 p-3 flex flex-col">
                     <div className="flex-1 overflow-auto">
-                        {arrMess.slice().reverse().map((item, index) => (
+                        {arrMess.slice().map((item, index) => (
                             item.id_user !== 1 ? <Submessages key={index} name={item.head_mess} message={item.send_mess} /> : <AdminMessages key={index} name={item.head_mess} message={item.send_mess} />
                         ))}
 

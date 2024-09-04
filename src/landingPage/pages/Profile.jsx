@@ -18,10 +18,10 @@ export default function Profile() {
             setOldData(response.data[0]);
             console.log(response.data[0].file);
             if(response.data[0].file){
-                document.getElementById('prof').src = `http://www.tempat-transit.cloud/media/connect/images/products/${response.data[0].file}`;
+                document.getElementById('prof').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${response.data[0].file}`;
                 console.log("Berhasil");
             }else{
-                document.getElementById('prof').src = `http://www.tempat-transit.cloud/media/connect/images/aboutImage.png`;
+                document.getElementById('prof').src = `http://www.tempat-transit.cloud:81/media/connect/images/aboutImage.png`;
                 console.log("Gagal");
             }
             

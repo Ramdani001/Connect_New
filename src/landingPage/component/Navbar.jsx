@@ -8,31 +8,33 @@ function Navbar() {
     const getUsers = async() => {
         const id = localStorage.getItem('id_user');
 
-        try {
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
-            setOldData(response.data[0]);
+       if(id){
+            try {
+                const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
+                setOldData(response.data[0]);
 
-            if(response.data[0].file !== null){
-                document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud/media/connect/images/products/${response.data[0].file}`;
-            }else{
-                document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud/media/connect/images/products/aboutImage.png`;
-            }
-            
-        } catch (error) {
-            
-            if (error.response) {
+                if(response.data[0].file !== null){
+                    document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${response.data[0].file}`;
+                }else{
+                    document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/aboutImage.png`;
+                }
                 
+            } catch (error) {
+                
+                if (error.response) {
+                    
 
-                console.error('Response error:', response);
-                console.error('Response data:', error.response.data);
-            } else if (error.request) {
-                
-                console.error('Request error:', error.request);
-            } else {
-                
-                console.error('Error:', error.message);
+                    console.error('Response error:', response);
+                    console.error('Response data:', error.response.data);
+                } else if (error.request) {
+                    
+                    console.error('Request error:', error.request);
+                } else {
+                    
+                    console.error('Error:', error.message);
+                }
             }
-        }
+       }
     }
     // Get Data
 

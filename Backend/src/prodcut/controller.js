@@ -69,6 +69,13 @@ const getYoutube = (req, res) => {
     });
 };
 
+const getTiktok = (req, res) => {
+    pool.query(queries.getTiktok, (error, results) => {
+        if(error) throw error.message;
+        res.status(200).json(results);
+    });
+};
+
 module.exports = {
     getProducts,
     getProductsById,
@@ -78,4 +85,5 @@ module.exports = {
     getInstagram,
     getYoutube,
     updateProducts,
+    getTiktok,
 };
