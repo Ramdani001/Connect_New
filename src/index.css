@@ -1,11 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer base {
     @font-face {
       font-family: 'olive';
-      src: url(../public/olive_days/Olive\ Days.ttf);
+      src: url(../public/olive_days/Olive-Days.ttf);
     }
 
     @font-face {

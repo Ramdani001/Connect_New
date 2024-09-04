@@ -11,7 +11,7 @@ const Report = () => {
   const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');
   const [transData, setTransData] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(0); 
-
+ 
   // PDF
   const componentPDF = useRef();
   
@@ -38,6 +38,8 @@ const Report = () => {
       try {
           const response = await axios.get(url);
 
+          const resM = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getMonth8");
+          console.log(resM.data);
           const res = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/years");
           setDateYears(res.data);
           const resCSV = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getCSV");

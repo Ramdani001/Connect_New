@@ -11,7 +11,7 @@ export default function Dashboard(props){
     const [conf, setConf] = useState([]);
     // const [user, setUser] = useState([]);
     // const [prod, setProd] = useState([]);
- 
+  
     const getTrans = async () => {
         try {
             const response = await axios.get(url);
