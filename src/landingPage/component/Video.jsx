@@ -5,7 +5,7 @@ import DetailModal from "./DetailModal";
     // const data = props.data;
 
     const {key, id_product, nama, type, price, ket, url, thumbnail} = props;
-
+     
     const [showDetail, setShowDetail] = useState(false);
   
     return(

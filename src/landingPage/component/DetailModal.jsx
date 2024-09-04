@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function DetailModal(props){
     const {key, id_product, nama, type, price, ket, url} = props;
-
+console.log(props);
     const [modalDetail, setModalDetail] = useState(false);
     const [idUser, setIdUser] = useState();
 
@@ -83,42 +83,47 @@ export default function DetailModal(props){
     useEffect(() => {
         console.log(modalDetail);
     }, [modalDetail]);
-
+ 
     return(
         <section className={modalDetail ? "hidden bg-red-500" : "fixed h-screen w-full bg-gray-500/70 top-0 left-0 right-0 bottom-0 overflow-hidden"} style={{zIndex: 100}}>
-            <main className="p-10 grid place-items-center h-full">
-                <div className="borde w-2/3 h-full p-5 bg-white rounded-sm shadow">
+            <main className="p-10 grid place-items-center h-full relative">
+                <div className=" w-[50%]  h-[70%] p-5 bg-white rounded-sm bg-[url('http://www.tempat-transit.cloud:81/media/connect/images/bg_paper.png')] bg-content bg-fill bg-no-repeat shadow">
                     <div className="closeSection text-2xl font-semibold flex justify-end mr-3">
                         <button onClick={() => setModalDetail(!modalDetail)} className="cursor-pointer">X</button>
                     </div>
 
-                    <div className="grid grid-flow-col-dense gap-3 place-items-center h-full w-full">
-                        <div className="content w-full h-2/4 rounded-sm">
-                            <iframe src={url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className="md:w-96 md:h-full"></iframe>
+                    <div className="grid p-3 pb-4 grid-flow-col-dense gap-3 place-items-center h-full w-full">
+                        <div className="content relative items-center w-full rounded-sm h-full p-2">
+                            <iframe src={url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className="w-full h-[55%] rounded-md"></iframe>
+                            <div className="h-[50%] flex justify-center -mt-10 w-full">
+                                <img src="http://www.tempat-transit.cloud:81/media/connect/images/woman.png" alt="" className="h-full"/>
+                            </div>
                         </div>
     
-                        <div className="textContent col w-full h-2/3 col-span-1">
+                        <div className="textContent col w-full col-span-1 p-2 font-bold text-black grid items-between h-full">
                             <div>
-                                <label className="text-slate-400">Title</label>
-                                <h2 className="font-bold text-xl">{nama}</h2>
-                            </div>
-                            <div>
-                                <label className="text-slate-400">Type</label>
-                                <h2 className="text-md">{type}</h2>
-                            </div>
-                            <div className="">
-                                <label className="text-slate-400">Summary</label>
-                                <h2 className=""> {ket}</h2>
+                                <div>
+                                    <label className="text-slate-700">Title</label>
+                                    <h2 className="font-bold text-xl">{nama}</h2>
+                                </div>
+                                <div>
+                                    <label className="text-slate-700">Type</label>
+                                    <h2 className="text-md">{type}</h2>
+                                </div>
+                                <div className="">
+                                    <label className="text-slate-700">Summary</label>
+                                    <h2 className=""> {ket}</h2>
+                                </div>
                             </div>
                             <div className="mt-3 flex gap-3">
                                 {idUser != 0 ? (
 
-                                <button onClick={handleCart} data-id={id_product} className="border border-blue-400 rounded shadow-md font-semibold p-1 w-full">
+                                <button onClick={handleCart} data-id={id_product} className="rounded bg-blue-300 h-10 shadow-md font-semibold p-1 w-full ">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Add To Cart
                                 </button>
                                 ) : 
-                                    <div className="flex md:justify-center mr-7 w-full border bg-[#df5ac1] border-none rounded-md shadow-md text-center">
+                                    <div className="flex md:justify-center mr-7 w-full h-10 border bg-[#df5ac1] border-none rounded-md shadow-md text-center">
                                         <Link to="/login">
                                             <button className="py-1 px-10 text-center">Login</button>
                                         </Link>
