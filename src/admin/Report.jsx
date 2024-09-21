@@ -202,7 +202,7 @@ const Report = () => {
         const dy = async () => {
           const date = "2024-" + selectedMonth + "-01";
         const daysVal = `2024-${selectedMonth}-${selectedDays}`;
-        const res = await axios.get("http://lwww.tech-in-dynamic.site:3000/api/v1/count/getFilterDays?days=" + daysVal);
+        const res = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterDays?days=" + daysVal);
         
         const resDays = selectedDays !== 0 ? await axios.get("http://lwww.tech-in-dynamic.site:3000/api/v1/transaksi/getAllDays?date=" + daysVal) : await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date);
         console.log(resDays);
