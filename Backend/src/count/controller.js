@@ -38,6 +38,6 @@ const getYear = (req, res) => {
 module.exports = {
     getCount,
     getYear,
-    getFilteMonth,
+    getFilterMonth,
     getFilterDays
 };
