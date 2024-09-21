@@ -8,7 +8,7 @@ const getCount = (req, res) => {
     });
 };
 
-const getFilteMonth = (req, res) => {
+const getFilterMonth = (req, res) => {
     const date = req.params.date;
     console.log(date);
     
