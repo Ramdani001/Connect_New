@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function Users(props){
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/users/');
+    const [url, setUrl] = useState('http://www.tech-in-dynamic.site:3000/api/v1/users/');
     const [loadingShow, setLoadingShow] = useState(false);
     const getUsers = async () => {
         try {
@@ -41,8 +41,8 @@ export default function Users(props){
         const ok = window.confirm("Apakah yakin ingin menghapusnya?");
         if(ok){
             try {
-                const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/users/${e}`);
-                setUrl("http://www.tempat-transit.cloud:3000/api/v1/users/");
+                const response = await axios.delete(`http://www.tech-in-dynamic.site:3000/api/v1/users/${e}`);
+                setUrl("http://www.tech-in-dynamic.site:3000/api/v1/users/");
                 console.log('Data:', response);
                 window.location.reload();
             } catch (error) {

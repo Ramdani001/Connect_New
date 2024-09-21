@@ -30,7 +30,7 @@ console.log(props);
 
         try { 
 
-            const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/cart/add", send);
+            const response = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/cart/add", send);
             
             if(response.status == 200){
                 console.log(response);
@@ -87,7 +87,7 @@ console.log(props);
     return(
         <section className={modalDetail ? "hidden bg-red-500" : "fixed h-screen w-full bg-gray-500/70 top-0 left-0 right-0 bottom-0 overflow-hidden"} style={{zIndex: 100}}>
             <main className="p-10 grid place-items-center h-full relative">
-                <div className=" w-[50%] relative h-[70%] bg-white rounded-sm bg-[url('http://www.tempat-transit.cloud:81/media/connect/images/bg_paper.png')] bg-content bg-fill bg-no-repeat shadow ">
+                <div className=" w-[50%] relative h-[70%] bg-white rounded-sm bg-[url('http://www.tech-in-dynamic.site:81/media/connect/images/bg_paper.png')] bg-content bg-fill bg-no-repeat shadow ">
                     <div className="closeSection text-2xl font-semibold flex justify-end mr-3">
                         <button onClick={() => setModalDetail(!modalDetail)} className="cursor-pointer">X</button>
                     </div>
@@ -96,7 +96,7 @@ console.log(props);
                         <div className="content relative items-center w-full rounded-sm h-full p-2">
                             <iframe src={url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className="w-full h-[55%] rounded-md"></iframe>
                             <div className="h-[50%] flex justify-center -mt-10 w-full">
-                                <img src="http://www.tempat-transit.cloud:81/media/connect/images/woman.png" alt="" className="h-full"/>
+                                <img src="http://www.tech-in-dynamic.site:81/media/connect/images/woman.png" alt="" className="h-full"/>
                             </div>
                         </div> 
     

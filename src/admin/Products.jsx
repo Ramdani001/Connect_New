@@ -23,7 +23,7 @@ export default function Products(props){
     const [detailModal, setDetailModal] = useState(false);
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/products');
+    const [url, setUrl] = useState('http://www.tech-in-dynamic.site:3000/api/v1/products');
 
     const getUsers = async () => {
         try {
@@ -87,7 +87,7 @@ export default function Products(props){
         const formFile = new FormData();
         formFile.append('file', images);
          
-        axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+        axios.post('http://www.tech-in-dynamic.site:3000/upload', formFile)
         .then(res => {
 
             let data = JSON.stringify(res.data, null, 2);
@@ -129,7 +129,7 @@ export default function Products(props){
       const addProduct = async (productData) => {
         try {
 
-            const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/products/insert', productData);
+            const response = await axios.post('http://www.tech-in-dynamic.site:3000/api/v1/products/insert', productData);
             
             if(response.status == 200){
                 setChangeLoad(false);
@@ -160,7 +160,7 @@ export default function Products(props){
     const handleDetail = async (e) => {
         try { 
 
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
+            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/products/${e}`);
             if(response.status == 200){
                 setArrProd(response.data);
                 setDetailModal(true);
@@ -203,7 +203,7 @@ export default function Products(props){
                 const formFile = new FormData();
                     formFile.append('file', file);
                     
-                    axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+                    axios.post('http://www.tech-in-dynamic.site:3000/upload', formFile)
                     .then(res => {
 
                         let file = res.data.filename;
@@ -233,7 +233,7 @@ export default function Products(props){
         const formFile = new FormData();
         formFile.append('file', images);
          
-        axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+        axios.post('http://www.tech-in-dynamic.site:3000/upload', formFile)
         .then(res => {
 
             let file = res.data.filename;
@@ -266,7 +266,7 @@ export default function Products(props){
          
         try { 
 
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
+            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/products/${e}`);
             
             if(response.status == 200){
                 setArrProd(response.data);
@@ -309,7 +309,7 @@ export default function Products(props){
     const updateProduct = async (e) => {
         try { 
 
-            const response = await axios.post(`http://www.tempat-transit.cloud:3000/api/v1/products/update/`, updateForm);
+            const response = await axios.post(`http://www.tech-in-dynamic.site:3000/api/v1/products/update/`, updateForm);
             
             if(response.status == 200){
                 console.log(updateForm.file);
@@ -344,8 +344,8 @@ export default function Products(props){
 //   Update
     const delFunct = async (e) =>{
         try {
-            const response = await axios.delete(`http://www.tempat-transit.cloud:3000/api/v1/products/${e}`);
-            setUrl("http://www.tempat-transit.cloud:3000/api/v1/products/");
+            const response = await axios.delete(`http://www.tech-in-dynamic.site:3000/api/v1/products/${e}`);
+            setUrl("http://www.tech-in-dynamic.site:3000/api/v1/products/");
 
             alert("Delete Berhasil");
             window.location.reload();
@@ -599,7 +599,7 @@ export default function Products(props){
 
                                 <div className="flex gap-4">
                                     <div className="grid place-center pt-[7%]">
-                                        {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tempat-transit.cloud:81/media/connect/images/products/"+item.file} width={400} alt="" />}
+                                        {images ? <img src={URL.createObjectURL(images)} alt="" width={400} /> : <img src={"http://www.tech-in-dynamic.site:81/media/connect/images/products/"+item.file} width={400} alt="" />}
                                         
                                         <input type="file" name="thumbnail" className="border-2 bg-transparent p-4" onChange={changeUpdate}/>
 

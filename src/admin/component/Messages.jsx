@@ -11,7 +11,7 @@ export default function Messages(props){
 
     const getMessages = async () => {
         try {
-            const response = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/messages");
+            const response = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/messages");
      
             setArrData(response.data);
 
@@ -38,12 +38,12 @@ export default function Messages(props){
         console.log(itemId);
         setArrMess([]);
         try {
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/stat/${itemId}`);
+            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/messages/stat/${itemId}`);
             
             if(response){
                 setStatCheck(!statCheck);
                 
-                const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/mess/${itemId}`);
+                const res = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/messages/mess/${itemId}`);
                 setArrMess(res.data);
                 await setIdSend(itemId);
                 
@@ -94,7 +94,7 @@ export default function Messages(props){
             id_m: id_m
         };
         try {
-            const response = await axios.post(`http://www.tempat-transit.cloud:3000/api/v1/messages/insert/`, updatedFormData);
+            const response = await axios.post(`http://www.tech-in-dynamic.site:3000/api/v1/messages/insert/`, updatedFormData);
             
             if(response){
                 const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/mess/${id_m}`);

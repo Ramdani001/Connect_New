@@ -21,7 +21,7 @@ export default function Identitas(props){
         }));
         console.log(id);
         try {
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
+            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
             setImageUrl(`images/products/${response.data[0].file}`);
             setChangeInput(prevState => ({
@@ -31,9 +31,9 @@ export default function Identitas(props){
                 no_telp: oldData.no_telp,
             })); 
             if(response.data[0].file){
-                document.getElementById('prof2').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${response.data[0].file}`;
+                document.getElementById('prof2').src = `http://www.tech-in-dynamic.site:81/media/connect/images/products/${response.data[0].file}`;
             }else{
-                document.getElementById('prof2').src = `http://www.tempat-transit.cloud:81/media/connect/images/aboutImage.png`;
+                document.getElementById('prof2').src = `http://www.tech-in-dynamic.site:81/media/connect/images/aboutImage.png`;
             } 
         } catch (error) {
             
@@ -91,7 +91,7 @@ export default function Identitas(props){
                 const formFile = new FormData();
                 formFile.append('file', images);
                 
-                axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+                axios.post('http://www.tech-in-dynamic.site:3000/upload', formFile)
                 .then(res => {
                     
                     let data = JSON.stringify(res.data, null, 2);
@@ -109,7 +109,7 @@ export default function Identitas(props){
                     }
                 }).catch(er => console.log(er));
             }else{
-                const response = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/users/updateUser", changeInput);
+                const response = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/users/updateUser", changeInput);
                 if(response.status == 200){
                     alert("Sucessfully Update Data");
                     window.location.reload();

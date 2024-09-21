@@ -11,7 +11,7 @@ import DetailModal from "./DetailModal";
     return(
         <>
             <div className={`shadow w-72 h-72 pt-10 hover:border-2 object-cover rounded-md shadow-md hover:border-blue-300 grid place-center transition-all duration-300 ease-linear`} onClick={() => setShowDetail(!showDetail)}>
-                <img src={"http://www.tempat-transit.cloud:81/media/connect/images/products/"+thumbnail} alt="Thumbnail" className="h-[200px] w-full object-cover rounded-tr-md rounded-tl-md"/>
+                <img src={"http://www.tech-in-dynamic.site:81/media/connect/images/products/"+thumbnail} alt="Thumbnail" className="h-[200px] w-full object-cover rounded-tr-md rounded-tl-md"/>
                 <h2 className="text-center text-xl m-auto font-olive">{nama}</h2>
             </div> 
             {

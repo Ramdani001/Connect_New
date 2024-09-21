@@ -22,7 +22,7 @@ export default function Transaction_History(props){
     const getCart = async () => {
         try { 
             const id_user = localStorage.getItem("id_user");
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/transaksi/${id_user}`);
+            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/transaksi/${id_user}`);
   console.log(response.data);
             if(response.status == 200){
                 const idProductString = response.data[0].id_product;
@@ -89,7 +89,7 @@ export default function Transaction_History(props){
         const fetchData = async () => {
             try {
                 if (idP) {
-                    const res = await axios.post("http://www.tempat-transit.cloud:3000/api/v1/transaksi/det/", idP);
+                    const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/det/", idP);
                     console.log("Response Data:", res);
                     setDetParams(res.data);
                 } else {
@@ -168,7 +168,7 @@ export default function Transaction_History(props){
         const formFile = new FormData();
         formFile.append('file', images);
         
-        axios.post('http://www.tempat-transit.cloud:3000/upload', formFile)
+        axios.post('http://www.tech-in-dynamic.site:3000/upload', formFile)
         .then(res => {
             
             let data = JSON.stringify(res.data, null, 2);
@@ -214,7 +214,7 @@ export default function Transaction_History(props){
     const addTrans = async(transData) => {
         console.log(transData);
 
-        axios.post('http://www.tempat-transit.cloud:3000/api/v1/transaksi/updateInsert', transData)
+        axios.post('http://www.tech-in-dynamic.site:3000/api/v1/transaksi/updateInsert', transData)
         .then(res => {
 
             if(res.status == 200){

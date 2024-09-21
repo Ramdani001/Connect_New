@@ -6,7 +6,7 @@ import Messages from "./component/Messages";
 
 export default function Dashboard(props){
 
-    const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');
+    const [url, setUrl] = useState('http://www.tech-in-dynamic.site:3000/api/v1/transaksi/trans');
     const [transData, setTransData] = useState([]);
     const [conf, setConf] = useState([]);
     // const [user, setUser] = useState([]);
@@ -15,7 +15,7 @@ export default function Dashboard(props){
     const getTrans = async () => {
         try {
             const response = await axios.get(url);
-            const ress = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count");
+            const ress = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count");
             
             setTransData(response.data);
 
@@ -105,7 +105,7 @@ export default function Dashboard(props){
     const statChange = async() => {
         console.log(idT);
 
-        const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/transaksi/two/${idT}`);
+        const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/transaksi/two/${idT}`);
 
         if(response.status == 200){
             window.location.reload();
@@ -127,7 +127,7 @@ export default function Dashboard(props){
         setIdT(data);
         const id = parseInt(data);
         
-        const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/transaksi/one/${id}`);
+        const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/transaksi/one/${id}`);
 
         if(response.status == 200){
 
@@ -159,8 +159,8 @@ export default function Dashboard(props){
             }
 
             if (imgElement && fileName) {
-                imgElement.src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${fileName}`;
-                img_bukti_zoom.src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${fileName}`;
+                imgElement.src = `http://www.tech-in-dynamic.site:81/media/connect/images/products/${fileName}`;
+                img_bukti_zoom.src = `http://www.tech-in-dynamic.site:81/media/connect/images/products/${fileName}`;
             }
 
             setArr(response.data);

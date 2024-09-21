@@ -8,9 +8,9 @@ Chart.register(...registerables);
  
 const Report = () => {
   // State untuk menyimpan data transaksi dan bulan yang dipilih
-  const [url, setUrl] = useState('http://www.tempat-transit.cloud:3000/api/v1/transaksi/trans');
+  const [url, setUrl] = useState('http://www.tech-in-dynamic.site:3000/api/v1/transaksi/trans');
   const [transData, setTransData] = useState([]);
-  const [selectedMonth, setSelectedMonth] = useState(0); 
+  const [selectedMonth, setSelectedMonth] = useState("00"); 
  
   // PDF
   const componentPDF = useRef();
@@ -38,39 +38,13 @@ const Report = () => {
       try {
           const response = await axios.get(url);
 
-          // const resM = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getMonth8");
-          // console.log(resM.data);
-          const res = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/years");
+          // const resM = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getMonth8");
+          const res = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/years");
           setDateYears(res.data);
-          const resCSV = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/transaksi/getCSV");
+
+          const resCSV = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getCSV");
           seGetCSV(resCSV.data);
-          // Get Month
-          const getJan = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJan");
-          const getFeb = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getFeb");
-          const getMarc = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getMarc");
-          const getApr = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getApr");
-          const getMay = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getMay");
-          const getJun = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJun");
-          const getJul = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getJul");
-          const getAug = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getAug");
-          const getSep = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getSep");
-          const getOct = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getOct");
-          const getNov = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getNov");
-          const getDes = await axios.get("http://www.tempat-transit.cloud:3000/api/v1/count/getDes");
-
-          seGetJan(getJan.data);
-          seGetFeb(getFeb.data);
-          seGetMarc(getMarc.data);
-          seGetApr(getApr.data);
-          seGetMay(getMay.data);
-          seGetJun(getJun.data);
-          seGetJul(getJul.data);
-          seGetAug(getAug.data);
-          seGetSep(getSep.data);
-          seGetOct(getOct.data);
-          seGetNov(getNov.data);
-          seGetDes(getDes.data);
-
+          
           setTransData(response.data);
       } catch (error) {
           if (error.response) {
@@ -161,79 +135,45 @@ const Report = () => {
 
   const canvasRef = useRef(null);
 
-  const data = [
-    { date: "Januari", count: 0 },
-    { date: "Februari", count: 0 },
-    { date: "Maret", count: 0 },
-    { date: "April", count: 0 },
-    { date: "Mei", count: 0 },
-    { date: "Juni", count: 0 },
-    { date: "Juli", count: 0 },
-    { date: "Agustus", count: 9 },
-    { date: "September", count: 0 },
-    { date: "Oktober", count: 0 },
-    { date: "November", count: 0 },
-    { date: "Desember", count: 220 },
-  ];
-
-  const selMonth = (e) => {
-    switch (e) {
-        case 1:
-            return getJan;
-        case 2:
-            return getFeb;
-        case 3:
-            return getMarc;
-        case 4:
-            return getApr;
-        case 5:
-            return getMay;
-        case 6:
-            return getJun;
-        case 7:
-            return getJul;
-        case 8:
-            return getAug;
-        case 9:
-            return getSep;
-        case 10:
-            return getOct;
-        case 11:
-            return getNov;
-        default:
-          return getDes;
-    }
-}
-
-
+    const [myChart, setMyChart] = useState();
   useEffect(() => {
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d');
-      const filteredData = selectedMonth === 0 ? datYears : selMonth(selectedMonth).filter(row => row.date);
-      console.log(transData);
-      const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: filteredData.map(row => row.date),
-          datasets: [
-            {
-              label: `Penjualan ${selectedMonth === 0 ? 'Tahun 2024' : filteredData[0]?.date}`,
-              data: filteredData.map(row => row.count),
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1,
-            },
-          ],    
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-        },
-      });
- 
-      return () => {
-        myChart.destroy();
-      };
+    const res = async () => {
+      if (canvasRef.current) {
+        const date = "2024-"+ selectedMonth +"-01";
+  
+        // Get Month
+        // const getJan = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilteMonth?date=" + date);
+        const res = selectedMonth !== "00" ? await axios.get("http:tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date) : await [];
+      
+      console.log(res.data);
+        const ctx = canvasRef.current.getContext('2d');
+        const filteredData = selectedMonth === "00" ? datYears : res.data.filter(row => row.date);
+        
+        const my = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: filteredData.map(row => row.date),
+            datasets: [
+              {
+                label: `Penjualan ${selectedMonth === "00" ? 'Tahun 2024' : filteredData[0]?.date}`,
+                data: filteredData.map(row => row.count),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+              },
+            ],    
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+          },
+        });
+        setMyChart(my);
+      }
+    } 
+    res();
+    if (myChart){
+      myChart.destroy();
     }
   }, [datYears, selectedMonth]);
 
@@ -267,18 +207,18 @@ const Report = () => {
             id="filter_grafik" 
             className='px-10 py-1 shadow-md text-left'
             value={selectedMonth}
-            onChange={(e) => setSelectedMonth(Number(e.target.value))}
+            onChange={(e) => setSelectedMonth(e.target.value)}
           >
-            <option value="0">Filter Grafik</option>
-            <option value="1">Januari</option>
-            <option value="2">Februari</option>
-            <option value="3">Maret</option>
-            <option value="4">April</option>
-            <option value="5">Mei</option>
-            <option value="6">Juni</option>
-            <option value="7">Juli</option>
-            <option value="8">Agustus</option>
-            <option value="9">September</option>
+            <option value="00">Filter Grafik</option>
+            <option value="01">Januari</option>
+            <option value="02">Februari</option>
+            <option value="03">Maret</option>
+            <option value="04">April</option>
+            <option value="05">Mei</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">Agustus</option>
+            <option value="09">September</option>
             <option value="10">Oktober</option>
             <option value="11">November</option>
             <option value="12">Desember</option>
