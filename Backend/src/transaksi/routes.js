@@ -4,7 +4,7 @@ const controller = require("./controller");
 const router = Router(); 
 
 router.get("/trans", controller.getTrans);
-router.get("/getAllMonth/:date", controller.getAllMonth);
+router.get("/getAllMonth", controller.getAllMonth);
 
 router.get("/getAllDays", controller.getAllDays);
 
