@@ -5,8 +5,8 @@ const router = Router();
 
 router.get("/", controller.getCount);
 router.get("/years", controller.getYear);
- 
-router.get("/getFilterMonth/:date", controller.getFilterMonth);
+ req.params.id
+router.get("/getFilterMonth/:id", controller.getFilterMonth);
 
 router.get("/getFilterDays/:days", controller.getFilterDays);
 

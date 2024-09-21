@@ -10,7 +10,7 @@ const getTrans = (req, res) => {
 
 const getAllMonth = (req, res) => {
 
-    const date = req.params.date;
+    const date = req.query.date;
     console.log(date);
     
     pool.query(queries.getAllMonth, [date, date], (error, results) => {
