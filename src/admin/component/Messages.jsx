@@ -97,7 +97,7 @@ export default function Messages(props){
             const response = await axios.post(`http://www.tech-in-dynamic.site:3000/api/v1/messages/insert/`, updatedFormData);
             
             if(response){
-                const res = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/messages/mess/${id_m}`);
+                const res = await axios.get(`http://www.tech-in-dynamic.site.cloud:3000/api/v1/messages/mess/${id_m}`);
                 setArrMess(res.data);
                 document.getElementById("send_mess").value = "";
             }

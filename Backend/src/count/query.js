@@ -56,8 +56,27 @@ const getFilterMonth = `WITH RECURSIVE date_range AS (
                     GROUP BY date_range.date
                     ORDER BY date_range.date;`;
 
+const getFilterDays = `WITH RECURSIVE hours_range AS (
+                            SELECT 1 AS hours
+                            UNION ALL
+                            SELECT hours + 1
+                            FROM hours_range
+                            WHERE hours < 24
+                        )
+                        -- Count occurrences per hour
+                        SELECT 
+                            hours_range.hours,
+                            COALESCE(COUNT(transaksi.created_at), 0) AS count
+                        FROM hours_range
+                        LEFT JOIN transaksi 
+                            ON HOUR(transaksi.created_at) = hours_range.hours
+                            AND DATE(transaksi.created_at) = ?
+                        GROUP BY hours_range.hours
+                        ORDER BY hours_range.hours;`;
+
 module.exports = {
     getCount,
     getYear,
     getFilterMonth,
+    getFilterDays,
 };

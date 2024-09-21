@@ -8,6 +8,8 @@ router.get("/years", controller.getYear);
  
 router.get("/getFilterMonth", controller.getFilteMonth);
 
+router.get("/getFilterDays", controller.getFilterDays);
+
 // Get Month
 
 module.exports = router; 

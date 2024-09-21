@@ -18,6 +18,16 @@ const getFilteMonth = (req, res) => {
     });
 };
 
+const getFilterDays = (req, res) => {
+    const days = req.query.days;
+    console.log(days);
+    
+    pool.query(queries.getFilterDays, [days], (error, results) => {
+        if(error) throw error.message;
+        res.status(200).json(results);
+    });
+};
+
 const getYear = (req, res) => {
     pool.query(queries.getYear, (error, results) => {
         if(error) throw error.message;
@@ -29,4 +39,5 @@ module.exports = {
     getCount,
     getYear,
     getFilteMonth,
+    getFilterDays
 };
