@@ -136,18 +136,17 @@ const Report = () => {
         const currentYear = today.getFullYear();
         const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-        setTotalDays(daysInMonth);
+        setTotalDays(date);
 
         // Get Data Month Transaction
-        const resMonth =  selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllMonth?date=" + date) :  await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/years");
+        const resMonth =  selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllMonth/" + date) :  await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/years");
         // selectedMonth !== "00" ? setTransData(resMonth.data) : "";
         setTransData(resMonth.data)
         // Get Data Month Transaction
         console.log(date);
 
         // Get Month
-
-        const res = selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date) : await [];
+        const res = selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth/"+date) : await [];
         const ctx = canvasRef.current.getContext('2d');
         const filteredData = selectedMonth === "00" ? datYears : res.data.filter(row => row.date);
 

@@ -9,7 +9,7 @@ const getCount = (req, res) => {
 };
 
 const getFilteMonth = (req, res) => {
-    const date = req.query.date;
+    const date = req.params.date;
     console.log(date);
     
     pool.query(queries.getFilterMonth, [date, date], (error, results) => {
