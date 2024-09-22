@@ -18,7 +18,7 @@ console.log(props);
         const targetElement = e.currentTarget || e.target;
         const id_product = targetElement.getAttribute('data-id');
 
-        const paid = 1;
+        const paid = 2;
  
         updateProd(id_product, idUser, paid);
     };
