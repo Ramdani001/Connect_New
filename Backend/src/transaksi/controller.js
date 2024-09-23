@@ -8,6 +8,28 @@ const getTrans = (req, res) => {
     });
 };
 
+const getAllMonth = (req, res) => {
+
+    const date = req.query.date;
+    console.log(date);
+    
+    pool.query(queries.getAllMonth, [date, date], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+
+const getAllDays = (req, res) => {
+
+    const date = req.query.date;
+    console.log(date);
+    
+    pool.query(queries.getAllDays, [date, date], (error, results) => {
+        if(error) throw error;
+        res.status(200).json(results);
+    });
+};
+ 
 const getCSV = (req, res) => {
     pool.query(queries.getCSV, (error, results) => {
         if(error) throw error;
@@ -35,7 +57,7 @@ const getDet = (req, res) => {
 
 const getDetail = (req, res) => {
     const { numbers } = req.body;
-
+    
     pool.query(queries.getDetail, [numbers], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
@@ -90,104 +112,6 @@ const update = (req, res) => {
     });
 }
 
-// Get Data By Month
-// const getMonthJan = (req, res) => {
-
-//     pool.query(queries.getMonthJan, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthFeb = (req, res) => {
-
-//     pool.query(queries.getMonthFeb, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthMar = (req, res) => {
-
-//     pool.query(queries.getMonthMar, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthApr = (req, res) => {
-
-//     pool.query(queries.getMonthApr, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthMay = (req, res) => {
-
-//     pool.query(queries.getMonthMay, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthJun = (req, res) => {
-
-//     pool.query(queries.getMonthJun, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthJul = (req, res) => {
- 
-//     pool.query(queries.getMonthJul, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthAug = (req, res) => {
-
-//     pool.query(queries.getMonthAug, (error, results) => {
-//         if(error) throw error.message;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthSep = (req, res) => {
-
-//     pool.query(queries.getMonthSep, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthOct = (req, res) => {
-
-//     pool.query(queries.getMonthOct, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthNov = (req, res) => {
-
-//     pool.query(queries.getMonthNov, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-// const getMonthDes = (req, res) => {
-
-//     pool.query(queries.getMonthDes, (error, results) => {
-//         if(error) throw error;
-//         res.status(200).json(results);
-//     });
-// };
-
-
 module.exports = {
     getTransaksiById,
     insertTransaksi,
@@ -199,16 +123,6 @@ module.exports = {
     getDet,
     update,
     getCSV,
-    // getMonthJan,
-    // getMonthFeb,
-    // getMonthMar,
-    // getMonthApr,
-    // getMonthMay,
-    // getMonthJun,
-    // getMonthJul,
-    // getMonthAug,
-    // getMonthSep,
-    // getMonthOct,
-    // getMonthNov,
-    // getMonthDes,
+    getAllMonth,
+    getAllDays
 };

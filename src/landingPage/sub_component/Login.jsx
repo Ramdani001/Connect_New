@@ -8,7 +8,7 @@ export default function Login(props){
     const addUser = async (userData) => {
         try {
 
-            const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/users/regist', userData);
+            const response = await axios.post('http://www.tech-in-dynamic.site:3000/api/v1/users/regist', userData);
             
             if(response.status == 200){
                 setShowAlert(true);
@@ -86,7 +86,7 @@ export default function Login(props){
           const checkLogin = async (userData) => {
             try {
     
-                const response = await axios.post('http://www.tempat-transit.cloud:3000/api/v1/users/check', userData);
+                const response = await axios.post('http://www.tech-in-dynamic.site:3000/api/v1/users/check', userData);
                 
                 
                 if(response.status == 200){

@@ -14,14 +14,14 @@ export default function Profile() {
         const id = localStorage.getItem('id_user');
         
         try {
-            const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
+            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
             console.log(response.data[0].file);
             if(response.data[0].file){
-                document.getElementById('prof').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${response.data[0].file}`;
+                document.getElementById('prof').src = `http://www.tech-in-dynamic.site:81/media/connect/images/products/${response.data[0].file}`;
                 console.log("Berhasil");
             }else{
-                document.getElementById('prof').src = `http://www.tempat-transit.cloud:81/media/connect/images/aboutImage.png`;
+                document.getElementById('prof').src = `http://www.tech-in-dynamic.site:81/media/connect/images/aboutImage.png`;
                 console.log("Gagal");
             }
             

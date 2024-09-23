@@ -10,13 +10,13 @@ function Navbar() {
 
        if(id){
             try {
-                const response = await axios.get(`http://www.tempat-transit.cloud:3000/api/v1/users/${id}`);
+                const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/users/${id}`);
                 setOldData(response.data[0]);
 
                 if(response.data[0].file !== null){
-                    document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/${response.data[0].file}`;
+                    document.getElementById('profile_foto').src = `http://www.tech-in-dynamic.site:81/media/connect/images/products/${response.data[0].file}`;
                 }else{
-                    document.getElementById('profile_foto').src = `http://www.tempat-transit.cloud:81/media/connect/images/products/aboutImage.png`;
+                    document.getElementById('profile_foto').src = `http://www.tech-in-dynamic.site:81/media/connect/images/products/aboutImage.png`;
                 }
                 
             } catch (error) {
