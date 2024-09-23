@@ -136,14 +136,14 @@ const Report = () => {
         const currentYear = today.getFullYear();
         const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-        setTotalDays(date);
-
+        setTotalDays(daysInMonth);
+ 
         // Get Data Month Transaction
-        const resMonth =  selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllMonth?date=" + date) :  await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/years");
+        const resMonth =  selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllMonth?date=" + date) :  await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/trans");
         // selectedMonth !== "00" ? setTransData(resMonth.data) : "";
         setTransData(resMonth.data)
         // Get Data Month Transaction
-        console.log(date);
+        console.log(resMonth);
 
         // Get Month
         const res = selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date) : await [];
@@ -195,19 +195,78 @@ const Report = () => {
   ];
 
   const  [selectedDays, setSelectedDays] = useState(0);
+  const [showGetP, setShowGetP] = useState(`2024-${selectedMonth}-${selectedDays}`);
+
+  const montHur = (e) => {
+    switch (e) {
+      case "01":
+          return "January";
+        break;
+      case "02":
+          return "February";
+        break;
+      case "03":
+          return "March";
+        break;
+      case "04":
+          return "April";
+        break;
+      case "05":
+          return "May";
+        break;
+      case "06":
+          return "June";
+        break;
+      case "07":
+          return "July";
+        break;
+      case "08":
+          return "August";
+        break;
+      case "09":
+          return "September";
+        break;
+      case "10":
+          return "October";
+        break;
+      case "11":
+          return "November";
+        break;
+      case "12":
+          return "December";
+        break;
+    
+      default:
+        return "-";
+        break;
+    }
+  }
+ 
+  useEffect(() => {
+    if(selectedMonth || selectedDays){
+      if(selectedDays !== 0){
+        setShowGetP(`2024-${selectedMonth}-${selectedDays}`);
+      }else if(selectedMonth === "00"){
+        setShowGetP("Tahun 2024");
+      }else{
+        setShowGetP(`Bulan ${montHur(selectedMonth)}`);
+      }
+    }
+  }, [selectedMonth, selectedDays]);
 
   useEffect( () => {
     if(selectedDays > 0){
         const dy = async () => {
           const date = "2024-" + selectedMonth + "-01";
         const daysVal = `2024-${selectedMonth}-${selectedDays}`;
+        
         const res = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterDays?days=" + daysVal);
         
         const resDays = selectedDays !== 0 ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllDays?date=" + daysVal) : await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date);
-        console.log(resDays);
+        console.log("resDays");
 
         selectedDays !== 0 ? setTransData(resDays.data) : setTransData(resDays.data);
-        
+        setShowGetP(daysVal);
           const ctx = canvasRef.current.getContext('2d');
           const filteredData = res.data.filter(row => row.hours);
 
@@ -301,6 +360,7 @@ const Report = () => {
       />
       <div ref={componentPDF} style={{ width: "100%" }} className='absolute opacity-o -z-10 left-0 p-5'>
         <h1 className='text-center font-olive text-4xl'>Report Transaction</h1>
+        <h6>Periode Tanggal : {showGetP ? showGetP : "Tahun 2024"}</h6>
 
         <div className='top-[10%] absolute margin-auto left-[30%] h-full'>
           <img src="images/logo.png" alt="" className='opacity-10' width={500} />

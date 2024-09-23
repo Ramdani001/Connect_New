@@ -23,28 +23,38 @@ export default function Transaction_History(props){
         try { 
             const id_user = localStorage.getItem("id_user");
             const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/transaksi/${id_user}`);
-  console.log(response.data);
+  
             if(response.status == 200){
-                const idProductString = response.data[0].id_product;
+                setArrData(response.data);
+                const idProductString = response.data[2].id_product;
+                const get_trans = response.data;
 
-                const idsArray = (typeof idProductString === 'string' && idProductString.trim() !== '') 
-                    ? idProductString.split(',').map(id => id.trim())
-                    : []; 
-                    setArrData(response.data);
+                setDetParams(res.data);
+                const ray = {};
+                get_trans.map((element) => {
+                    ray[element.id_trans] = element.id_product;
+                });
+                
+                const combinedIds = Object.values(ray)
+                .flatMap(ids => ids.split(','));
+                
+                const uniqueIds = [...new Set(combinedIds)];
+                
+                // const idsArray = (typeof idProductString === 'string' && idProductString.trim() !== '') 
+                //     ? idProductString.split(',').map(id => id.trim())
+                //     : []; 
                     // setId(response)
                  
                 setIdP(prevState => {
                     const updatedState = {
                         ...prevState,
-                        "numbers": idsArray,
+                        "id_trans": ray,
+                        "numbers": uniqueIds,
                     };
                     return updatedState;
                 });
-                console.log(arrData);
                 
             }
-
-
 
         } catch (error) {
             
@@ -85,13 +95,29 @@ export default function Transaction_History(props){
         };
     }, [timeLeft]);
 
+    const [listProd, setListProd] = useState({});
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 if (idP) {
                     const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/det/", idP);
-                    console.log("Response Data:", res);
                     setDetParams(res.data);
+                    console.log("Res "+res);
+                    const transactions = idP.id_trans;
+                    
+                    const datu = res.data;
+                    const ray = {};
+                    
+                    for (const [trxId, ids] of Object.entries(transactions)) {
+                        ray[trxId] = datu.filter(product => ids.includes(product.id_product));
+                    }
+
+                    setDetParams(ray);
+                    console.log(ray);
+                    
+                    
+
                 } else {
                     console.log("Data Kosong");
                 }
@@ -102,6 +128,11 @@ export default function Transaction_History(props){
 
         fetchData();
     }, [idP]);
+
+    useEffect(() => {
+        setListProd(detParams);
+        console.log("Det Param"+ detParams);
+    }, [detParams])
 
     useEffect(() => {
         getCart();
@@ -135,7 +166,6 @@ export default function Transaction_History(props){
 
           setTypePayment(e.target.value);
 
-          console.log(formKonf);
     }
 
 
@@ -149,7 +179,6 @@ export default function Transaction_History(props){
             ...prevState,
             id: id,
         }))
-          console.log('Selected file:', file.name);
           setImages(file);
         }
       };
@@ -188,7 +217,6 @@ export default function Transaction_History(props){
             }
         }).catch(er => console.log(er));
 
-        console.log(images);
     }
 
     const [stat, setStat] = useState("");
@@ -212,7 +240,6 @@ export default function Transaction_History(props){
       }, [stat]);
 
     const addTrans = async(transData) => {
-        console.log(transData);
 
         axios.post('http://www.tech-in-dynamic.site:3000/api/v1/transaksi/updateInsert', transData)
         .then(res => {
@@ -269,6 +296,7 @@ export default function Transaction_History(props){
                                 <div key={paramIndex} className="flex gap-10">
                                     <div className="grid w-[30%] w-full">
                                         <span><b>{param.type}</b></span>
+                                        kk
                                         <span className="font-olive">- {param.title}</span>
                                     </div>
                                 </div>

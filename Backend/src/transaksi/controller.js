@@ -57,7 +57,7 @@ const getDet = (req, res) => {
 
 const getDetail = (req, res) => {
     const { numbers } = req.body;
-
+    
     pool.query(queries.getDetail, [numbers], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
