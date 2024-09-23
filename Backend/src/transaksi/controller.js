@@ -59,7 +59,7 @@ const getDetail = (req, res) => {
     const { numbers } = req.body;
     const idArray = numbers.split(',');
     console.log("Data receive => "+ idArray);
-    pool.query(queries.getDetail, [numbers], (error, results) => {
+    pool.query(queries.getDetail, [idArray], (error, results) => {
         if(error) throw error;
         res.status(200).json(results);
     });
