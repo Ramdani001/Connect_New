@@ -128,7 +128,7 @@ export default function History(props){
     // CheckOut
     const handleCheckout = async () => {
         console.log(formTrans);
- 
+        const id_local = localStorage.getItem("id_user");
         try {
             const response = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/insert/", formTrans);
             if(response.status == 200){
@@ -146,7 +146,7 @@ export default function History(props){
                         return updatedState;
                     });
 
-                    updateW(idP);
+                    updateW(id_local);
 
             }
             getCart()
@@ -175,8 +175,7 @@ export default function History(props){
     };
 
     const updateW = async(cartData) => {
-
-        const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/updateCart/", cartData);
+         const res = await axios.delete("http://www.tech-in-dynamic.site:3000/api/v1/cart/delCart/", cartData);
         console.log(cartData);            
         if(res.status == 200){
             alert("Berhasil Checkout Cart, segera melunasi di menu Transaction History!");  

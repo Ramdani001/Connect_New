@@ -280,7 +280,6 @@ export default function Users(props){
                                                     <div key={paramIndex} className="flex gap-10">
                                                         <div className="grid w-[30%] w-full">
                                                             <span><b>{param.type}</b></span>
-                                                            kk
                                                             <span className="font-olive">- {param.title}</span>
                                                         </div>
                                                     </div>

@@ -29,6 +29,9 @@ const getMessagesById = "SELECT * FROM product WHERE id_product=?";
 const insertCart = "INSERT INTO cart (id_product, id_user, paid) VALUES (?, ?, ?)";
 
 const delCart = "DELETE FROM cart WHERE id_cart=?";
+
+const delAll = "DELETE FROM cart WHERE id_user=?";
+
 const changeStatusMess = "UPDATE message SET stat=2 WHERE id_m=?";
 
 const getCustMess = `SELECT b.id_m, b.send_mess, b.id_user
@@ -44,4 +47,5 @@ module.exports = {
     changeStatusMess,
     getAllMessages,
     getCustMess,
+    delAll,
 };

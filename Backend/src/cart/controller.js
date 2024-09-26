@@ -37,6 +37,17 @@ const delCart = (req, res) => {
         res.status(200).send("Messages removed successfully");
     });
 }
+
+const delAll = (req, res) => {
+    const id = parseInt(req.params.id);
+
+    pool.query(queries.delAll, [id], (error, results) => {
+
+        if(error) throw error;
+        res.status(200).send("Messages removed successfully");
+    });
+}
+
 const changeStatusMess = (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -75,4 +86,5 @@ module.exports = {
     changeStatusMess,
     getAllMessages,
     getCustMess,
+    delAll,
 };

@@ -10,14 +10,16 @@ export default function Transaction_History(props){
     const [konfirmasi, setKonfirmasi] = useState(false);
     // Countdown
     const [timeLeft, setTimeLeft] = useState(1 * 1800);
-
+    const [allData, setAllData] = useState([]);
     const [arrData, setArrData] = useState([]);
-
+    const [transHis, setTransHis] = useState([]);
     const [idP, setIdP] = useState([]);
 
     const [detParams, setDetParams] = useState([]);
     const [id, setId] = useState(0);
     const [changeload, setChangeLoad] = useState(false);
+
+    const [sendIdP, setSendIdP] = useState([]);
 
     const getCart = async () => {
         try { 
@@ -26,33 +28,34 @@ export default function Transaction_History(props){
   
             if(response.status == 200){
                 setArrData(response.data);
-                const idProductString = response.data[2].id_product;
-                const get_trans = response.data;
+                setTransHis(response.data);
+                setDetParams(response.data);
+                const ray = [];
 
-                setDetParams(res.data);
-                const ray = {};
-                get_trans.map((element) => {
-                    ray[element.id_trans] = element.id_product;
+                response.data.forEach(element => {
+                    ray.push(element.id_product);
                 });
+
+                const mergedData = response.data.map(item => {
+                    return {
+                        id_trans: item.id_trans,
+                        id_product: item.id_product
+                    };
+                });
+
+                const combinedArray = ray.flatMap(product => product.split(','));
                 
-                const combinedIds = Object.values(ray)
-                .flatMap(ids => ids.split(','));
-                
-                const uniqueIds = [...new Set(combinedIds)];
-                
-                // const idsArray = (typeof idProductString === 'string' && idProductString.trim() !== '') 
-                //     ? idProductString.split(',').map(id => id.trim())
-                //     : []; 
-                    // setId(response)
-                 
-                setIdP(prevState => {
+                const combinedString = combinedArray.join(',');
+                setSendIdP(prevState => {
                     const updatedState = {
                         ...prevState,
-                        "id_trans": ray,
-                        "numbers": uniqueIds,
+                        "id_trans": mergedData,
+                        "numbers": combinedString,
                     };
                     return updatedState;
                 });
+
+                console.log(mergedData);
                 
             }
 
@@ -95,28 +98,26 @@ export default function Transaction_History(props){
         };
     }, [timeLeft]);
 
-    const [listProd, setListProd] = useState({});
-
     useEffect(() => {
         const fetchData = async () => {
+            console.log(sendIdP);
             try {
-                if (idP) {
-                    const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/det/", idP);
-                    setDetParams(res.data);
-                    console.log("Res "+res);
-                    const transactions = idP.id_trans;
-                    
-                    const datu = res.data;
-                    const ray = {};
-                    
-                    for (const [trxId, ids] of Object.entries(transactions)) {
-                        ray[trxId] = datu.filter(product => ids.includes(product.id_product));
-                    }
+                if (sendIdP) {
+                    const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/det/", sendIdP);
+                    const products = res.data;
 
-                    setDetParams(ray);
-                    console.log(ray);
-                    
-                    
+                    const enrichedTransactions = transHis.map(transaction => {
+                        const productIds = transaction.id_product.split(',').map(Number);
+                        
+                        const productsDetails = products.filter(product => productIds.includes(product.id_product));
+                        
+                        return {
+                            ...transaction,
+                            products: productsDetails // Menambahkan detail produk
+                        };
+                    });
+                    setAllData(enrichedTransactions);
+                    console.log(enrichedTransactions);
 
                 } else {
                     console.log("Data Kosong");
@@ -127,17 +128,14 @@ export default function Transaction_History(props){
         };
 
         fetchData();
-    }, [idP]);
-
-    useEffect(() => {
-        setListProd(detParams);
-        console.log("Det Param"+ detParams);
-    }, [detParams])
+    }, [sendIdP]);
 
     useEffect(() => {
         getCart();
 
     }, []);
+
+
     const [totalCart, setTotalCart] = useState(0);
 
     useEffect(() => {
@@ -270,7 +268,7 @@ export default function Transaction_History(props){
                 <div className="w-full h-[89vh] bg-gray-400/20 p-3 flex flex-col relative">
                    <h1 className="font-olive p-2"> <u>Transaction History</u> </h1>
                 <div className="overflow-auto">
-                   {arrData.slice().reverse().map((item, index) => (
+                   {allData.slice().reverse().map((item, index) => (
                     <div key={item.id_trans} className="bg-white w-full mt-2 p-2 pb-10">
                         <div className="flex justify-between">
                             <div>
@@ -292,11 +290,10 @@ export default function Transaction_History(props){
                         {/* Jika detParams adalah data yang terkait dengan item tertentu, gunakan di sini */}
                         <b><u>List Product</u></b>
                         <div className="flex justify-between">
-                            {detParams.map((param, paramIndex) => (
+                            {item.products.map((param, paramIndex) => (
                                 <div key={paramIndex} className="flex gap-10">
                                     <div className="grid w-[30%] w-full">
                                         <span><b>{param.type}</b></span>
-                                        kk
                                         <span className="font-olive">- {param.title}</span>
                                     </div>
                                 </div>
