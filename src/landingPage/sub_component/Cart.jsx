@@ -175,8 +175,8 @@ export default function History(props){
     };
 
     const updateW = async(cartData) => {
-         const res = await axios.delete("http://www.tech-in-dynamic.site:3000/api/v1/cart/delCart/", cartData);
-        console.log(cartData);            
+        
+         const res = await axios.delete("http://www.tech-in-dynamic.site:3000/api/v1/cart/delCartAll/"+ cartData);
         if(res.status == 200){
             alert("Berhasil Checkout Cart, segera melunasi di menu Transaction History!");  
             localStorage.setItem("sidebar", "Trans_History");

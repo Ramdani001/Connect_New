@@ -136,7 +136,7 @@ export default function Users(props){
                     });
                     setAllData(enrichedTransactions);
                     console.log(enrichedTransactions);
-                    
+                     
 
                 } else {
                     console.log("Data Kosong");

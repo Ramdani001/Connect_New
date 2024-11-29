@@ -90,7 +90,7 @@ export default function Gallery(props){
         <div className="my-5 pt-20 h-full w-full bg-[url('images/bgAbout.png')] bg-no-repeat bg-top-4 ">
             
             <div className="px-2">
-                <h1 className="text-3xl font-semibold underline underline-offset-8 decoration-wavy decoration-[#1a4f5c] text-[#1a4f5c]">Gallery Ads Video</h1>
+                <h1 className="text-3xl font-semibold underline underline-offset-8 decoration-wavy decoration-[#1a4f5c] text-[#1a4f5c]">Gallery Coba Ads Video</h1>
                 
                 <nav className="mt-5 grid grid-cols-3 md:grid-flow-col gap-2 w-full md:w-[40%] text-sm font-semibold">
                     <Link to="/Gallery" className={active ? "border p-1 bg-blue-500 text-center rounded shadow w-full active" : "border p-1 bg-blue-500 text-center rounded shadow w-full"}>All Video</Link>

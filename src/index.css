@@ -13,6 +13,10 @@
       src: url(../public/Poppins/Poppins-Light.ttf);
     }
   }
+.stacked-items {
+    display: block; /* Ensures items stack vertically */
+    margin-top: 5px; /* Optional: Adds some space between stacked items */
+}
 
 .font-olive{
     font-family: olive;
