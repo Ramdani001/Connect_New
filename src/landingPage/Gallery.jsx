@@ -18,15 +18,15 @@ export default function Gallery(props){
     const getProduct = async () => {
         console.log(tipe); 
         if (tipe === "allProduk") {
-            newUrl = 'http://www.tech-in-dynamic.site:3000/api/v1/products';
+            newUrl = 'http://localhost:3000/api/v1/products';
         } else if (tipe === "videoFacebook") {
-            newUrl = 'http://www.tech-in-dynamic.site:3000/api/v1/products/filter/Fac';
+            newUrl = 'http://localhost:3000/api/v1/products/filter/Fac';
         } else if (tipe === "tiktok") {
-            newUrl = 'http://www.tech-in-dynamic.site:3000/api/v1/products/filter/tiktok';
+            newUrl = 'http://localhost:3000/api/v1/products/filter/tiktok';
         } else if (tipe === "instaStory") {
-            newUrl = 'http://www.tech-in-dynamic.site:3000/api/v1/products/filter/Inst';
+            newUrl = 'http://localhost:3000/api/v1/products/filter/Inst';
         } else {
-            newUrl = 'http://www.tech-in-dynamic.site:3000/api/v1/products/filter/You';
+            newUrl = 'http://localhost:3000/api/v1/products/filter/You';
         }
         try {
             const response = await axios.get(newUrl);

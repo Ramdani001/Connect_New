@@ -19,7 +19,7 @@ const getUsersById = (req, res) => {
 
 const addUsers = (req, res) => {
     const { email, username, password, tipe,nama, no_telp, alamat, created_at, updated_at } = req.body;
-
+    
     if (!email) {
         return res.status(400).send("Email is required");
     }
@@ -70,14 +70,14 @@ const checkLogin = (req, res) => {
     
     pool.query(queries.checkEmailExists, [email], (error, results) => {
         
-        console.log(email);
+        res.status(200).send(results);
         
-        if(results.length > 0){
-            res.status(200).send(results);
-            console.log("Email Ada");
-        }else{
-            res.status(300).send("Email atau password salah!!");
-        }
+        // if(results || results.length > 0){
+        //     res.status(200).send(results);
+        //     console.log("Email Ada");
+        // }else{
+        //     res.status(300).send("Email atau password salah!!");
+        // }
         
     });
 }

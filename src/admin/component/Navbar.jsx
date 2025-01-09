@@ -14,7 +14,7 @@ export default function Navbar(props){
         const id = localStorage.getItem('id_user');
         
         try {
-            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/users/${id}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
             setOldData(response.data[0]);
             console.log(response.data[0]);
             if(response.data[0].file !== ""){

@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function Users(props){
 
     const [arrData, setArrData] = useState([]);
-    const [url, setUrl] = useState('http://www.tech-in-dynamic.site:3000/api/v1/users/');
+    const [url, setUrl] = useState('http://localhost:3000/api/v1/users/');
     const [loadingShow, setLoadingShow] = useState(false);
     const getUsers = async () => {
         try {
@@ -56,7 +56,7 @@ export default function Users(props){
         console.log(transHis.length);
         try {
 
-            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/transaksi/${e}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/transaksi/${e}`);
   
             if(response.status == 200){
                 setTransHis(response.data);
@@ -119,7 +119,7 @@ export default function Users(props){
         const fetchData = async () => {
             try {
                 if (sendIdP) {
-                    const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/det/", sendIdP);
+                    const res = await axios.post("http://localhost:3000/api/v1/transaksi/det/", sendIdP);
                     const sl = sendIdP['id_trans'];
 
                     const products = res.data;
@@ -153,8 +153,8 @@ export default function Users(props){
         const ok = window.confirm("Apakah yakin ingin menghapusnya?");
         if(ok){
             try {
-                const response = await axios.delete(`http://www.tech-in-dynamic.site:3000/api/v1/users/${e}`);
-                setUrl("http://www.tech-in-dynamic.site:3000/api/v1/users/");
+                const response = await axios.delete(`http://localhost:3000/api/v1/users/${e}`);
+                setUrl("http://localhost:3000/api/v1/users/");
                 console.log('Data:', response);
                 window.location.reload();
             } catch (error) {

@@ -47,7 +47,7 @@ export default function History(props){
     const getCart = async () => {
         const id_user = localStorage.getItem('id_user');
         try {
-            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/cart/${id_user}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/cart/${id_user}`);
             setArrData(response.data);
             // Membuat objek baru berdasarkan data yang diterima
             let price = 0;
@@ -105,7 +105,7 @@ export default function History(props){
         const id = e;
         console.log('Item ID to delete:', id);
         try {
-            const response = await axios.delete(`http://www.tech-in-dynamic.site:3000/api/v1/cart/del/${id}`);
+            const response = await axios.delete(`http://localhost:3000/api/v1/cart/del/${id}`);
             getCart()
         } catch (error) {
             
@@ -130,7 +130,7 @@ export default function History(props){
         console.log(formTrans);
         const id_local = localStorage.getItem("id_user");
         try {
-            const response = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/insert/", formTrans);
+            const response = await axios.post("http://localhost:3000/api/v1/transaksi/insert/", formTrans);
             if(response.status == 200){
                 const idProductString = formTrans.id_chart;
 
@@ -170,13 +170,13 @@ export default function History(props){
         const rupiah = new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR',
-        });
+        }); 
         return rupiah.format(amount);
     };
 
     const updateW = async(cartData) => {
-        
-         const res = await axios.delete("http://www.tech-in-dynamic.site:3000/api/v1/cart/delCartAll/"+ cartData);
+        console.log(cartData);
+         const res = await axios.delete("http://localhost:3000/api/v1/cart/delAllCart/"+ cartData);
         if(res.status == 200){
             alert("Berhasil Checkout Cart, segera melunasi di menu Transaction History!");  
             localStorage.setItem("sidebar", "Trans_History");

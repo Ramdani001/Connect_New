@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
     res.send("Hello Word!");
 });
 
-const uploadPath = path.resolve(__dirname, '../../media/connect/images/products');
+const uploadPath = path.resolve(__dirname, '../images/products');
 
 // Ensure the directory exists
 if (!fs.existsSync(uploadPath)) {

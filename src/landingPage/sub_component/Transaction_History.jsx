@@ -24,7 +24,7 @@ export default function Transaction_History(props){
     const getCart = async () => {
         try { 
             const id_user = localStorage.getItem("id_user");
-            const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/transaksi/${id_user}`);
+            const response = await axios.get(`http://localhost:3000/api/v1/transaksi/${id_user}`);
   
             if(response.status == 200){
                 setArrData(response.data);
@@ -103,7 +103,7 @@ export default function Transaction_History(props){
             console.log(sendIdP);
             try {
                 if (sendIdP) {
-                    const res = await axios.post("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/det/", sendIdP);
+                    const res = await axios.post("http://localhost:3000/api/v1/transaksi/det/", sendIdP);
                     const products = res.data;
 
                     const enrichedTransactions = transHis.map(transaction => {
@@ -195,7 +195,7 @@ export default function Transaction_History(props){
         const formFile = new FormData();
         formFile.append('file', images);
         
-        axios.post('http://www.tech-in-dynamic.site:3000/upload', formFile)
+        axios.post('http://localhost:3000/upload', formFile)
         .then(res => {
             
             let data = JSON.stringify(res.data, null, 2);
@@ -239,7 +239,7 @@ export default function Transaction_History(props){
 
     const addTrans = async(transData) => {
 
-        axios.post('http://www.tech-in-dynamic.site:3000/api/v1/transaksi/updateInsert', transData)
+        axios.post('http://localhost:3000/api/v1/transaksi/updateInsert', transData)
         .then(res => {
 
             if(res.status == 200){

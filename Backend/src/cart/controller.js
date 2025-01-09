@@ -48,6 +48,15 @@ const delAll = (req, res) => {
     });
 }
 
+const delAllChart = (req, res) => {
+    const id = parseInt(req.params.id);
+
+    pool.query(queries.delAllChart, [id], (error, results) => {
+        res.status(200).send("Checkout Successfully");
+    })
+
+}
+
 const changeStatusMess = (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -87,4 +96,5 @@ module.exports = {
     getAllMessages,
     getCustMess,
     delAll,
+    delAllChart,
 };

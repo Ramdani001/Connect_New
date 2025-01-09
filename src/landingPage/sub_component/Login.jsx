@@ -5,10 +5,13 @@ import { format } from 'date-fns';
 
 export default function Login(props){
     const [showForm, setShowForm] = useState(true);
+
+    console.log(showForm);
+
     const addUser = async (userData) => {
         try {
 
-            const response = await axios.post('http://www.tech-in-dynamic.site:3000/api/v1/users/regist', userData);
+            const response = await axios.post('http://localhost:3000/api/v1/users/regist', userData);
             
             if(response.status == 200){
                 setShowAlert(true);
@@ -86,7 +89,7 @@ export default function Login(props){
           const checkLogin = async (userData) => {
             try {
     
-                const response = await axios.post('http://www.tech-in-dynamic.site:3000/api/v1/users/check', userData);
+                const response = await axios.post('http://localhost:3000/api/v1/users/check', userData);
                 
                 
                 if(response.status == 200){
@@ -171,6 +174,7 @@ export default function Login(props){
         const handleSubmit = (e) => {
           e.preventDefault();
           addUser(formData);
+          console.log(formData);
         };
 
         useEffect(() => {

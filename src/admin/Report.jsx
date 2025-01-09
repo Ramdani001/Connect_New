@@ -8,7 +8,7 @@ Chart.register(...registerables);
  
 const Report = () => {
   // State untuk menyimpan data transaksi dan bulan yang dipilih
-  const [url, setUrl] = useState('http://www.tech-in-dynamic.site:3000/api/v1/transaksi/trans');
+  const [url, setUrl] = useState('http://localhost:3000/api/v1/transaksi/trans');
   const [transData, setTransData] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState("00");
 
@@ -25,10 +25,10 @@ const Report = () => {
     try {
       const response = await axios.get(url);
 
-      const res = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/years");
+      const res = await axios.get("http://localhost:3000/api/v1/count/years");
       setDateYears(res.data);
 
-      const resCSV = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getCSV");
+      const resCSV = await axios.get("http://localhost:3000/api/v1/transaksi/getCSV");
       seGetCSV(resCSV.data);
 
       setTransData(response.data);
@@ -139,14 +139,14 @@ const Report = () => {
         setTotalDays(daysInMonth);
  
         // Get Data Month Transaction
-        const resMonth =  selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllMonth?date=" + date) :  await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/trans");
+        const resMonth =  selectedMonth !== "00" ? await axios.get("http://localhost:3000/api/v1/transaksi/getAllMonth?date=" + date) :  await axios.get("http://localhost:3000/api/v1/transaksi/trans");
         // selectedMonth !== "00" ? setTransData(resMonth.data) : "";
         setTransData(resMonth.data)
         // Get Data Month Transaction
         console.log(resMonth);
 
         // Get Month
-        const res = selectedMonth !== "00" ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date) : await [];
+        const res = selectedMonth !== "00" ? await axios.get("http://localhost:3000/api/v1/count/getFilterMonth?date=" + date) : await [];
         const ctx = canvasRef.current.getContext('2d');
         const filteredData = selectedMonth === "00" ? datYears : res.data.filter(row => row.date);
 
@@ -260,9 +260,9 @@ const Report = () => {
           const date = "2024-" + selectedMonth + "-01";
         const daysVal = `2024-${selectedMonth}-${selectedDays}`;
         
-        const res = await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterDays?days=" + daysVal);
+        const res = await axios.get("http://localhost:3000/api/v1/count/getFilterDays?days=" + daysVal);
         
-        const resDays = selectedDays !== 0 ? await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/transaksi/getAllDays?date=" + daysVal) : await axios.get("http://www.tech-in-dynamic.site:3000/api/v1/count/getFilterMonth?date=" + date);
+        const resDays = selectedDays !== 0 ? await axios.get("http://localhost:3000/api/v1/transaksi/getAllDays?date=" + daysVal) : await axios.get("http://localhost:3000/api/v1/count/getFilterMonth?date=" + date);
         console.log("resDays");
 
         selectedDays !== 0 ? setTransData(resDays.data) : setTransData(resDays.data);

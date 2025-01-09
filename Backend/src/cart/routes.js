@@ -10,6 +10,8 @@ router.post("/add", controller.insertCart);
 router.delete("/del/:id", controller.delCart);
 router.delete("/delCart/:id", controller.delAll);
 
+router.delete("/delAllCart/:id", controller.delAllChart);
+
 
 // router.get("/stat/:id", controller.changeStatusMess);
 

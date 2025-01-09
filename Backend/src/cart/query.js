@@ -39,6 +39,8 @@ const getCustMess = `SELECT b.id_m, b.send_mess, b.id_user
                     LEFT JOIN sub_message b ON a.id_m=b.id_m
                     WHERE a.id_user=?`;
 
+const delAllChart = `DELETE FROM CART WHERE id_user=?`;
+
 module.exports = {
     getCart,
     getMessagesById,
@@ -48,4 +50,5 @@ module.exports = {
     getAllMessages,
     getCustMess,
     delAll,
+    delAllChart
 };

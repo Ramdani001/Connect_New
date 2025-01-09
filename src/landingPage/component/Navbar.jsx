@@ -10,7 +10,7 @@ function Navbar() {
 
        if(id){
             try {
-                const response = await axios.get(`http://www.tech-in-dynamic.site:3000/api/v1/users/${id}`);
+                const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`);
                 setOldData(response.data[0]);
 
                 if(response.data[0].file !== null){
